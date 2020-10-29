@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import {CoreModule} from './core/core.module';
 import {HelloWorldModule} from './features/hello-world/hello-world.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSliderModule } from '@angular/material/slider';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserModule,
     AppRoutingModule,
     HelloWorldModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatSliderModule
   ],
   providers: [],
   bootstrap: [AppComponent]
