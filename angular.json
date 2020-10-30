@@ -126,5 +126,8 @@
       }
     }
   },
-  "defaultProject": "rem-spa"
+  "defaultProject": "rem-spa",
+  "cli": {
+    "analytics": false
+  }
 }
