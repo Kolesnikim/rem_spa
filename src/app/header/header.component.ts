@@ -8,7 +8,9 @@ import { Component, OnInit, AfterViewInit, Renderer2, ViewChild, ViewContainerRe
                 <div class = 'header_logo'><img src ='#'></div>
                 <nav class = 'header_nav'>
                   <ul class = 'nav'>
-                    <li *ngFor="let item of menuItems" class = 'nav_item'><a href = '#' class = 'nav_link'>{{item}}</a></li>
+                    <li *ngFor="let item of menuItems" class = 'nav_item'>
+                      <a href = '#' class = 'nav_link'>{{item}}</a>
+                    </li>
                   </ul>
                   <button class = 'language' >{{language}}</button>
                 </nav>
