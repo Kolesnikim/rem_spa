@@ -3,8 +3,8 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {CoreModule} from './core/core.module';
-import {HelloWorldModule} from './features/hello-world/hello-world.module';
+import { CoreModule } from './core/core.module';
+import { HelloWorldModule } from './features/hello-world/hello-world.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
 
@@ -17,7 +17,8 @@ import { MatSliderModule } from '@angular/material/slider';
     AppRoutingModule,
     HelloWorldModule,
     BrowserAnimationsModule,
-    MatSliderModule
+    MatSliderModule,
+    CoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]
