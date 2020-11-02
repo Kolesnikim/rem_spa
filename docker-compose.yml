@@ -1,0 +1,12 @@
+version: '3'
+services:
+  rem-frontend:
+    build:
+      context: ./
+      dockerfile: docker/Dockerfile
+    ports:
+      - "8080:80"
+    container_name: spa
+    volumes:
+      - ./usr/src/app/
+
