@@ -4,8 +4,8 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { ProgramComponent } from './program/program.component';
-import { GalleryComponent } from './gallery/gallery.component';
 import { NotFoundComponent } from './not-found.component';
+import { GalleryModule } from './gallery/gallery.module';
 
 @NgModule({
   declarations: [
@@ -13,17 +13,18 @@ import { NotFoundComponent } from './not-found.component';
     FooterComponent,
     MainPageComponent,
     ProgramComponent,
-    GalleryComponent,
     NotFoundComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    GalleryModule
   ],
   exports: [
     HeaderComponent,
     FooterComponent,
     MainPageComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    GalleryModule
   ]
 })
 export class CoreModule { }

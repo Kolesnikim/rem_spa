@@ -7,9 +7,13 @@ import { NotFoundComponent } from './core/not-found.component';
 import { ProgramComponent } from './core/program/program.component';
 
 const routes: Routes = [
-  { path: '', component: MainPageComponent },
   { path: 'program', component: ProgramComponent },
-  { path: 'gallery', component: GalleryComponent },
+  {
+    path: 'gallery',
+    component: GalleryComponent,
+   // loadChildren: () => import('./core/gallery/gallery.module').then(m => m.GalleryModule)
+  },
+  { path: '', component: MainPageComponent },
   { path: '**', component: NotFoundComponent }
 ];
 
