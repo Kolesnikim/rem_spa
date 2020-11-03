@@ -1,6 +1,6 @@
 import { newArray } from '@angular/compiler/src/util';
 import { Component, OnInit, AfterViewInit, Renderer2, ViewChild, ViewContainerRef, TemplateRef } from '@angular/core';
-import {RoutingService} from '../../routing.service'
+import {RoutingService} from '../../routing.service';
 
 @Component({
   selector: 'app-header',
@@ -15,7 +15,7 @@ import {RoutingService} from '../../routing.service'
                   <button class = 'language' >{{language}}</button>
                 </nav>
             </div>`,
-  styleUrls: ['./header.component.less'],  
+  styleUrls: ['./header.component.less'],
   providers: [RoutingService]
 })
 export class HeaderComponent implements OnInit {
@@ -26,15 +26,14 @@ export class HeaderComponent implements OnInit {
     this.language = 'EN';
   }
 
-  ngOnInit(): void { 
+  ngOnInit(): void {
     this.updateMenuItems();
   }
 
   updateMenuItems(): void {
     this.menuItems = [];
-    for (let item of this.routingService.getData()){
-      this.menuItems.push(item.Name)
+    for (const item of this.routingService.getData()){
+      this.menuItems.push(item.Name);
     }
   }
-
 }
