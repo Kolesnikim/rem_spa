@@ -1,5 +1,5 @@
 
-class RouteItem {
+export class RouteItem {
     private name: string;
     private path: string;
 
@@ -19,11 +19,11 @@ class RouteItem {
 
 export class RoutingService {
     private routes: RouteItem[] = [
-        new RouteItem('Программа', '/'),
-        new RouteItem('Избрранное', '/'),
-        new RouteItem ('Фотогаллерея', '/'),
-        new RouteItem('Документы', ''),
-        new RouteItem('О приложении', '')];
+        new RouteItem('Программа', '/program'),
+        new RouteItem('Избранное', '/favourites'),
+        new RouteItem ('Фотогаллерея', '/gallery'),
+        new RouteItem('Документы', '/documents'),
+        new RouteItem('О приложении', '/about')];
 
     getData(): RouteItem[]{
         return this.routes;

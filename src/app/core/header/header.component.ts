@@ -1,29 +1,28 @@
 import { newArray } from '@angular/compiler/src/util';
 import { Component, OnInit, AfterViewInit, Renderer2, ViewChild, ViewContainerRef, TemplateRef } from '@angular/core';
-import {RoutingService} from '../../routing.service';
+import {RoutingService, RouteItem} from '../../routing.service';
 
 @Component({
   selector: 'app-header',
   template: `<div class = 'header_container'>
-                <div class = 'header_logo'><img src ='#'></div>
+                <div class = 'header_logo'><a routerLink='/' href='/'><img src ='#'></a></div>
                 <nav class = 'header_nav'>
                   <ul class = 'nav'>
-                    <li *ngFor="let item of menuItems" class = 'nav_item'>
-                      <a href = '#' class = 'nav_link'>{{item}}</a>
+                    <li *ngFor="let item of menuItems" class='nav_item'>
+                      <a routerLink={{item.Path}} href="{{item.Path}}" class='nav_link'>{{item.Name}}</a>
                     </li>
                   </ul>
-                  <button class = 'language' >{{language}}</button>
                 </nav>
             </div>`,
   styleUrls: ['./header.component.less'],
   providers: [RoutingService]
 })
 export class HeaderComponent implements OnInit {
-  menuItems: string[];
+  menuItems: RouteItem[];
+  menuPaths: string[];
   language: string;
 
   constructor(private routingService: RoutingService) {
-    this.language = 'EN';
   }
 
   ngOnInit(): void {
@@ -31,9 +30,6 @@ export class HeaderComponent implements OnInit {
   }
 
   updateMenuItems(): void {
-    this.menuItems = [];
-    for (const item of this.routingService.getData()){
-      this.menuItems.push(item.Name);
-    }
+    this.menuItems = this.routingService.getData();
   }
 }
