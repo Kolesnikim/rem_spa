@@ -1,6 +1,6 @@
 import { newArray } from '@angular/compiler/src/util';
 import { Component, OnInit, AfterViewInit, Renderer2, ViewChild, ViewContainerRef, TemplateRef } from '@angular/core';
-
+import {RoutingService} from '../../routing.service'
 
 @Component({
   selector: 'app-header',
@@ -15,22 +15,26 @@ import { Component, OnInit, AfterViewInit, Renderer2, ViewChild, ViewContainerRe
                   <button class = 'language' >{{language}}</button>
                 </nav>
             </div>`,
-  styleUrls: ['./header.component.less']
+  styleUrls: ['./header.component.less'],  
+  providers: [RoutingService]
 })
 export class HeaderComponent implements OnInit {
   menuItems: string[];
   language: string;
 
-  constructor(private renderer: Renderer2) {
+  constructor(private routingService: RoutingService) {
     this.language = 'EN';
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void { 
     this.updateMenuItems();
   }
 
   updateMenuItems(): void {
-    this.menuItems = ['Программа', 'Избранное', 'Партнеры', 'Фотогалерея', 'Документы', 'О приложении'];
+    this.menuItems = [];
+    for (let item of this.routingService.getData()){
+      this.menuItems.push(item.Name)
+    }
   }
 
 }
