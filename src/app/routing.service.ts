@@ -8,7 +8,7 @@ class RouteItem {
         this.path = path;
     }
 
-    public get Name() : string {
+    public get Name(): string {
         return this.name;
     }
 
@@ -19,15 +19,13 @@ class RouteItem {
 
 export class RoutingService {
     private routes: RouteItem[] = [
-        new RouteItem('Программа', '/'), 
-        new RouteItem('Избрранное', '/'), 
-        new RouteItem ('Фотогаллерея', '/'), 
+        new RouteItem('Программа', '/'),
+        new RouteItem('Избрранное', '/'),
+        new RouteItem ('Фотогаллерея', '/'),
         new RouteItem('Документы', ''),
         new RouteItem('О приложении', '')];
-    
-    constructor() {
-    }                        
-    getData(){
+
+    getData(): RouteItem[]{
         return this.routes;
     }
 }
