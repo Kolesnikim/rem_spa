@@ -7,12 +7,9 @@ import {CoreModule} from './core/core.module';
 import {HelloWorldModule} from './features/hello-world/hello-world.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
-import { BodyComponent } from './body/body.component';
-
 @NgModule({
   declarations: [
     AppComponent,
-    BodyComponent,
   ],
   imports: [
     BrowserModule,

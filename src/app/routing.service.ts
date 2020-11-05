@@ -19,7 +19,7 @@ export class RouteItem {
 
 export class RoutingService {
     private routes: RouteItem[] = [
-        new RouteItem('Программа', '/program'),
+        new RouteItem('Программа', '/timetable'),
         new RouteItem('Избранное', '/favourites'),
         new RouteItem ('Фотогаллерея', '/gallery'),
         new RouteItem('Документы', '/documents'),
