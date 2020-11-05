@@ -3,11 +3,19 @@ import { Routes, RouterModule } from '@angular/router';
 import { CoreModule } from './core/core.module';
 import { NotFoundComponent } from './shared/not-found.component';
 import { MainPageComponent } from './shared/main-page/main-page.component';
+import { RoutingGuard } from './routing.guard';
 
 const routes: Routes = [
-  { path: 'timetable', loadChildren: () => import('./shared/timetable/timetable.module').then(m => m.TimetableModule) },
-  { path: 'gallery', loadChildren: () => import('./shared/gallery/gallery.module').then(m => m.GalleryModule) },
-  // { path: '', loadChildren: () => import('./shared/main-page/main-page.module').then(m => m.MainPageModule) },
+  {
+    path: 'timetable',
+    loadChildren: () => import('./shared/timetable/timetable.module').then(m => m.TimetableModule),
+    canActivate: [RoutingGuard]
+   },
+  {
+    path: 'gallery',
+    loadChildren: () => import('./shared/gallery/gallery.module').then(m => m.GalleryModule),
+    canActivate: [RoutingGuard]
+  },
   { path: '', component: MainPageComponent },
   { path: '**', component: NotFoundComponent }
 
@@ -15,6 +23,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [RoutingGuard],
 })
 export class AppRoutingModule { }

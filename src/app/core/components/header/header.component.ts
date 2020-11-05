@@ -1,6 +1,6 @@
 import { newArray } from '@angular/compiler/src/util';
 import { Component, OnInit, AfterViewInit, Renderer2, ViewChild, ViewContainerRef, TemplateRef } from '@angular/core';
-import {RoutingService, RouteItem} from '../../../routing.service';
+import { RouteItem, RoutingService } from '../../services/routing.service';
 
 @Component({
   selector: 'app-header',
@@ -30,6 +30,6 @@ export class HeaderComponent implements OnInit {
   }
 
   updateMenuItems(): void {
-    this.menuItems = this.routingService.getData();
+    this.menuItems = this.routingService.getAvailableRoutes();
   }
 }
