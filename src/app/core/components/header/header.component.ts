@@ -1,6 +1,6 @@
 import { newArray } from '@angular/compiler/src/util';
 import { Component, OnInit, AfterViewInit, Renderer2, ViewChild, ViewContainerRef, TemplateRef } from '@angular/core';
-import {RoutingService, RouteItem} from '../../routing.service';
+import {RoutingService, RouteItem} from '../../../routing.service';
 
 @Component({
   selector: 'app-header',
