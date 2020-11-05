@@ -7,6 +7,7 @@ import { CoreModule } from './core/core.module';
 import { HelloWorldModule } from './features/hello-world/hello-world.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
+import { AuthModule } from './features/auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { MatSliderModule } from '@angular/material/slider';
     HelloWorldModule,
     BrowserAnimationsModule,
     MatSliderModule,
+    AuthModule,
     CoreModule
   ],
   providers: [],
