@@ -28,10 +28,18 @@ export class LoginComponent implements OnInit {
   submit($event: any): void {
     $event.preventDefault();
     this.loading = true;
+
     const { login, password } = this.form.value;
+
     this.auth.login(login, password).subscribe(
-      () => this.router.navigate(['/']),
-      () => this.error = 'Неверный логин или пароль'
+      () => {
+        this.loading = false;
+        this.router.navigate(['/']);
+      },
+      () => {
+        this.loading = false;
+        this.error = 'Неверный логин или пароль';
+      }
     );
     }
   }

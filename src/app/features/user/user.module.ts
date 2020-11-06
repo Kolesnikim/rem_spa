@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AuthRoutingModule } from './auth-routing.module';
+import { UserRoutingModule } from './user-routing.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 
@@ -20,7 +20,7 @@ import { AuthInterceptor } from './classes/auth.interceptor';
   declarations: [LoginComponent],
   imports: [
     CommonModule,
-    AuthRoutingModule,
+    UserRoutingModule,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
@@ -33,4 +33,4 @@ import { AuthInterceptor } from './classes/auth.interceptor';
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
   ]]
 })
-export class AuthModule { }
+export class UserModule { }
