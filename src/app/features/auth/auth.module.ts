@@ -13,7 +13,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { AuthService } from './services/auth.service';
-import { HttpRequestInterceptor } from './classes/http.interceptor';
+import { AuthInterceptor } from './classes/auth.interceptor';
 
 
 @NgModule({
@@ -30,7 +30,7 @@ import { HttpRequestInterceptor } from './classes/http.interceptor';
     HttpClientModule
   ],
   providers: [AuthService, [
-    {provide: HTTP_INTERCEPTORS, useClass: HttpRequestInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
   ]]
 })
 export class AuthModule { }
