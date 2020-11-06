@@ -10,6 +10,8 @@ import { AuthService } from '../../services/auth.service';
 })
 export class LoginComponent implements OnInit {
   form: FormGroup;
+  error: string;
+  loading: boolean;
 
   constructor(private router: Router, private auth: AuthService) { }
 
@@ -25,10 +27,11 @@ export class LoginComponent implements OnInit {
 
   submit($event: any): void {
     $event.preventDefault();
+    this.loading = true;
     const { login, password } = this.form.value;
     this.auth.login(login, password).subscribe(
       () => this.router.navigate(['/']),
-      err => console.log(err)
+      () => this.error = 'Неверный логин или пароль'
     );
     }
   }
