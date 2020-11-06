@@ -25,5 +25,10 @@ export class LoginComponent implements OnInit {
 
   submit($event: any): void {
     $event.preventDefault();
+    const { login, password } = this.form.value;
+    this.auth.login(login, password).subscribe(
+      () => this.router.navigate(['/']),
+      err => console.log(err)
+    );
+    }
   }
-}

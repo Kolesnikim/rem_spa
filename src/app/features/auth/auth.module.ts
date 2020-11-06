@@ -14,6 +14,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { AuthService } from './services/auth.service';
 import { AuthInterceptor } from './classes/auth.interceptor';
+import { AuthGuard } from './classes/auth.guard';
 
 
 @NgModule({
@@ -29,7 +30,7 @@ import { AuthInterceptor } from './classes/auth.interceptor';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [AuthService, [
+  providers: [AuthService, AuthGuard, [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
   ]]
 })
