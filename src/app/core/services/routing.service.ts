@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import{ RouteItem } from '../models/route.item'
+import { RouteItem } from '../models/route.item';
 
 @Injectable({
   providedIn: 'root'
