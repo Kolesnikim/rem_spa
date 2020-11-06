@@ -14,11 +14,11 @@ import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { AuthService } from './services/auth.service';
 import { AuthInterceptor } from './classes/auth.interceptor';
-import { ProvileComponent } from './components/provile/provile.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 
 @NgModule({
-  declarations: [LoginComponent, ProvileComponent],
+  declarations: [LoginComponent, ProfileComponent],
   imports: [
     CommonModule,
     UserRoutingModule,
