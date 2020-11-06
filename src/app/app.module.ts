@@ -20,7 +20,7 @@ import { AuthModule } from './features/auth/auth.module';
     BrowserAnimationsModule,
     MatSliderModule,
     AuthModule,
-    CoreModule
+    CoreModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
