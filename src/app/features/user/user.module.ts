@@ -17,6 +17,7 @@ import { AuthInterceptor } from './classes/auth.interceptor';
 import { ProfileComponent } from './components/profile/profile.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { HttpService } from './services/http.service';
+import { AuthGuard } from './classes/auth.guard';
 
 
 @NgModule({
@@ -33,7 +34,7 @@ import { HttpService } from './services/http.service';
     MatProgressSpinnerModule,
     HttpClientModule
   ],
-  providers: [AuthService, HttpService, [
+  providers: [AuthService, HttpService, AuthGuard, [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
   ]]
 })
