@@ -15,6 +15,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { AuthService } from './services/auth.service';
 import { AuthInterceptor } from './classes/auth.interceptor';
 import { ProfileComponent } from './components/profile/profile.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { HttpService } from './services/http.service';
 
 
 @NgModule({
@@ -28,9 +30,10 @@ import { ProfileComponent } from './components/profile/profile.component';
     MatCardModule,
     MatToolbarModule,
     ReactiveFormsModule,
+    MatProgressSpinnerModule,
     HttpClientModule
   ],
-  providers: [AuthService, [
+  providers: [AuthService, HttpService, [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
   ]]
 })

@@ -27,6 +27,8 @@ export class LoginComponent implements OnInit {
 
   submit($event: any): void {
     $event.preventDefault();
+    if (this.form.invalid) { return; }
+
     this.loading = true;
 
     const { login, password } = this.form.value;
@@ -39,7 +41,10 @@ export class LoginComponent implements OnInit {
       () => {
         this.loading = false;
         this.error = 'Неверный логин или пароль';
-      }
+        setTimeout(() => {
+          this.error = '';
+        }, 3000);
+      },
     );
     }
   }

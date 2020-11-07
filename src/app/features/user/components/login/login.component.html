@@ -6,12 +6,20 @@
     <mat-form-field class="form-control">
       <mat-label>Логин</mat-label>
       <input matInput formControlName="login">
+      <mat-error *ngIf="form.get('login').touched && form.get('login').invalid">
+        <small>Это поле обязательно дя заполнения. Введите не менее 6 символов</small>
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field class="form-control">
       <mat-label>Пароль</mat-label>
       <input matInput type="password" formControlName="password">
+      <mat-error *ngIf="form.get('password').touched && form.get('password').invalid">
+        <small>Это поле обязательно дя заполнения. Введите не менее 8 символов</small>
+      </mat-error>
     </mat-form-field>
-    <button mat-raised-button color="primary" class="btn-form">Войти</button>
+    <mat-error *ngIf="error"><small>{{error}}</small></mat-error>
+
+    <button [disabled]="loading" mat-raised-button color="primary" class="btn-form">Войти</button>
   </form>
 </mat-card>
