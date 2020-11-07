@@ -18,8 +18,8 @@ export class AuthService {
   }
 
 
-  login(email: string, password: string): Observable<any> {
-    return this.http.post('http://localhost:8080/api/v1/users/login', { email, password })
+  login(login: string, password: string): Observable<any> {
+    return this.http.post('http://localhost:8080/api/v1/users/login', { login, password })
       .pipe(map(user => {
         localStorage.setItem('currentUser', JSON.stringify(user));
         this.currentUserSubject.next(user);
