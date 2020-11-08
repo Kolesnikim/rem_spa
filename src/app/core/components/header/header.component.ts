@@ -1,6 +1,6 @@
 import { newArray } from '@angular/compiler/src/util';
 import { Component, OnInit, AfterViewInit, Renderer2, ViewChild, ViewContainerRef, TemplateRef } from '@angular/core';
-import { RoutingService } from '../../services/routing.service';
+import { RoutingService } from '../../services/routingService/routing.service';
 import { RouteItem } from '../../models/route.item';
 
 @Component({
