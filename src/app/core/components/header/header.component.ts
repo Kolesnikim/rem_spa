@@ -5,16 +5,7 @@ import { RouteItem } from '../../models/route.item';
 
 @Component({
   selector: 'app-header',
-  template: `<div class = 'header_container'>
-                <div class = 'header_logo'><a routerLink='/' href='/'><img src ='#'></a></div>
-                <nav class = 'header_nav'>
-                  <ul class = 'nav'>
-                    <li *ngFor="let item of menuItems" class='nav_item'>
-                      <a routerLink={{item.Path}} href="{{item.Path}}" class='nav_link'>{{item.Name}}</a>
-                    </li>
-                  </ul>
-                </nav>
-            </div>`,
+  templateUrl: './header.component.html',
   styleUrls: ['./header.component.less'],
   providers: [RoutingService]
 })
