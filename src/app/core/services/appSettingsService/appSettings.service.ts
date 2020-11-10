@@ -13,19 +13,20 @@ export class AppSettingsService {
     new ActiveModule('Документы', 'documents'),
     new ActiveModule('О приложении', 'about')];
 
-  // метод, который отдает доступные модули (для постоения меню хедера)
+
+  /**
+   * Метод который возвращает массив доступных модулей для построения меню в хедере
+   */
   getAvailableRoutes(): ActiveModule[] {
     return this.availableRoutes;
   }
 
-// метод который проверяет возможность перехода из модуля в модуль(для роутинга)
+/**
+ * Проверка на доступность модуля
+ * @param route путь к модулю
+ * @returns true - если доступен, иначе false
+ */
   isAvailable(route: string): boolean {
-    for (const item of this.availableRoutes){
-      if (item.Path === route) {
-        return true;
-      }
-    }
-
-    return false;
+    return this.availableRoutes.findIndex(item => item.Path === route) !== -1;
   }
 }
