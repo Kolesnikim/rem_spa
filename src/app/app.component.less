@@ -3,6 +3,7 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    height: 100%;
 }
 
 app-header{
@@ -17,17 +18,14 @@ app-header{
 
 app-main-page{
     display: block;
-    min-height: 300px;
+    min-height: 100%;
 }
 
 app-footer{
+    position: relative;
+    flex-shrink: 0;
     display: block;
     background-color: #3f51b5;
     color: #fff;
     padding: 22px 0 18px;
-    position: relative;
-    position:fixed;
-   left:0px;
-   bottom:0px;
-   width:100%;
 }
