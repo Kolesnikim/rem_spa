@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot} from '@angular/router';
 import {Observable} from 'rxjs';
-import { RoutingService } from './services/routingService/routing.service';
+import { AppSettingsService } from './services/appSettingsService/appSettings.service';
 
 @Injectable({
     providedIn: 'root',
   })
 export class RoutingGuard implements CanActivate{
 
-    constructor(private routingService: RoutingService) {
+    constructor(private routingService: AppSettingsService) {
     }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean{

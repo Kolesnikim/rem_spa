@@ -1,4 +1,5 @@
-export class RouteItem {
+// элемент(модуль) доступный для навигации
+export class ActiveModule {
     private name: string;
     private path: string;
 

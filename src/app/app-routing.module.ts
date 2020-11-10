@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CoreModule } from './core/core.module';
 import { NotFoundComponent } from './shared/components/not-found/not-found.component';
-import { MainPageComponent } from './features/main-page/main-page.component';
 import { RoutingGuard } from './core/routing.guard';
+import { MainPageModule } from './features/main-page/main-page.module';
 
 const routes: Routes = [
   {
@@ -16,8 +15,7 @@ const routes: Routes = [
     loadChildren: () => import('./features/timetable/timetable.module').then(m => m.TimetableModule),
     canActivate: [RoutingGuard]
   },
-  { path: '', component: MainPageComponent },
-  // { path: '', loadChildren: () => import('./features/main-page/main-page.module').then(m => m.MainPageModule) },
+  { path: '', loadChildren: () => MainPageModule },
   { path: '**', component: NotFoundComponent }
 
 ];
