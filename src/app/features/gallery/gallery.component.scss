@@ -17,3 +17,41 @@
 
     // flex: 1 0 auto;
 }
+.gallery_board{
+    height: 30px;
+    background-color: #4a96d7;
+    margin-bottom: 10px;
+}
+.gallery_nav {
+    float: left;
+}
+
+.nav {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    padding-right: 70px;
+    position: relative;
+}
+.nav_item{
+    float: left;
+    overflow: hidden;
+}
+
+.nav_link{
+    display: block;
+    box-sizing: border-box;
+    color: white;
+    text-decoration: none;
+    padding: 5px 5px;
+    position: relative;
+    transition: background-color .3s;
+    outline: 0;
+    height: 30px;
+    overflow: hidden;
+    
+    &:hover{
+        background-color: #c6d4e7cc;
+        
+    }
+}
