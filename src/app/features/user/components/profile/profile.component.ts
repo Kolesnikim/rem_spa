@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../../services/http.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-profile',
@@ -7,13 +8,16 @@ import { HttpService } from '../../services/http.service';
   styleUrls: ['./profile.component.less']
 })
 export class ProfileComponent implements OnInit {
-  // l = null;
-  constructor(private http: HttpService) { }
+  user: null;
+
+  constructor(private http: HttpService, private auth: AuthService) { }
 
   ngOnInit(): void {
-    // this.http.get().subscribe(res => {
-    //  this.l = res;
-   // });
+    this.user = this.auth.currentUserValue;
   }
 
+  logout($event: Event): void {
+    $event.preventDefault();
+    this.auth.logout().subscribe();
+  }
 }
