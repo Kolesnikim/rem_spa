@@ -6,12 +6,12 @@ import { AppSettingsService } from './services/appSettingsService/appSettings.se
 @Injectable({
     providedIn: 'root',
   })
-export class RoutingGuard implements CanActivate{
+export class ActiveModulesGuard implements CanActivate{
 
-    constructor(private routingService: AppSettingsService) {
+    constructor(private appSettingsService: AppSettingsService) {
     }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean{
-        return this.routingService.isAvailable(route.url.toString());
+        return this.appSettingsService.isModuleAvailable(route.url.toString());
     }
 }
