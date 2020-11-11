@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { HelloWorldModule } from './features/hello-world/hello-world.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LIGHTBOX_CONFIG } from 'ng-gallery/lightbox';
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,7 +18,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserAnimationsModule,
     CoreModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: LIGHTBOX_CONFIG,
+      useValue: {
+        keyboardShortcuts: false
+      }
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

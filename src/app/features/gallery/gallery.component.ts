@@ -1,42 +1,31 @@
 import { Component, OnInit } from '@angular/core';
-import { GalleryItem, GalleryService} from './services/gallery.service';
-import {Gallery} from 'angular-gallery';
+import { GalleryService} from './services/gallery.service';
+import { Gallery, GalleryItem } from 'ng-gallery';
 
 @Component({
   selector: 'app-gallery',
   template: `
-          <ul class="mdc-image-list mdc-image-list--masonry my-masonry-image-list">
-            <li *ngFor="let item of galleryItems" class="mdc-image-list__item" (click)="showGallery(item)">
-              <img class="mdc-image-list__image" src = '{{item.path}}'>
-            </li>
-          </ul>
+              <div class="grid-item"
+                *ngFor="let item of items; let i = index"
+                [lightbox]="i"
+                [gallery]="galleryId">
+                <img [src]="item.data.thumb">
+              </div>
   `,
   styleUrls: ['./gallery.component.scss']
 })
 export class GalleryComponent implements OnInit {
-  galleryItems: GalleryItem[];
+  items: GalleryItem[] ;
+  galleryId = 'my-gallery';
 
-  constructor(private galleryService: GalleryService, private gallery: Gallery) { }
+
+  constructor(private galleryService: GalleryService, public gallery: Gallery) { }
 
   ngOnInit(): void {
-    this.galleryItems = this.galleryService.getGalleryItems();
-  }
+    this.items = this.galleryService.getGalleryItems();
 
-  getItemIndex(item: GalleryItem): number{
-    return this.galleryItems.findIndex(el => el === item);
+    const galleryRef = this.gallery.ref(this.galleryId);
+    galleryRef.load(this.items);
   }
-
-  showGallery(itemToShow: GalleryItem): void{
-    const pathArr = [];
-    for (const item of this.galleryItems){
-      pathArr.push({path: item.path});
-    }
-    const index = this.getItemIndex(itemToShow);
-    const prop = {
-        images: pathArr,
-        index
-    };
-    this.gallery.load(prop);
-}
 
 }

@@ -1,10 +1,10 @@
 @use "@material/image-list/mdc-image-list";
 @use "@material/image-list";
-
 .my-masonry-image-list {
     @include image-list.masonry-columns(3);
 }
 
+@import '~@angular/cdk/overlay-prebuilt.css';
 :host{
     margin: 10px;
     // flex: 1 0 auto;
