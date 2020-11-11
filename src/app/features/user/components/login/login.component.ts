@@ -39,7 +39,6 @@ export class LoginComponent implements OnInit {
     this.auth.login(login, password).pipe(first()).subscribe(
       () => {
         this.loading = false;
-        this.router.navigate(['/']);
       },
       () => {
         this.loading = false;

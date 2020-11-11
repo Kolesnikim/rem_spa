@@ -7,10 +7,13 @@ import { HttpService } from '../../services/http.service';
   styleUrls: ['./profile.component.less']
 })
 export class ProfileComponent implements OnInit {
-
+  // l = null;
   constructor(private http: HttpService) { }
 
   ngOnInit(): void {
+    // this.http.get().subscribe(res => {
+    //  this.l = res;
+   // });
   }
 
 }

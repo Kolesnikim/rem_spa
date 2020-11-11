@@ -7,7 +7,7 @@ export class HttpService {
 
   constructor(private http: HttpClient) { }
 
-//  get(): Observable<any> {
-//    return this.http.get('http://localhost:8080/api/v1/tours');
-//  }
+  get(): Observable<any> {
+   return this.http.get('http://localhost:8080/api/v1/tours');
+ }
 }
