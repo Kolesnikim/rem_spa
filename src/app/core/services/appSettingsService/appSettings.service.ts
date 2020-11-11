@@ -15,9 +15,10 @@ export class AppSettingsService {
 
 
   /**
-   * Метод который возвращает массив доступных модулей для построения меню в хедере
+   * Получить список доступных модулей
+   * @returns массив доступных модулей
    */
-  getAvailableRoutes(): ActiveModule[] {
+  getAvailableModules(): ActiveModule[] {
     return this.availableRoutes;
   }
 
@@ -26,7 +27,7 @@ export class AppSettingsService {
  * @param route путь к модулю
  * @returns true - если доступен, иначе false
  */
-  isAvailable(route: string): boolean {
+  isModuleAvailable(route: string): boolean {
     return this.availableRoutes.findIndex(item => item.Path === route) !== -1;
   }
 }

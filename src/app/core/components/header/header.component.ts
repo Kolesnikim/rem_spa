@@ -21,6 +21,6 @@ export class HeaderComponent implements OnInit {
   }
 
   updateMenuItems(): void {
-    this.menuItems = this.routingService.getAvailableRoutes();
+    this.menuItems = this.routingService.getAvailableModules();
   }
 }
