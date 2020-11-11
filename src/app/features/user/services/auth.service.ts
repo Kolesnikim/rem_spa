@@ -4,11 +4,13 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { HttpService } from './http.service';
+import { environment } from '../../../../environments/environment';
 
 @Injectable()
 export class AuthService {
   private currentUserSubject: BehaviorSubject<any>;
   public currentUser: Observable<any>;
+  public url = environment.baseUrl;
 
   constructor(private http: HttpClient, private router: Router, private user: HttpService ) {
     this.currentUserSubject = new BehaviorSubject<any>(JSON.parse(localStorage.getItem('currentUser')));
@@ -20,7 +22,7 @@ export class AuthService {
   }
 
   login(login: string, password: string): Observable<any> {
-    return this.http.post('https://localhost:5001/api/auth/login', { login, password })
+    return this.http.post(`${environment.baseUrl}auth/login`, { login, password })
       .pipe(map(() => {
         this.user.getUserInfo().subscribe(res => {
           localStorage.setItem('currentUser', JSON.stringify(res.fullName));
@@ -31,7 +33,7 @@ export class AuthService {
   }
 
   logout(): Observable<any> {
-    return this.http.get('https://localhost:5001/api/auth/logout')
+    return this.http.get(`${environment.baseUrl}auth/logout`)
       .pipe(map(() => {
         localStorage.removeItem('currentUser');
         this.router.navigate(['/']);
