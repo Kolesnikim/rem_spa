@@ -1,25 +1,7 @@
-<!-- <p>gallery works!</p>
-<ul class="mdc-image-list mdc-image-list--masonry my-masonry-image-list">
-    <li *ngFor="let item of galleryItems" class="mdc-image-list__item" (click)="showGallery(item)">
-      <img class="mdc-image-list__image" src = '{{item.path}}'>
-    </li>
-  </ul> -->
-
-
-  <!-- // showGallery(itemToShow: GalleryItem): void{
-    //   const pathArr = [];
-    //   for (const item of this.galleryItems){
-    //     pathArr.push({path: item.path});
-    //   }
-    //   const index = this.getItemIndex(itemToShow);
-    //   const prop = {
-    //       images: pathArr,
-    //       index
-    //   };
-    //   this.gallery.load(prop);
-  // } -->
-
-  <!-- getItemIndex(item: G_Item): number{
-    return this.galleryItems.findIndex(el => el === item);
-  } -->
-  
+<!-- 
+<div class="grid-item"
+                *ngFor="let item of items; let i = index"
+                [lightbox]="i"
+                [gallery]="galleryId">
+                <img [src]="item.data.thumb" style= 'width: 100%'>
+              </div> -->

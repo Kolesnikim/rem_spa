@@ -1,11 +1,19 @@
+
 @use "@material/image-list/mdc-image-list";
 @use "@material/image-list";
-.my-masonry-image-list {
-    @include image-list.masonry-columns(3);
-}
 
 @import '~@angular/cdk/overlay-prebuilt.css';
+
+.my-masonry-image-list {
+    @include image-list.masonry-columns(3);
+  }
+
 :host{
+    // display: grid;
+    // grid-template-columns: repeat(3, 32%);
+    // align-items: center;
+    // justify-content: space-around;
     margin: 10px;
+
     // flex: 1 0 auto;
 }
