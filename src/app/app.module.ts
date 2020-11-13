@@ -7,6 +7,8 @@ import { CoreModule } from './core/core.module';
 import { HelloWorldModule } from './features/hello-world/hello-world.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LIGHTBOX_CONFIG } from 'ng-gallery/lightbox';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,7 +18,8 @@ import { LIGHTBOX_CONFIG } from 'ng-gallery/lightbox';
     AppRoutingModule,
     HelloWorldModule,
     BrowserAnimationsModule,
-    CoreModule
+    CoreModule,
+    InfiniteScrollModule
   ],
   providers: [
     {
@@ -29,3 +32,4 @@ import { LIGHTBOX_CONFIG } from 'ng-gallery/lightbox';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+platformBrowserDynamic().bootstrapModule(AppModule);

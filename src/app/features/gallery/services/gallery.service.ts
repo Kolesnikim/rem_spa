@@ -78,9 +78,117 @@ export class GalleryService {
       },
       type: 'image'
     },
+    {
+      data: {
+        src: 'https://gdb.rferl.org/A01A6C5E-F928-4F1C-B130-F1E2FFD683F5_w1597_n_r1_st.jpg',
+        thumb: 'https://gdb.rferl.org/A01A6C5E-F928-4F1C-B130-F1E2FFD683F5_w1597_n_r1_st.jpg',
+      },
+      type: 'image'
+    },
+    {
+      data: {
+        src: 'https://gdb.rferl.org/13BCED5F-4D8D-4E9C-8853-D627F790FD10_w1597_n_r0_st.jpg',
+        thumb: 'https://gdb.rferl.org/13BCED5F-4D8D-4E9C-8853-D627F790FD10_w1597_n_r0_st.jpg',
+      },
+      type: 'image'
+    },
+    {
+      data: {
+        src: 'https://faunistics.com/wp-content/uploads/2019/02/1.jpg',
+        thumb: 'https://faunistics.com/wp-content/uploads/2019/02/1.jpg',
+      },
+      type: 'image'
+    },
+    {
+      data: {
+        src: 'https://faunistics.com/wp-content/uploads/2019/02/4.jpg',
+        thumb: 'https://faunistics.com/wp-content/uploads/2019/02/4.jpg',
+      },
+      type: 'image'
+    },
+    {
+      data: {
+        src: 'https://faunistics.com/wp-content/uploads/2019/02/6.jpg',
+        thumb: 'https://faunistics.com/wp-content/uploads/2019/02/6.jpg',
+      },
+      type: 'image'
+    },
+    {
+      data: {
+        src: 'https://faunistics.com/wp-content/uploads/2019/02/10.jpg',
+        thumb: 'https://faunistics.com/wp-content/uploads/2019/02/10.jpg',
+      },
+      type: 'image'
+    },
+    {
+      data: {
+        src: 'https://faunistics.com/wp-content/uploads/2019/02/13.jpg',
+        thumb: 'https://faunistics.com/wp-content/uploads/2019/02/13.jpg',
+      },
+      type: 'image'
+    },
+    {
+      data: {
+        src: 'https://faunistics.com/wp-content/uploads/2019/02/16.jpg',
+        thumb: 'https://faunistics.com/wp-content/uploads/2019/02/16.jpg',
+      },
+      type: 'image'
+    },
+    {
+      data: {
+        src: 'https://cs6.pikabu.ru/post_img/big/2015/05/04/6/1430726907_1263345098.jpg',
+        thumb: 'https://cs6.pikabu.ru/post_img/big/2015/05/04/6/1430726907_1263345098.jpg',
+      },
+      type: 'image'
+    },
+    {
+      data: {
+        src: 'https://finland.fi/wp-content/uploads/2016/03/Amurin-leopardi-700x467.jpg',
+        thumb: 'https://finland.fi/wp-content/uploads/2016/03/Amurin-leopardi-700x467.jpg',
+      },
+      type: 'image'
+    },
+    {
+      data: {
+        src: 'http://howdoright.ru/wp-content/uploads/2017/07/27adbcfc4dce4601585d97539acf2422.jpg',
+        thumb: 'http://howdoright.ru/wp-content/uploads/2017/07/27adbcfc4dce4601585d97539acf2422.jpg',
+      },
+      type: 'image'
+    },
+    {
+      data: {
+        src: 'https://kaktakto.com/wp-content/uploads/2019/04/0528-6926-9230-1145-1024x682.jpg',
+        thumb: 'https://kaktakto.com/wp-content/uploads/2019/04/0528-6926-9230-1145-1024x682.jpg',
+      },
+      type: 'image'
+    },
+    {
+      data: {
+        src: 'https://kaktakto.com/wp-content/uploads/2019/04/photo_197914-1024x683.jpg',
+        thumb: 'https://kaktakto.com/wp-content/uploads/2019/04/photo_197914-1024x683.jpg',
+      },
+      type: 'image'
+    },
+    {
+      data: {
+        src: 'https://kaktakto.com/wp-content/uploads/2019/04/polet-berkuta-v-nebe-1024x577.jpg',
+        thumb: 'https://kaktakto.com/wp-content/uploads/2019/04/polet-berkuta-v-nebe-1024x577.jpg',
+      },
+      type: 'image'
+    },
+    {
+      data: {
+        src: 'https://kaktakto.com/wp-content/uploads/2019/04/1200px-manul_close-1024x682.jpg',
+        thumb: 'https://kaktakto.com/wp-content/uploads/2019/04/1200px-manul_close-1024x682.jpg',
+      },
+      type: 'image'
+    },
   ];
 
   getGalleryItems(): GalleryItem[] {
+    for (let i = 0; i < 2; i++){
+      this.items = this.items.concat(this.items);
+    }
     return this.items;
   }
 }
