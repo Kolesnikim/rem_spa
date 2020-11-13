@@ -10,8 +10,6 @@ export class TimetableComponent {
   displayedColumns: string[] = [];
   dataSource = ELEMENT_DATA;
 
-  tables = [0];
-
   constructor() {
     this.displayedColumns.length = 24;
     this.displayedColumns.fill('filler');

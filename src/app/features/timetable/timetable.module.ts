@@ -6,7 +6,7 @@ import {MatTableModule} from '@angular/material/table';
 
 
 import { TimetableRoutingModule } from './timetable-routing.module';
-import { TimetableComponent } from './components/timetable.component';
+import { TimetableComponent } from './components/timetable/timetable.component';
 
 
 @NgModule({
