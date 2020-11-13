@@ -6,12 +6,7 @@ import { Gallery, GalleryItem } from 'ng-gallery';
   selector: 'app-gallery',
   template: `
 
-  <div class ='gallery_container'
-  infiniteScroll
-  [infiniteScrollDistance]="1"
-  [infiniteScrollThrottle]="300"
-  (scrolled)="onScroll()"
-  [scrollWindow]="false">
+  <div class ='gallery_container'>
     <div class = 'gallery_board'>
     <nav class = 'gallery_nav'>
       <ul class = 'nav'>
@@ -21,15 +16,21 @@ import { Gallery, GalleryItem } from 'ng-gallery';
       </ul>
     </nav>
     </div>
+    <div class='gallery_viewport'
+    infiniteScroll
+  [infiniteScrollDistance]="1"
+  [infiniteScrollThrottle]="300"
+  (scrolled)="onScroll()"
+  [scrollWindow]="false">
     <ul class="mdc-image-list mdc-image-list--masonry my-masonry-image-list">
       <li *ngFor="let item of items,let i = index" class="mdc-image-list__item">
-        <div class="grid-item"
-          [lightbox]="i"
-          [gallery]="galleryId">
+        <div class="grid-item" [lightbox]="i" [gallery]="galleryId">
           <img [src]="item.data.thumb" class="mdc-image-list__image">
-          </div>
+          <p>{{i}}</p>
+        </div>
       <li>
     </ul>
+    </div>
 </div>`,
   styleUrls: ['./gallery.component.scss']
 })
