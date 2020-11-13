@@ -17,6 +17,10 @@
 
     // flex: 1 0 auto;
 }
+.gallery_container {
+    height: 100vh;
+    overflow: scroll;
+}
 .gallery_board{
     height: 30px;
     background-color: #4a96d7;
