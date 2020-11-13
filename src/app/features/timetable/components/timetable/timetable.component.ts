@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {MatButtonToggleGroup} from '@angular/material/button-toggle';
 
 @Component({
   selector: 'app-timetable',
@@ -7,23 +6,22 @@ import {MatButtonToggleGroup} from '@angular/material/button-toggle';
   styleUrls: ['./timetable.component.less']
 })
 export class TimetableComponent {
+  tables = [0, 1, 2];
   displayedColumns: string[] = [];
   dataSource = ELEMENT_DATA;
+  displayedColumnsDate: string[] = ['header-row-first-group'];
 
   constructor() {
-    this.displayedColumns.length = 24;
-    this.displayedColumns.fill('filler');
+    this.displayedColumns.length = 4;
 
-    // The first two columns should be position and name; the last two columns: weight, symbol
     this.displayedColumns[0] = 'position';
     this.displayedColumns[1] = 'name';
-    this.displayedColumns[22] = 'weight';
-    this.displayedColumns[23] = 'symbol';
-  }
-
-  /** Whether the button toggle group contains the id as an active value. */
-  isSticky(buttonToggleGroup: MatButtonToggleGroup, id: string): any {
-    return (buttonToggleGroup.value || []).indexOf(id) !== -1;
+    this.displayedColumns[2] = 'weight';
+    this.displayedColumns[3] = 'symbol';
+    this.displayedColumns[4] = 'position';
+    this.displayedColumns[5] = 'name';
+    this.displayedColumns[6] = 'weight';
+    this.displayedColumns[7] = 'symbol';
   }
 }
 
@@ -44,5 +42,10 @@ const ELEMENT_DATA: PeriodicElement[] = [
   {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
   {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
   {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
+  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
+  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
+  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
+  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
+  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
   {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
 ];

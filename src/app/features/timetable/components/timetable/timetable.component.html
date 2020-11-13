@@ -1,7 +1,7 @@
 <h2>Программа</h2>
 
 <div class="example-container mat-elevation-z8">
-  <mat-table [dataSource]="dataSource">
+  <mat-table [dataSource]="dataSource" *ngFor="let table of tables">
     <ng-container matColumnDef="position">
       <mat-header-cell *matHeaderCellDef> Position </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
@@ -22,14 +22,18 @@
       <mat-cell *matCellDef="let element"> {{element.symbol}} </mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="filler">
-      <mat-header-cell *matHeaderCellDef> Filler header cell </mat-header-cell>
-      <mat-cell *matCellDef="let element"> Filler data cell </mat-cell>
+    <ng-container matColumnDef="header-row-first-group">
+      <mat-header-cell *matHeaderCellDef
+          [attr.colspan]="2">{{table}}
+      </mat-header-cell>
     </ng-container>
 
-    <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+    <mat-header-row *matHeaderRowDef="displayedColumnsDate; sticky: true;"></mat-header-row>
     <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
 
+
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+
   </mat-table>
 </div>

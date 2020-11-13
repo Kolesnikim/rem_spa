@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {MatButtonToggleModule} from '@angular/material/button-toggle';
-import {MatButtonModule} from '@angular/material/button';
 import {MatTableModule} from '@angular/material/table';
 
 
@@ -15,8 +13,9 @@ import { TimetableComponent } from './components/timetable/timetable.component';
     CommonModule,
     TimetableRoutingModule,
     MatTableModule,
-    MatButtonToggleModule,
-    MatButtonModule
+  ],
+  exports: [
+    MatTableModule
   ]
 })
 export class TimetableModule { }
