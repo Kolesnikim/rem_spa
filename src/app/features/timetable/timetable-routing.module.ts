@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { TimetableComponent } from './timetable.component';
+import { TimetableComponent } from './components/timetable.component';
 
 const routes: Routes = [{ path: '', component: TimetableComponent }];
 
