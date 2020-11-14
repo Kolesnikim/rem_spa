@@ -2,9 +2,9 @@
 
 <div class="example-container mat-elevation-z8">
   <mat-table [dataSource]="table.performances" *ngFor="let table of newData; let i = index;">
-    <ng-container [matColumnDef]="topic" *ngFor="let topic of extractTopics(table)">
-      <mat-header-cell *matHeaderCellDef>{{topic}}</mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element[topic].topic}} </mat-cell>
+    <ng-container [matColumnDef]="themeAndRoom.theme" *ngFor="let themeAndRoom of table.themesAndRooms ">
+      <mat-header-cell *matHeaderCellDef>{{themeAndRoom.theme}} & Зал {{themeAndRoom.room}}</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element[themeAndRoom.theme].topic}} </mat-cell>
     </ng-container>
 
     <ng-container [matColumnDef]="table.date">
