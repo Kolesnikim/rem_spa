@@ -4,27 +4,29 @@
 
 @import '~@angular/cdk/overlay-prebuilt.css';
 
-.my-masonry-image-list {
-    @include image-list.masonry-columns(3);
-  }
+.my-image-list {
+    @include image-list.standard-columns(3);
+    @include image-list.aspect(2/1)
+}
 
 :host{
     // display: grid;
     // grid-template-columns: repeat(3, 32%);
     // align-items: center;
     // justify-content: space-around;
-    margin: 10px;
+    // margin: 10px;
 
     // flex: 1 0 auto;
 }
 .gallery_viewport {
     height: 100vh;
     overflow: scroll;
+    margin: 0 10px;
 }
 .gallery_board{
     height: 30px;
     background-color: #4a96d7;
-    margin-bottom: 10px;
+    // margin-bottom: 10px;
 }
 .gallery_nav {
     float: left;

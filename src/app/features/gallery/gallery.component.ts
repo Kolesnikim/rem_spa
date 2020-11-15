@@ -22,9 +22,9 @@ import { Gallery, GalleryItem } from 'ng-gallery';
   [infiniteScrollThrottle]="300"
   (scrolled)="onScroll()"
   [scrollWindow]="false">
-    <ul class="mdc-image-list mdc-image-list--masonry my-masonry-image-list">
+    <ul class="mdc-image-list my-image-list">
       <li *ngFor="let item of items,let i = index" class="mdc-image-list__item">
-        <div class="grid-item" [lightbox]="i" [gallery]="galleryId">
+        <div class="mdc-image-list__image-aspect-container" [lightbox]="i" [gallery]="galleryId">
           <img [src]="item.data.thumb" class="mdc-image-list__image">
           <p>{{i}}</p>
         </div>
