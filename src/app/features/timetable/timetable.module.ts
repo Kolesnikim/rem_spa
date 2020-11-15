@@ -5,6 +5,8 @@ import {MatTableModule} from '@angular/material/table';
 
 import { TimetableRoutingModule } from './timetable-routing.module';
 import { TimetableComponent } from './components/timetable/timetable.component';
+import {MatCardModule} from '@angular/material/card';
+import {MatButtonModule} from '@angular/material/button';
 
 
 @NgModule({
@@ -13,9 +15,8 @@ import { TimetableComponent } from './components/timetable/timetable.component';
     CommonModule,
     TimetableRoutingModule,
     MatTableModule,
+    MatCardModule,
+    MatButtonModule
   ],
-  exports: [
-    MatTableModule
-  ]
 })
 export class TimetableModule { }
