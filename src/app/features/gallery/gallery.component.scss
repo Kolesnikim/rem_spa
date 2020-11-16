@@ -6,7 +6,7 @@
 
 .my-image-list {
     @include image-list.standard-columns(3);
-    @include image-list.aspect(2/1)
+    @include image-list.aspect(3/2)
 }
 
 :host{
