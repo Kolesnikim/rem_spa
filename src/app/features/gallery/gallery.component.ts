@@ -5,7 +5,6 @@ import { Gallery, GalleryItem } from 'ng-gallery';
 @Component({
   selector: 'app-gallery',
   template: `
-
   <div class ='gallery_container'>
     <div class = 'gallery_board'>
     <nav class = 'gallery_nav'>
@@ -17,26 +16,23 @@ import { Gallery, GalleryItem } from 'ng-gallery';
     </nav>
     </div>
     <div class='gallery_viewport'
-    infiniteScroll
-  [infiniteScrollDistance]="5"
-  [infiniteScrollThrottle]="300"
-  (scrolled)="onScroll()"
-  [scrollWindow]="false">
-    <ul class="mdc-image-list my-image-list">
-      <li *ngFor="let item of displayedItems,let i = index" class="mdc-image-list__item">
-        <div class="mdc-image-list__image-aspect-container" [id]=i [lightbox]="i - firstClickableIndex" [gallery]="galleryId">
-        <share-buttons
-          class="shared-buttons"
-          [theme]="'circles-light'"
-          [include]="['facebook','twitter','vk']"
-          [show]="3"
-          [size]="-4"
-          [autoSetMeta]="false"
-       ></share-buttons>
-        <img (click)="onImageClick(i)" [src]="item.data.thumb" class="mdc-image-list__image">
-        </div>
-      <li>
-    </ul>
+      infiniteScroll
+      [infiniteScrollDistance]="5"
+      [infiniteScrollThrottle]="300"
+      (scrolled)="onScroll()"
+      [scrollWindow]="false">
+      <ul class="mdc-image-list my-image-list">
+        <li *ngFor="let item of displayedItems; let i = index" class="mdc-image-list__item">
+          <div class="mdc-image-list__image-aspect-container"
+            [id]=i
+            (mouseover)="visibility.onMouseOver()" (mouseout)='visibility.onMouseOut()'
+            [lightbox]="i - firstClickableIndex"
+            [gallery]="galleryId">
+            <app-button #visibility ></app-button>
+            <img (click)="onImageClick(i)" [src]="item.data.thumb" class="mdc-image-list__image">
+          </div>
+        </li>
+      </ul>
     </div>
 </div>`,
   styleUrls: ['./gallery.component.scss']
@@ -58,18 +54,15 @@ export class GalleryComponent implements OnInit {
     this.galleryTags = this.galleryService.getGalleryTags();
     if (this.galleryTags.length > 0){
      this.getItems(this.galleryTags[0]);
-     console.log('all items size ' + this.allItems.length);
     }
   }
 
   onScroll(): void {
-    console.log('scroll');
     this.lastItemIndex += this.itemsPerScroll;
     if (this.lastItemIndex > this.allItems.length){
       this.lastItemIndex = this.allItems.length;
     }
     this.displayedItems = this.allItems.slice(0, this.lastItemIndex);
-    console.log('displayed items ' + this.displayedItems.length);
   }
 
   onImageClick(id: number): void {
@@ -77,9 +70,6 @@ export class GalleryComponent implements OnInit {
     if (this.firstClickableIndex < 0){
       this.firstClickableIndex = 0;
     }
-
-    console.log('id ' + id);
-    console.log('firstClickable ' + this.firstClickableIndex);
 
     const galleryRef = this.gallery.ref(this.galleryId);
     this.clickableItems = this.displayedItems.slice(this.firstClickableIndex, this.firstClickableIndex + this.maxClickableItems);

@@ -1,4 +1,3 @@
-
 @use "@material/image-list/mdc-image-list";
 @use "@material/image-list";
 
@@ -45,12 +44,7 @@
     
     &:hover{
         background-color: #c6d4e7cc;
-        
     }
 }
-.shared-buttons{
-    position: absolute;
-    bottom: 0.5rem;
-    z-index: 1;
-}
+
 
