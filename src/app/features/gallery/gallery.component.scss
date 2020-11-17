@@ -2,10 +2,6 @@
 @use "@material/image-list/mdc-image-list";
 @use "@material/image-list";
 
-@import '~@angular/cdk/overlay-prebuilt.css';
-
-@import '~ngx-sharebuttons/themes/circles/circles-light-theme';
-
 .my-image-list {
     @include image-list.standard-columns(3);
     @include image-list.aspect(3/2)
@@ -57,3 +53,4 @@
     bottom: 0.5rem;
     z-index: 1;
 }
+
