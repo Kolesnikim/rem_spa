@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Gallery, GalleryItem } from 'ng-gallery';
+import { GalleryItem } from 'ng-gallery';
 
 import {itemsTable} from './gallery.items.stub';
 @Injectable({
@@ -8,10 +8,19 @@ import {itemsTable} from './gallery.items.stub';
 export class GalleryService {
    constructor() { }
 
+  /**
+   * Получение списка тегов
+   * @returns массив строк с названиями тегов
+   */
   getGalleryTags(): string[]{
     return ['#tag1' , '#tag2', '#tag3'];
   }
 
+  /**
+   * Получение массива изображений по определенному тегу
+   * @param tag название тега по которому запрашиваем список изображений
+   * @returns  массив изображений хранящихся под оределенным тегом
+   */
   getGalleryItems(tag: string): GalleryItem[] {
 
     let items: GalleryItem[] = itemsTable[tag];

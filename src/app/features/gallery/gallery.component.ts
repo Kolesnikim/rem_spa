@@ -27,6 +27,9 @@ export class GalleryComponent implements OnInit {
     }
   }
 
+  /**
+   * Функция вызова бесконечного скролла
+   */
   onScroll(): void {
     this.lastItemIndex += this.itemsPerScroll;
     if (this.lastItemIndex > this.allItems.length){
@@ -35,6 +38,10 @@ export class GalleryComponent implements OnInit {
     this.displayedItems = this.allItems.slice(0, this.lastItemIndex);
   }
 
+  /**
+   * Функция вызова увеличенного изображения(карусель изображений- загружаем только по 100 изображений )
+   * @param id галлереи
+   */
   onImageClick(id: number): void {
     this.firstClickableIndex = id - this.maxClickableItems / 2;
     if (this.firstClickableIndex < 0){
@@ -46,6 +53,10 @@ export class GalleryComponent implements OnInit {
     galleryRef.load(this.clickableItems);
   }
 
+  /**
+   * Функция получения массива изображений
+   * @param tag название тега
+   */
   getItems(tag: string): void {
     this.firstClickableIndex = 0;
     this.lastItemIndex = this.itemsPerScroll;
