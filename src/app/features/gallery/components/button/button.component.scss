@@ -1,4 +1,7 @@
-.shared-buttons{
+:host{
+    display: flex;
+    width: 100%;
+    justify-content: center;
     position: absolute;
     bottom: 0.5rem;
     z-index: 1;

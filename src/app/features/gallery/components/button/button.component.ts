@@ -1,17 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-button',
-  template: `<share-buttons
-    [style.display]="visibility?'block':'none'"
-    [url]='urlImage'
-    class="shared-buttons"
-    [theme]="'circles-light'"
-    [include]="['facebook','twitter','vk']"
-    [show]="3"
-    [size]="-4"
-    [autoSetMeta]="false"
-  ></share-buttons>`,
+  selector: 'app-buttons',
+  templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss']
 })
 export class ButtonComponent implements OnInit {

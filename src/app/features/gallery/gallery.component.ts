@@ -4,37 +4,7 @@ import { Gallery, GalleryItem } from 'ng-gallery';
 
 @Component({
   selector: 'app-gallery',
-  template: `
-  <div class ='gallery_container'>
-    <div class = 'gallery_board'>
-    <nav class = 'gallery_nav'>
-      <ul class = 'nav'>
-        <li *ngFor="let tag of galleryTags" class='nav_item'>
-          <p class='nav_link' (click)='getItems(tag)'>{{tag}} </p>
-        </li>
-      </ul>
-    </nav>
-    </div>
-    <div class='gallery_viewport'
-      infiniteScroll
-      [infiniteScrollDistance]="5"
-      [infiniteScrollThrottle]="300"
-      (scrolled)="onScroll()"
-      [scrollWindow]="false">
-      <ul class="mdc-image-list my-image-list">
-        <li *ngFor="let item of displayedItems; let i = index" class="mdc-image-list__item">
-          <div class="mdc-image-list__image-aspect-container"
-            [id]=i
-            (mouseover)="visibility.onMouseOver()" (mouseout)='visibility.onMouseOut()'
-            [lightbox]="i - firstClickableIndex"
-            [gallery]="galleryId">
-            <app-button #visibility [urlImage]="item.data.src" ></app-button>
-            <img (click)="onImageClick(i)" [src]="item.data.thumb" class="mdc-image-list__image">
-          </div>
-        </li>
-      </ul>
-    </div>
-</div>`,
+  templateUrl: './gallery.component.html' ,
   styleUrls: ['./gallery.component.scss']
 })
 export class GalleryComponent implements OnInit {
