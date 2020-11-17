@@ -25,7 +25,15 @@ import { Gallery, GalleryItem } from 'ng-gallery';
     <ul class="mdc-image-list my-image-list">
       <li *ngFor="let item of displayedItems,let i = index" class="mdc-image-list__item">
         <div class="mdc-image-list__image-aspect-container" [id]=i [lightbox]="i - firstClickableIndex" [gallery]="galleryId">
-          <img (click)="onImageClick(i)" [src]="item.data.thumb" class="mdc-image-list__image">
+        <share-buttons
+          class="shared-buttons"
+          [theme]="'circles-light'"
+          [include]="['facebook','twitter','vk']"
+          [show]="3"
+          [size]="-4"
+          [autoSetMeta]="false"
+       ></share-buttons>
+        <img (click)="onImageClick(i)" [src]="item.data.thumb" class="mdc-image-list__image">
         </div>
       <li>
     </ul>
