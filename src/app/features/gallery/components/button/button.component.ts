@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-button',
   template: `<share-buttons
-  class="shared-buttons"
     [style.display]="visibility?'block':'none'"
+    [url]='urlImage'
+    class="shared-buttons"
     [theme]="'circles-light'"
     [include]="['facebook','twitter','vk']"
     [show]="3"
@@ -15,6 +16,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ButtonComponent implements OnInit {
   visibility = false;
+  @Input() urlImage: string;
 
   constructor() { }
 

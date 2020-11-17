@@ -28,7 +28,7 @@ import { Gallery, GalleryItem } from 'ng-gallery';
             (mouseover)="visibility.onMouseOver()" (mouseout)='visibility.onMouseOut()'
             [lightbox]="i - firstClickableIndex"
             [gallery]="galleryId">
-            <app-button #visibility ></app-button>
+            <app-button #visibility [urlImage]="item.data.src" ></app-button>
             <img (click)="onImageClick(i)" [src]="item.data.thumb" class="mdc-image-list__image">
           </div>
         </li>
