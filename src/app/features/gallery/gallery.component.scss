@@ -4,6 +4,17 @@
 .my-image-list {
     @include image-list.standard-columns(3);
     @include image-list.aspect(3/2)
+    
+}
+@media screen and (min-width: 481px) and (max-width: 780px) {
+    .my-image-list {
+      @include image-list.standard-columns(2);
+    }
+}
+@media screen and (max-width: 480px) {
+    .my-image-list {
+      @include image-list.standard-columns(1);
+    }
 }
 
 .gallery_viewport {
