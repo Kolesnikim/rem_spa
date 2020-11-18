@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { HttpService } from './http.service';
+import { HttpService} from '../httpService/http.service';
 import { environment } from '../../../../environments/environment';
 
 @Injectable()
@@ -40,5 +40,4 @@ export class AuthService {
         this.currentUserSubject.next(null);
       }));
   }
-
 }

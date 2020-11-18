@@ -8,6 +8,6 @@ export class HttpService {
   constructor(private http: HttpClient) { }
 
   getUserInfo(): Observable<any> {
-   return this.http.get(`${environment.baseUrl}account/info`);
- }
+    return this.http.get(`${environment.baseUrl}account/info`);
+  }
 }
