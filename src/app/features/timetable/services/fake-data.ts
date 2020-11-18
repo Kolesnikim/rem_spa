@@ -1262,7 +1262,7 @@ export const data = [
   {
     date: '32 марта',
     themesAndRooms: [
-      {theme: 'DevOps', room: '№1'},
+      {theme: 'Java', room: '№1'},
       {theme: 'FrontEnd', room: '№2'},
       {theme: 'BackEnd', room: '№3'},
       {theme: 'Management', room: '№4'},
@@ -1272,7 +1272,7 @@ export const data = [
     ],
     performances: [
       {
-        DevOps: {
+        Java: {
           name: 'Хороший мальчик',
           photo: 'photo.jpg',
           organization: 'Sberbank',
@@ -1316,7 +1316,7 @@ export const data = [
         },
       },
       {
-        DevOps: {
+        Java: {
           name: 'Хороший мальчик',
           photo: 'photo.jpg',
           organization: 'Sberbank',
@@ -1360,7 +1360,7 @@ export const data = [
         },
       },
       {
-        DevOps: {
+        Java: {
           name: 'Хороший мальчик',
           photo: 'photo.jpg',
           organization: 'Sberbank',
@@ -1404,7 +1404,7 @@ export const data = [
         },
       },
       {
-        DevOps: {
+        Java: {
           name: 'Хороший мальчик',
           photo: 'photo.jpg',
           organization: 'Sberbank',
@@ -1448,7 +1448,7 @@ export const data = [
         },
       },
       {
-        DevOps: {
+        Java: {
           name: 'Хороший мальчик',
           photo: 'photo.jpg',
           organization: 'Sberbank',
@@ -1492,7 +1492,7 @@ export const data = [
         },
       },
       {
-        DevOps: {
+        Java: {
           name: 'Хороший мальчик',
           photo: 'photo.jpg',
           organization: 'Sberbank',
@@ -1536,7 +1536,7 @@ export const data = [
         },
       },
       {
-        DevOps: {
+        Java: {
           name: 'Хороший мальчик',
           photo: 'photo.jpg',
           organization: 'Sberbank',
@@ -1580,7 +1580,7 @@ export const data = [
         },
       },
       {
-        DevOps: {
+        Java: {
           name: 'Хороший мальчик',
           photo: 'photo.jpg',
           organization: 'Sberbank',
@@ -1624,7 +1624,7 @@ export const data = [
         },
       },
       {
-        DevOps: {
+        Java: {
           name: 'Хороший мальчик',
           photo: 'photo.jpg',
           organization: 'Sberbank',
@@ -1668,7 +1668,7 @@ export const data = [
         },
       },
       {
-        DevOps: {
+        Java: {
           name: 'Хороший мальчик',
           photo: 'photo.jpg',
           organization: 'Sberbank',
@@ -1712,7 +1712,7 @@ export const data = [
         },
       },
       {
-        DevOps: {
+        Java: {
           name: 'Хороший мальчик',
           photo: 'photo.jpg',
           organization: 'Sberbank',
@@ -1756,7 +1756,7 @@ export const data = [
         },
       },
       {
-        DevOps: {
+        Java: {
           name: 'Хороший мальчик',
           photo: 'photo.jpg',
           organization: 'Sberbank',
@@ -1800,7 +1800,7 @@ export const data = [
         },
       },
       {
-        DevOps: {
+        Java: {
           name: 'Хороший мальчик',
           photo: 'photo.jpg',
           organization: 'Sberbank',
@@ -1844,7 +1844,7 @@ export const data = [
         },
       },
       {
-        DevOps: {
+        Java: {
           name: 'Хороший мальчик',
           photo: 'photo.jpg',
           organization: 'Sberbank',
@@ -1888,7 +1888,7 @@ export const data = [
         },
       },
       {
-        DevOps: {
+        Java: {
           name: 'Хороший мальчик',
           photo: 'photo.jpg',
           organization: 'Sberbank',
@@ -1932,7 +1932,7 @@ export const data = [
         },
       },
       {
-        DevOps: {
+        Java: {
           name: 'Хороший мальчик',
           photo: 'photo.jpg',
           organization: 'Sberbank',
