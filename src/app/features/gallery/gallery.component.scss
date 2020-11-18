@@ -54,8 +54,15 @@
     overflow: hidden;
     
     &:hover{
-        background-color: #c6d4e7cc;
+        background-color: #96bcf0cc;
     }
+
+    &:active {
+        background-color: #3079b8;
+    }
+}
+.active{
+    background-color:  #c6d4e7cc;
 }
 .gallery_item {
     object-fit: cover;

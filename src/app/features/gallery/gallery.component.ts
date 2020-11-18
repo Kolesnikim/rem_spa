@@ -9,6 +9,7 @@ import { Gallery, GalleryItem } from 'ng-gallery';
 })
 export class GalleryComponent implements OnInit {
   galleryTags: string[];
+  activeTag: string;
   displayedItems: GalleryItem[];
   clickableItems: GalleryItem[];
   allItems: GalleryItem[];
@@ -58,6 +59,7 @@ export class GalleryComponent implements OnInit {
    * @param tag название тега
    */
   getItems(tag: string): void {
+    this.activeTag = tag;
     this.firstClickableIndex = 0;
     this.lastItemIndex = this.itemsPerScroll;
     this.allItems = this.galleryService.getGalleryItems(tag);
@@ -66,4 +68,5 @@ export class GalleryComponent implements OnInit {
     const galleryRef = this.gallery.ref(this.galleryId);
     galleryRef.load(this.displayedItems);
   }
+
 }
