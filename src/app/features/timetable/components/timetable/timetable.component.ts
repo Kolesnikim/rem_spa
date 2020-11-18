@@ -16,6 +16,10 @@ export class TimetableComponent {
   extractTopics(table): any[] {
     return Object.keys(table.performances[0]);
   }
+
+  consoleLog(element): void {
+    console.log(element);
+  }
 }
 
 

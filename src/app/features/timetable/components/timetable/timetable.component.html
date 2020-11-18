@@ -13,7 +13,7 @@
         <h4 class="heading__room">Зал {{themeAndRoom.room}}</h4>
       </mat-header-cell>
       <mat-cell *matCellDef="let element">
-        <mat-card class="cell__item">
+        <mat-card class="cell__item" (click)="consoleLog(element[themeAndRoom.theme].id)">
           <mat-card-header>
             <img mat-card-avatar src="assets/photo.jpg" alt="Avatar" class="cell__item--avatar">
             <mat-card-title>{{element[themeAndRoom.theme].name}}</mat-card-title>
