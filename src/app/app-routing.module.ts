@@ -15,7 +15,7 @@ const routes: Routes = [
     canActivate: [ActiveModulesGuard]
   },
   { path: '',
-  loadChildren: () => import('./features/main-page/main-page.module').then(m => m. MainPageModule)},
+  loadChildren: () => import('./features/main-page/main-page.module').then(m => m.MainPageModule)},
   { path: '**', component: NotFoundComponent }
 
 ];
