@@ -1,11 +1,11 @@
-<div class="program-container">
+<div class="program-container" *ngIf="newData; else spinnerContainer">
   <h1 class="heading__primary">Программа</h1>
   <p class="program__annotation">Lorem ipsum dolor sit amet, consectetur adipisicing elit.Beatae, consectetur cupiditate dignissimos expedita illo, ipsam, iste itaque laudantium numquam odit placeat quia quo rem sequi unde. Ab aliquam amet cumque dolorem eligendi iusto labore mollitia similique suscipit! Debitis, exercitationem, perspiciatis!</p>
   <p class="program__annotation">Lorem ipsum dolor sit amet, consectetur adipisicing elit.Beatae, consectetur cupiditate dignissimos expedita illo, ipsam, iste itaque laudantium numquam odit placeat quia quo rem sequi unde. Ab aliquam amet cumque dolorem eligendi iusto labore mollitia similique suscipit! Debitis, exercitationem, perspiciatis!</p>
   <p class="program__annotation">Lorem ipsum dolor sit amet, consectetur adipisicing elit.Beatae, consectetur cupiditate dignissimos expedita illo, ipsam, iste itaque laudantium numquam odit placeat quia quo rem sequi unde. Ab aliquam amet cumque dolorem eligendi iusto labore mollitia similique suscipit! Debitis, exercitationem, perspiciatis!</p>
   <p class="program__annotation">Lorem ipsum dolor sit amet, consectetur adipisicing elit.Beatae, consectetur cupiditate dignissimos expedita illo, ipsam, iste itaque laudantium numquam odit placeat quia quo rem sequi unde. Ab aliquam amet cumque dolorem eligendi iusto labore mollitia similique suscipit! Debitis, exercitationem, perspiciatis!</p>
 </div>
-<div class="table-container mat-elevation-z8">
+<div class="table-container mat-elevation-z8" *ngIf="newData; else spinnerContainer">
   <mat-table [dataSource]="table.performances" *ngFor="let table of newData; let i = index;">
     <ng-container [matColumnDef]="themeAndRoom.theme" *ngFor="let themeAndRoom of table.themesAndRooms ">
       <mat-header-cell class="headers__group"  *matHeaderCellDef>
@@ -13,7 +13,7 @@
         <h4 class="heading__room">Зал {{themeAndRoom.room}}</h4>
       </mat-header-cell>
       <mat-cell *matCellDef="let element">
-        <mat-card class="cell__item" (click)="consoleLog(element[themeAndRoom.theme].id)">
+        <mat-card class="cell__item cell__item--clickable" matRipple="0" (click)="showPerformance(element[themeAndRoom.theme].id)">
           <mat-card-header>
             <img mat-card-avatar src="assets/photo.jpg" alt="Avatar" class="cell__item--avatar">
             <mat-card-title>{{element[themeAndRoom.theme].name}}</mat-card-title>
@@ -23,9 +23,6 @@
             <h3>{{element[themeAndRoom.theme].startDate}} - {{element[themeAndRoom.theme].endDate}}</h3>
             <p>{{element[themeAndRoom.theme].topic}}</p>
           </mat-card-content>
-          <mat-card-actions>
-            <button color="primary" mat-button>Action</button>
-          </mat-card-actions>
         </mat-card>
       </mat-cell>
     </ng-container>
@@ -43,3 +40,6 @@
 
   </mat-table>
 </div>
+<ng-template #spinnerContainer>
+  <mat-spinner></mat-spinner>
+</ng-template>

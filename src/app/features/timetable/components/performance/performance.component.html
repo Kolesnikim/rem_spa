@@ -1,0 +1,11 @@
+<div class="performance__container" *ngIf="performanceData; else spinnerContainer">
+  <h1>{{performanceData.title}}</h1>
+  <img src="assets/photo.jpg" alt="Photo">
+  <h2>{{performanceData.name}}</h2>
+  <h3>{{performanceData.organization}}</h3>
+  <span>{{performanceData.startTime}} - {{performanceData.endTime}}</span>
+  <p>{{performanceData.annotation}}</p>
+</div>
+<ng-template #spinnerContainer>
+  <mat-spinner></mat-spinner>
+</ng-template>

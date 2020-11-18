@@ -1,24 +1,30 @@
 import { Component, OnInit } from '@angular/core';
-import {data} from '../../services/fake-data';
+import { data } from '../../services/fake-data';
+import {PerformanceService} from '../../services/performanceService/performance.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-timetable',
   templateUrl: './timetable.component.html',
   styleUrls: ['./timetable.component.less']
 })
-export class TimetableComponent {
+export class TimetableComponent implements OnInit {
   displayedColumns: string[] = [];
-  newData = data;
+  newData: any;
 
-  constructor() {
+  constructor(private performance: PerformanceService, private router: Router) {
+  }
+
+  ngOnInit(): void {
+    this.newData = data;
   }
 
   extractTopics(table): any[] {
     return Object.keys(table.performances[0]);
   }
 
-  consoleLog(element): void {
-    console.log(element);
+  showPerformance(id): void {
+    this.router.navigate(['/timetable', `performance`, `${id}`]);
   }
 }
 
