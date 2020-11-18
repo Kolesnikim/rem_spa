@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { NotFoundComponent } from './shared/components/not-found/not-found.component';
 import { ActiveModulesGuard } from './core/guards/activeModules.guard';
-import {AuthGuard} from './core/guards/auth.guard';
+import { AuthGuard } from './core/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -20,9 +20,6 @@ const routes: Routes = [
     loadChildren: () => import('./features/user/user.module')
       .then((m) => m.UserModule),
     canActivate: [ActiveModulesGuard]
-  },
-  {
-
   },
   { path: '',
   loadChildren: () => import('./features/main-page/main-page.module').then(m => m.MainPageModule),

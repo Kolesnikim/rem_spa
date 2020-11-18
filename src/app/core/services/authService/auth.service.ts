@@ -24,9 +24,9 @@ export class AuthService {
   login(login: string, password: string): Observable<any> {
     return this.http.post(`${environment.baseUrl}auth/login`, { login, password })
       .pipe(map(() => {
-        this.user.getUserInfo().subscribe(res => {
+        this.user.fetchUserInfo().subscribe(res => {
           localStorage.setItem('currentUser', JSON.stringify(res.fullName));
-          this.router.navigate(['/user', 'profile']);
+          this.router.navigate(['/']);
           this.currentUserSubject.next(res);
         });
       }));
