@@ -9,8 +9,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { PerformanceComponent } from './components/performance/performance.component';
 import { PerformanceService } from './services/performanceService/performance.service';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import {MatRippleModule} from '@angular/material/core';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatRippleModule } from '@angular/material/core';
 
 
 @NgModule({

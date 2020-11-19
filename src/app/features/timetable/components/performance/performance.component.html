@@ -1,10 +1,20 @@
-<div class="performance__container" *ngIf="performanceData; else spinnerContainer">
-  <h1>{{performanceData.title}}</h1>
-  <img src="assets/photo.jpg" alt="Photo">
-  <h2>{{performanceData.name}}</h2>
-  <h3>{{performanceData.organization}}</h3>
-  <span>{{performanceData.startTime}} - {{performanceData.endTime}}</span>
-  <p>{{performanceData.annotation}}</p>
+<div class="performance-container" *ngIf="performanceData; else spinnerContainer">
+  <h1 class="heading__primary">{{performanceData.title}}</h1>
+  <mat-card>
+    <img class="person__avatar" src="assets/photo.jpg" alt="Photo">
+    <mat-card-header>
+      <mat-card-subtitle class="person__organization">{{performanceData.organization}}</mat-card-subtitle>
+      <mat-card-title class="person__name">{{performanceData.name}}</mat-card-title>
+      <mat-card-subtitle class="person__level">Senior JavaScript разработкич</mat-card-subtitle>
+    </mat-card-header>
+  </mat-card>
+  <div class="performance__info">
+    <span>{{performanceData.startTime}} - {{performanceData.endTime}}</span>
+    <span>30 марта</span>
+    <span>{{performanceData.topic}}</span>
+  </div>
+  <p class="performance__annotation">{{performanceData.annotation}}</p>
+  <button mat-raised-button color="primary" routerLink="/timetable">Назад</button>
 </div>
 <ng-template #spinnerContainer>
   <mat-spinner></mat-spinner>
