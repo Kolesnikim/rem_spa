@@ -12,6 +12,7 @@ import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { faFacebookF } from '@fortawesome/free-brands-svg-icons';
 import { faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { faVk} from '@fortawesome/free-brands-svg-icons';
+import { HttpClientModule } from '@angular/common/http';
 
 const icons = [
   faFacebookF,
@@ -39,9 +40,8 @@ const shareProp = {
     GalleryPlagin,
     LightboxModule.withConfig({}),
     InfiniteScrollModule,
-    ShareButtonsModule.withConfig({ prop: shareProp })
-
-  ]
+    ShareButtonsModule.withConfig({ prop: shareProp }),
+  ],
 })
 export class GalleryModule {
   constructor(iconLibrary: FaIconLibrary) {

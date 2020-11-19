@@ -9,6 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LIGHTBOX_CONFIG } from 'ng-gallery/lightbox';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +20,8 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
     HelloWorldModule,
     BrowserAnimationsModule,
     CoreModule,
-    InfiniteScrollModule
+    InfiniteScrollModule,
+    HttpClientModule,
   ],
   providers: [
     {

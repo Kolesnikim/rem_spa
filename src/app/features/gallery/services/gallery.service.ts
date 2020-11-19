@@ -1,19 +1,29 @@
 import { Injectable } from '@angular/core';
 import { GalleryItem } from 'ng-gallery';
 
-import {itemsTable} from './gallery.items.stub';
+import { ApiService } from './apiService/api.service';
+import { GalleryTag } from '../models/tag.model';
+
+import { itemsTable } from './gallery.items.stub';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { GalleryImageItem } from '../models/item.model';
 @Injectable({
   providedIn: 'root'
 })
 export class GalleryService {
-   constructor() { }
+
+  constructor(private apiService: ApiService) { }
 
   /**
    * Получение списка тегов
-   * @returns массив строк с названиями тегов
+   * @returns массив объектов GalleryTag
    */
-  getGalleryTags(): string[]{
-    return ['#tag1' , '#tag2', '#tag3'];
+  getGalleryTags(): Observable<GalleryTag[]> {
+    return this.apiService.get('/gallery/get-all-photo-tags').pipe(
+      map((data: any) => {
+        return data as GalleryTag[];
+      }));
   }
 
   /**
@@ -21,13 +31,14 @@ export class GalleryService {
    * @param tag название тега по которому запрашиваем список изображений
    * @returns  массив изображений хранящихся под оределенным тегом
    */
-  getGalleryItems(tag: string): GalleryItem[] {
-
-    let items: GalleryItem[] = itemsTable[tag];
-
-    for (let i = 0; i < 5; i++){
-      items = items.concat(items);
-    }
-    return items;
+  getGalleryItems(tag: GalleryTag, offset: number, count: number): Observable<GalleryItem[]> {
+    const result = this.apiService.get(`/gallery/get-photos-by-tags?tag=${tag.id}&offset=${offset}&count=${count}`);
+    return result.pipe(map(data => {
+      const galleryItems = data.entities;
+      return galleryItems.map((item: any) => {
+        console.log();
+        return new GalleryImageItem(item.url, item.smallUrl);
+      });
+    }));
   }
 }

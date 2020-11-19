@@ -3,7 +3,7 @@
     <nav class='gallery_nav'>
       <ul class='nav'>
         <li *ngFor="let tag of galleryTags" class='nav_item'>
-          <p [class.nav_link] = "true" [class.active] ="tag === activeTag" (click)='getItems(tag)'>{{tag}} </p>
+          <p [class.nav_link] = "true" [class.active] ="tag === activeTag" (click)='getItems(tag)'>#{{tag.tagString}} </p>
         </li>
       </ul>
     </nav>
