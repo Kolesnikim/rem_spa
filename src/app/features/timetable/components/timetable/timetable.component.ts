@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { data } from '../../services/fake-data';
-import {PerformanceService} from '../../services/performanceService/performance.service';
-import {Router} from '@angular/router';
+import { PerformanceService } from '../../services/performanceService/performance.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-timetable',
