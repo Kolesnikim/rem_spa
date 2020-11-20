@@ -15,8 +15,8 @@ const routes: Routes = [
     canActivate: [ActiveModulesGuard]
   },
   {
-    path: 'members',
-    loadChildren: () => import('./features/members/members.module').then(m => m.MembersModule),
+    path: 'participants',
+    loadChildren: () => import('./features/participants/participants.module').then(m => m.ParticipantsModule),
     canActivate: [ActiveModulesGuard]
   },
   { path: '',
