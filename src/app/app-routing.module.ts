@@ -14,6 +14,11 @@ const routes: Routes = [
     loadChildren: () => import('./features/timetable/timetable.module').then(m => m.TimetableModule),
     canActivate: [ActiveModulesGuard]
   },
+  {
+    path: 'members',
+    loadChildren: () => import('./features/members/members.module').then(m => m.MembersModule),
+    canActivate: [ActiveModulesGuard]
+  },
   { path: '',
   loadChildren: () => import('./features/main-page/main-page.module').then(m => m.MainPageModule)},
   { path: '**', component: NotFoundComponent }

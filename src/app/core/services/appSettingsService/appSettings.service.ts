@@ -10,6 +10,7 @@ export class AppSettingsService {
     new ActiveModule('Программа', 'timetable'),
     new ActiveModule('Избранное', 'favourites'),
     new ActiveModule('Фотогаллерея', 'gallery'),
+    new ActiveModule('Участники', 'members'),
     new ActiveModule('Документы', 'documents'),
     new ActiveModule('О приложении', 'about')];
 
