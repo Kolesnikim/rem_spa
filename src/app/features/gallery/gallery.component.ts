@@ -12,10 +12,10 @@ export class GalleryComponent implements OnInit {
   galleryTags: GalleryTag[];
   activeTag: GalleryTag;
   displayedItems: GalleryItem[];
-  maxClickableItems = 100;
+  maxCarouselItems = 100;
   itemsPerScroll = 25;
   galleryId = 'my-gallery';
-  firstClickableIndex = 0;
+  firstCarouselItemIndex = 0;
 
   constructor(private galleryService: GalleryService, public gallery: Gallery) { }
 
@@ -23,13 +23,13 @@ export class GalleryComponent implements OnInit {
     this.galleryService.getGalleryTags().subscribe((tags: GalleryTag[]) => {
       this.galleryTags = tags;
       if (this.galleryTags.length > 0) {
-        this.getItems(this.galleryTags[0]);
+        this.onTagChange(this.galleryTags[0]);
       }
     });
   }
 
   /**
-   * Функция вызова бесконечного скролла
+   * Вызов бесконечного скролла
    */
   onScroll(): void {
     this.galleryService.getGalleryItems(this.activeTag, this.displayedItems.length, this.itemsPerScroll)
@@ -39,34 +39,31 @@ export class GalleryComponent implements OnInit {
   }
 
   /**
-   * Функция вызова увеличенного изображения(карусель изображений- загружаем только по 100 изображений )
-   * @param id галлереи
+   * Вызов увеличенного изображения
+   * @param id изображения
    */
   onImageClick(id: number): void {
-    this.firstClickableIndex = id - this.maxClickableItems / 2;
-    if (this.firstClickableIndex < 0) {
-      this.firstClickableIndex = 0;
+    this.firstCarouselItemIndex = id - this.maxCarouselItems / 2;
+    if (this.firstCarouselItemIndex < 0) {
+      this.firstCarouselItemIndex = 0;
     }
-
+    // в карусель изображений загружаем только по 100 изображений, иначе подвисает и тормозит
     const galleryRef = this.gallery.ref(this.galleryId);
-    const clickableItems = this.displayedItems.slice(this.firstClickableIndex, this.firstClickableIndex + this.maxClickableItems);
-    galleryRef.load(clickableItems);
+    const carouselItems = this.displayedItems.slice(this.firstCarouselItemIndex, this.firstCarouselItemIndex + this.maxCarouselItems);
+    galleryRef.load(carouselItems);
   }
 
   /**
-   * Функция получения массива изображений
+   * Обработать смену тэга
    * @param tag название тега
    */
-  getItems(tag: GalleryTag): void {
+  onTagChange(tag: GalleryTag): void {
     if (this.activeTag === tag) {
       return;
     }
     this.activeTag = tag;
-    this.firstClickableIndex = 0;
     this.galleryService.getGalleryItems(tag, 0, this.itemsPerScroll).subscribe((items: GalleryItem[]) => {
       this.displayedItems = items;
-      const galleryRef = this.gallery.ref(this.galleryId);
-      galleryRef.load(this.displayedItems);
     });
   }
 

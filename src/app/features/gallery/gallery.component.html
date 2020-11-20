@@ -3,7 +3,7 @@
     <nav class='gallery_nav'>
       <ul class='nav'>
         <li *ngFor="let tag of galleryTags" class='nav_item'>
-          <p [class.nav_link] = "true" [class.active] ="tag === activeTag" (click)='getItems(tag)'>#{{tag.tagString}} </p>
+          <p [class.nav_link] = "true" [class.active] ="tag === activeTag" (click)='onTagChange(tag)'>#{{tag.tagString}} </p>
         </li>
       </ul>
     </nav>
@@ -13,7 +13,7 @@
     <ul class="mdc-image-list my-image-list">
       <li *ngFor="let item of displayedItems; let i = index" class="mdc-image-list__item">
         <div class="mdc-image-list__image-aspect-container" [id]=i (mouseover)="visibility.onMouseOver()"
-          (mouseout)='visibility.onMouseOut()' [lightbox]="i - firstClickableIndex" [gallery]="galleryId">
+          (mouseout)='visibility.onMouseOut()' [lightbox]="i - firstCarouselItemIndex" [gallery]="galleryId">
           <app-buttons #visibility [urlImage]="item.data.src"></app-buttons>
           <img (click)="onImageClick(i)" [src]="item.data.thumb" class="mdc-image-list__image gallery_item">
         </div>

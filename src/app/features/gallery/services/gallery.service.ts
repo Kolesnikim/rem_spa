@@ -1,12 +1,10 @@
 import { Injectable } from '@angular/core';
 import { GalleryItem } from 'ng-gallery';
 
-import { ApiService } from './apiService/api.service';
-import { GalleryTag } from '../models/tag.model';
-
-import { itemsTable } from './gallery.items.stub';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { ApiService } from './apiService/api.service';
+import { GalleryTag } from '../models/tag.model';
 import { GalleryImageItem } from '../models/item.model';
 @Injectable({
   providedIn: 'root'
