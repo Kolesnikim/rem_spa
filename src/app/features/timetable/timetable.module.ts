@@ -11,10 +11,11 @@ import { PerformanceComponent } from './components/performance/performance.compo
 import { PerformanceService } from './services/performanceService/performance.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatRippleModule } from '@angular/material/core';
+import { CommentsComponent } from './components/comments/comments.component';
 
 
 @NgModule({
-  declarations: [TimetableComponent, PerformanceComponent],
+  declarations: [TimetableComponent, PerformanceComponent, CommentsComponent],
   imports: [
     CommonModule,
     TimetableRoutingModule,

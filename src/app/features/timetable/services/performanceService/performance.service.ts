@@ -18,5 +18,13 @@ export class PerformanceService {
     };
   }
 
+  public fetchPerformanceComments(id): any {
+    return [];
+  }
+
+  public sendPerformanceComments(id): any {
+    return [];
+  }
+
 
 }
