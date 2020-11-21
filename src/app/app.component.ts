@@ -12,6 +12,6 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): any {
-    this.http.fetchAuthEnable();
+    this.http.fetchAuthEnable().subscribe();
   }
 }
