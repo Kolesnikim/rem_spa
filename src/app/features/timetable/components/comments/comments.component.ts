@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {PerformanceService} from '../../services/performanceService/performance.service';
 
 @Component({
@@ -11,5 +11,6 @@ export class CommentsComponent {
   constructor(private performance: PerformanceService) {
   }
 
+  @Input() comments: any[];
 }
 

@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../../../core/services/authService/auth.service';
 
 
 @Component({

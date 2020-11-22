@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -11,10 +10,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { ProfileComponent } from './components/profile/profile.component';
 import { LoginComponent } from './components/login/login.component';
-import { AuthService } from './services/auth.service';
-import { HttpService } from './services/http.service';
-import { AuthInterceptor } from './classes/auth.interceptor';
-import { AuthGuard } from './classes/auth.guard';
 import { UserRoutingModule } from './user-routing.module';
 
 
@@ -30,10 +25,7 @@ import { UserRoutingModule } from './user-routing.module';
     MatCardModule,
     MatToolbarModule,
     ReactiveFormsModule,
-    HttpClientModule
   ],
-  providers: [AuthService, HttpService, AuthGuard, [
-    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
-  ]]
+  providers: []
 })
 export class UserModule { }

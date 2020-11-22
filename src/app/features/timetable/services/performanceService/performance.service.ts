@@ -14,15 +14,17 @@ export class PerformanceService {
       organization: 'Sberbank',
       name: 'Иван Иванов',
       photo: '/photo.jpg',
-      topic: 'DevOps'
+      topic: 'DevOps',
+      comments: [
+        {username: 'Петр Максимов', comment: 'Очень даже неплохо'},
+        {username: 'Петр Максимов', comment: 'Очень даже неплохо'},
+        {username: 'Петр Максимов', comment: 'Очень даже неплохо'},
+        {username: 'Петр Максимов', comment: 'Очень даже неплохо'},
+      ]
     };
   }
 
-  public fetchPerformanceComments(id): any {
-    return [];
-  }
-
-  public sendPerformanceComments(id): any {
+  public postPerformanceComment(id): any {
     return [];
   }
 
