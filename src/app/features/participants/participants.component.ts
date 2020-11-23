@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-
 @Component({
   selector: 'app-participants',
   template:
@@ -20,7 +19,6 @@ import { Subscription } from 'rxjs';
       <mat-grid-list cols = "3">
         <app-participant-card ></app-participant-card>
       </mat-grid-list>
-      <app-participant-details style = " display: 'none' "></app-participant-details>
     </div>
   </div>`,
   styleUrls: ['./participants.component.scss']
