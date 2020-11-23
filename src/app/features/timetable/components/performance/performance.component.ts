@@ -15,4 +15,8 @@ export class PerformanceComponent implements OnInit {
     this.router.params.subscribe(params =>
       this.performanceData = this.performance.fetchPerformance(params.id));
   }
+
+  postComment(data): void {
+    console.log(data);
+  }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import { AuthService } from '../../../../core/services/authService/auth.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 
@@ -8,20 +8,28 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
   styleUrls: ['./comment-form.component.less']
 })
 export class CommentFormComponent implements OnInit {
-  nameInput = true;
   form: FormGroup;
+  userName: string;
+  error: any;
+  loading: any;
 
-  constructor(private auth: AuthService) {}
+  @Output() FormSubmit: EventEmitter<any> = new EventEmitter();
+
+  constructor(private auth: AuthService) {
+    this.userName = this.auth.currentUserValue;
+  }
 
   ngOnInit(): void {
-    if (!this.auth.currentUserValue) {
-      this.nameInput = true;
-    }
 
     this.form = new FormGroup({
-      name: this.nameInput ? new FormControl(null, Validators.required) : null,
+      userName: new FormControl(this.userName, Validators.required),
       comment: new FormControl(null, Validators.required)
     });
   }
 
+  submitForm($event: Event): void {
+    $event.preventDefault();
+    const { userName, comment } = this.form.value;
+    this.FormSubmit.emit({userName, comment});
+  }
 }

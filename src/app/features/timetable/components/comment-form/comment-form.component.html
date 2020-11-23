@@ -1,17 +1,25 @@
 <div class="container">
   <h2 class="heading__secondary">Новый комментарий</h2>
-  <form class="form__group" [formGroup]="form">
-    <mat-form-field class="example-full-width" *ngIf="nameInput">
+  <form class="form__group" [formGroup]="form" (submit)="submitForm($event)">
+    <mat-form-field class="form-full-width">
       <mat-label>Ваше имя</mat-label>
-      <input matInput formControlName="name">
+      <input matInput formControlName="userName">
+      <mat-error *ngIf="form.get('userName').touched && form.get('userName').invalid">
+        <small>Это поле обязательно дя заполнения</small>
+      </mat-error>
     </mat-form-field>
 
-    <mat-form-field class="example-full-width">
+    <mat-form-field class="form-full-width">
       <mat-label>Ваш комментарий</mat-label>
       <textarea matInput formControlName="comment"></textarea>
+      <mat-error *ngIf="form.get('comment').touched && form.get('comment').invalid">
+        <small>Это поле обязательно дя заполнения.</small>
+      </mat-error>
     </mat-form-field>
-
-    <button mat-raised-button>Отправить</button>
+    <div class="button__container">
+      <button [disabled]="loading" mat-raised-button color="primary" type="submit">Отправить</button>
+      <mat-error *ngIf="error"><small>{{error}}</small></mat-error>
+    </div>
   </form>
 </div>
 
