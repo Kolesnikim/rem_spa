@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ParticipantsService } from './services/participants.service';
+import { Participant } from './models/participant.model';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 @Component({
@@ -17,7 +19,7 @@ import { Subscription } from 'rxjs';
     </div>
     <div class='participans_content '>
       <mat-grid-list cols = "3">
-        <app-participant-card ></app-participant-card>
+        <app-participant-card *ngFor="let user of participants" [partisipant]="user" [id] = participant.id ></app-participant-card>
       </mat-grid-list>
     </div>
   </div>`,
@@ -26,7 +28,11 @@ import { Subscription } from 'rxjs';
 export class ParticipantsComponent implements OnInit {
   participantsTag: string[] = ['Участники', 'Организаторы'];
   activeTag: string;
+  participants: Participant[];
+
   id: number;
+
+
 
   // private routeSubscription: Subscription;
 
@@ -35,8 +41,15 @@ export class ParticipantsComponent implements OnInit {
   //       this.routeSubscription = route.params.subscribe(params=>this.id=params['id']);
   //   }
 
+  constructor( private participantsServer: ParticipantsService ){}
+
   ngOnInit(): void {
+    this.participantsServer.getAllUsers().subscribe((users: Participant[]) => {
+      this.participants = users;
+    });
+
     this.activeTag = this.participantsTag[0];
+
   }
 
   onTagChange(tag: string): void {

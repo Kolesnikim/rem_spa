@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Participant } from '../../models/participant.model';
 
 @Component({
   selector: 'app-participant-card',
@@ -6,9 +7,9 @@ import { Component, OnInit } from '@angular/core';
   <mat-card class="example-card" id = '123'>
     <mat-card-header>
       <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>{{fullName}}</mat-card-title>
+      <mat-card-title>{{participant.fullName}}</mat-card-title>
       <mat-card-subtitle>
-        <p class= 'organization'>{{organizationName}}</p>
+        <p class= 'organization'>{{participant.organizationName}}</p>
         <p>{{position}}</p>
       </mat-card-subtitle>
     </mat-card-header>
@@ -26,6 +27,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./participant-card.component.scss']
 })
 export class ParticipantCardComponent implements OnInit {
+  @Input() participant: Participant;
   fullName: string;
   organizationName: string;
   photoUrl: string;

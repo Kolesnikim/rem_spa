@@ -10,5 +10,5 @@ export class Participant {
     phone: string;
     photoUrl: string;
     position: string;
-    organizationName: string
+    organizationName: string;
 }
