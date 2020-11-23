@@ -1,4 +1,4 @@
-<div class="container" *ngIf="comments">
+<div class="comments__container" *ngIf="comments">
   <h2 class="heading__secondary">Комментарии</h2>
   <mat-card class="comment__wrapper" *ngFor="let comment of comments">
     <img [src]="comment.photo" alt="Photo" class="comment__profile">
