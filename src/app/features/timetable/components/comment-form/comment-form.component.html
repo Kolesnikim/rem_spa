@@ -1,5 +1,17 @@
 <div class="container">
-  <h2 class="heading__secondary">Комментарии</h2>
+  <h2 class="heading__secondary">Новый комментарий</h2>
+  <form class="form__group" [formGroup]="form">
+    <mat-form-field class="example-full-width" *ngIf="nameInput">
+      <mat-label>Ваше имя</mat-label>
+      <input matInput formControlName="name">
+    </mat-form-field>
 
+    <mat-form-field class="example-full-width">
+      <mat-label>Ваш комментарий</mat-label>
+      <textarea matInput formControlName="comment"></textarea>
+    </mat-form-field>
+
+    <button mat-raised-button>Отправить</button>
+  </form>
 </div>
 
