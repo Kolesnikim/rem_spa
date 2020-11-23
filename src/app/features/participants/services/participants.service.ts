@@ -11,8 +11,10 @@ import { Participant } from '../models/participant.model';
 export class ParticipantsService {
   constructor(private apiService: ApiService) { }
 
-
-  getAllUsers(): Observable<Participant[]> {
+/**
+ * Получить список участников
+ */
+  getAllParticipants(): Observable<Participant[]> {
     const result = this.apiService.get(`/participant/get-all-users?count=100`);
     return result.pipe(map((data: any) => {
       return data as Participant[];

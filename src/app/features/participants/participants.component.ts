@@ -19,7 +19,7 @@ import { Subscription } from 'rxjs';
     </div>
     <div class='participans_content '>
       <mat-grid-list cols = "3">
-        <app-participant-card *ngFor="let user of participants" [partisipant]="user" [id] = participant.id ></app-participant-card>
+        <app-participant-card *ngFor="let user of participants" [participant]="user" [id] = user.id ></app-participant-card>
       </mat-grid-list>
     </div>
   </div>`,
@@ -44,7 +44,7 @@ export class ParticipantsComponent implements OnInit {
   constructor( private participantsServer: ParticipantsService ){}
 
   ngOnInit(): void {
-    this.participantsServer.getAllUsers().subscribe((users: Participant[]) => {
+    this.participantsServer.getAllParticipants().subscribe((users: Participant[]) => {
       this.participants = users;
     });
 
