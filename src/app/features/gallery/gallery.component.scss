@@ -1,0 +1,70 @@
+@use "@material/image-list/mdc-image-list";
+@use "@material/image-list";
+
+.my-image-list {
+    @include image-list.standard-columns(3);
+    @include image-list.aspect(3/2)
+    
+}
+@media screen and (min-width: 481px) and (max-width: 780px) {
+    .my-image-list {
+      @include image-list.standard-columns(2);
+    }
+}
+@media screen and (max-width: 480px) {
+    .my-image-list {
+      @include image-list.standard-columns(1);
+    }
+}
+
+.gallery_viewport {
+    height: 100vh;
+    overflow: scroll;
+    margin: 0 10px;
+}
+.gallery_board{
+    height: 30px;
+    background-color: #4a96d7;
+    padding: 0 30px;
+}
+.gallery_nav {
+    float: left;
+    height: 100%;
+    cursor: pointer;
+}
+
+.nav {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    padding-right: 70px;
+    position: relative;
+}
+.nav_item{
+    float: left;
+    overflow: hidden;
+}
+
+.nav_link{
+    box-sizing: border-box;
+    color: white;
+    padding: 5px 15px;
+    transition: background-color .3s;
+    height: 30px;
+    overflow: hidden;
+    
+    &:hover{
+        background-color: #96bcf0cc;
+    }
+
+    &:active {
+        background-color: #3079b8;
+    }
+}
+.active{
+    background-color:  #c6d4e7cc;
+}
+.gallery_item {
+    object-fit: cover;
+}
+
