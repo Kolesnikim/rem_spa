@@ -23,8 +23,7 @@ import {ActiveModulesGuard} from './guards/activeModules.guard';
     FooterComponent,
     HttpClientModule
   ],
-  providers: [AuthService, HttpService, AuthGuard, ActiveModulesGuard, {
-    provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true
-  }]
+  providers: [AuthService, HttpService, AuthGuard, ActiveModulesGuard,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }]
 })
 export class CoreModule { }

@@ -16,10 +16,10 @@ export class PerformanceService {
       photo: '/photo.jpg',
       topic: 'DevOps',
       comments: [
-        {username: 'Петр Максимов', comment: 'Очень даже неплохо'},
-        {username: 'Петр Максимов', comment: 'Очень даже неплохо'},
-        {username: 'Петр Максимов', comment: 'Очень даже неплохо'},
-        {username: 'Петр Максимов', comment: 'Очень даже неплохо'},
+        {username: 'Петр Максимов', comment: 'Очень даже неплохо', date: Date.now(), photo: 'assets/photo.jpg'},
+        {username: 'Петр Максимов', comment: 'Очень даже неплохо', date: Date.now(), photo: 'assets/photo.jpg'},
+        {username: 'Петр Максимов', comment: 'Очень даже неплохо', date: Date.now(), photo: 'assets/photo.jpg'},
+        {username: 'Петр Максимов', comment: 'Очень даже неплохо', date: Date.now(), photo: 'assets/photo.jpg'},
       ]
     };
   }
