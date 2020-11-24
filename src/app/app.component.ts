@@ -1,5 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from './core/services/authService/auth.service';
 import { HttpService } from './core/services/httpService/http.service';
+import { IUserInfo } from './core/interfaces/user-info';
 
 @Component({
   selector: 'app-root',
@@ -7,11 +9,20 @@ import { HttpService } from './core/services/httpService/http.service';
   styleUrls: ['./app.component.less']
 })
 export class AppComponent implements OnInit {
-  title = 'rem-spa';
-  constructor(private http: HttpService) {
-  }
+  authEnable: boolean;
+  user: IUserInfo;
 
-  ngOnInit(): any {
-    this.http.fetchAuthEnable().subscribe();
+  title = 'rem-spa';
+
+  constructor(private auth: AuthService, private http: HttpService) {}
+
+  ngOnInit(): void {
+    this.http.authSettings.subscribe(authEnable => {
+      this.authEnable = authEnable?.isAuthenticationEnabled;
+    });
+
+    this.auth.currentUser.subscribe(user => {
+      this.user = user;
+    });
   }
 }
