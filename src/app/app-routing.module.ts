@@ -8,12 +8,12 @@ const routes: Routes = [
   {
     path: 'gallery',
     loadChildren: () => import('./features/gallery/gallery.module').then(m => m.GalleryModule),
-    canActivate: [ActiveModulesGuard, AuthGuard]
+    canActivate: [AuthGuard, ActiveModulesGuard]
   },
   {
     path: 'timetable',
     loadChildren: () => import('./features/timetable/timetable.module').then(m => m.TimetableModule),
-    canActivate: [ActiveModulesGuard, AuthGuard]
+    canActivate: [AuthGuard, ActiveModulesGuard]
   },
   {
     path: 'user',
