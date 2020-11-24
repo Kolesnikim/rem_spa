@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AuthService } from '../../../../core/services/authService/auth.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { IComment } from '../../interfaces/comment';
 
 @Component({
   selector: 'app-comment-form',
@@ -10,17 +11,16 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class CommentFormComponent implements OnInit {
   form: FormGroup;
   username: string;
-  error: any;
-  loading: any;
+  error: string;
+  loading: boolean;
 
-  @Output() FormSubmit: EventEmitter<any> = new EventEmitter();
+  @Output() FormSubmit: EventEmitter<IComment> = new EventEmitter();
 
   constructor(private auth: AuthService) {
     this.username = this.auth.currentUserValue.fullName;
   }
 
   ngOnInit(): void {
-
     this.form = new FormGroup({
       username: new FormControl(this.username, Validators.required),
       comment: new FormControl(null, Validators.required)
