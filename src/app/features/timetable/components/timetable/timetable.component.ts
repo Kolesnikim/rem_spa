@@ -19,7 +19,7 @@ export class TimetableComponent implements OnInit {
     this.newData = data;
   }
 
-  extractTopics(table): any[] {
+  extractTopics(table): string[] {
     return Object.keys(table.performances[0]);
   }
 

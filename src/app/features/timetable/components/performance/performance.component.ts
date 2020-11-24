@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {PerformanceService} from '../../services/performanceService/performance.service';
+import { PerformanceService } from '../../services/performanceService/performance.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
