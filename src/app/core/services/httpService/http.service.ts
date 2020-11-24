@@ -8,21 +8,23 @@ import { IAuthEnable } from '../../interfaces/auth-enable';
 
 @Injectable()
 export class HttpService {
-  private authSettings: BehaviorSubject<IAuthEnable>;
+  private authSettingsSubject: BehaviorSubject<IAuthEnable>;
+  public authSettings: Observable<IAuthEnable>;
   public url = environment.baseUrl;
 
   constructor(private http: HttpClient) {
-    this.authSettings = new BehaviorSubject<IAuthEnable>(JSON.parse(localStorage.getItem('authSettings')));
+    this.authSettingsSubject = new BehaviorSubject<IAuthEnable>(JSON.parse(localStorage.getItem('authSettings')));
+    this.authSettings = this.authSettingsSubject.asObservable();
   }
 
   public get getAuthEnable(): IAuthEnable {
-    return this.authSettings.value;
+    return this.authSettingsSubject.value;
   }
 
   fetchAuthEnable(): Observable<void> {
     return this.http.get<IAuthEnable>(`${environment.baseUrl}general-settings/get-auth-settings`)
       .pipe(map( res => {
-        this.authSettings.next(res);
+        this.authSettingsSubject.next(res);
       }));
   }
 
