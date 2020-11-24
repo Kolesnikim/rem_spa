@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {PerformanceService} from '../../services/performanceService/performance.service';
+import { PerformanceService } from '../../services/performanceService/performance.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -17,6 +17,6 @@ export class PerformanceComponent implements OnInit {
   }
 
   postComment(data): void {
-    console.log(data);
+    this.performanceData.comments.push({...data, date: Date.now(), photo: 'assets/photo.jpg'});
   }
 }

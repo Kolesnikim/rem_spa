@@ -3,8 +3,8 @@
   <form class="form__group" [formGroup]="form" (submit)="submitForm($event)">
     <mat-form-field class="form-full-width">
       <mat-label>Ваше имя</mat-label>
-      <input matInput formControlName="userName">
-      <mat-error *ngIf="form.get('userName').touched && form.get('userName').invalid">
+      <input matInput formControlName="username">
+      <mat-error *ngIf="form.get('username').touched && form.get('username').invalid">
         <small>Это поле обязательно дя заполнения</small>
       </mat-error>
     </mat-form-field>
