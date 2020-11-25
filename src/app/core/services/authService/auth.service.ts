@@ -3,40 +3,44 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { HttpService} from '../httpService/http.service';
 import { environment } from '../../../../environments/environment';
 import { IUserInfo } from '../../interfaces/user-info';
 
+/**
+ * Сервис, отвечающий за авторизацию:
+ * (логин, логаут, запрос данных о авторизованном пользователе
+ */
 @Injectable()
 export class AuthService {
-  private currentUserSubject: BehaviorSubject<IUserInfo | null>;
-  public currentUser: Observable<IUserInfo | null>;
+  public currentUserSubject: BehaviorSubject<IUserInfo>;
   public url = environment.baseUrl;
 
-  constructor(private http: HttpClient, private router: Router, private user: HttpService ) {
-    this.currentUserSubject = new BehaviorSubject<IUserInfo | null>(JSON.parse(localStorage.getItem('currentUser')));
-    this.currentUser = this.currentUserSubject.asObservable();
+  constructor(private http: HttpClient, private router: Router ) {
+    this.currentUserSubject = new BehaviorSubject<IUserInfo>(null);
   }
 
-  public get currentUserValue(): IUserInfo | null {
-    return this.currentUserSubject.value;
+  public get currentUserValue(): Observable<IUserInfo> {
+    return this.currentUserSubject;
   }
 
-  login(login: string, password: string): Observable<void> {
-    return this.http.post(`${environment.baseUrl}auth/login`, { login, password })
+  public login(login: string, password: string): Observable<void> {
+    return this.http.post<void>(`${environment.baseUrl}auth/login`, { login, password })
       .pipe(map(() => {
-        this.user.fetchUserInfo().subscribe(res => {
-          localStorage.setItem('currentUser', JSON.stringify(res));
-          this.router.navigate(['/']);
-          this.currentUserSubject.next(res);
-        });
+      this.fetchUserInfo().subscribe();
+      this.router.navigate(['/']);
+    }));
+  }
+
+  public fetchUserInfo(): Observable<any> {
+    return this.http.get<IUserInfo>(`${environment.baseUrl}account/info`)
+      .pipe(map(user => {
+        this.currentUserSubject.next(user);
       }));
   }
 
-  logout(): Observable<void> {
+  public logout(): Observable<void> {
     return this.http.get(`${environment.baseUrl}auth/logout`)
       .pipe(map(() => {
-        localStorage.removeItem('currentUser');
         this.router.navigate(['/']);
         this.currentUserSubject.next(null);
       }));
