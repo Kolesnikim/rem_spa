@@ -17,7 +17,7 @@ export class CommentFormComponent implements OnInit {
   @Output() FormSubmit: EventEmitter<IComment> = new EventEmitter();
 
   constructor(private auth: AuthService) {
-    this.username = this.auth.currentUserValue.fullName;
+    this.username = this.auth.currentUserValue?.fullName;
   }
 
   ngOnInit(): void {
@@ -29,7 +29,9 @@ export class CommentFormComponent implements OnInit {
 
   submitForm($event: Event): void {
     $event.preventDefault();
+
     const { username, comment } = this.form.value;
-    this.FormSubmit.emit({username, comment});
+    const emittedComment = this.username ? { comment } : { username, comment };
+    this.FormSubmit.emit(emittedComment);
   }
 }

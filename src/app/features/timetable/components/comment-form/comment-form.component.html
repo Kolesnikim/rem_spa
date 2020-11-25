@@ -1,7 +1,7 @@
 <div class="container">
   <h2 class="heading__secondary">Новый комментарий</h2>
   <form class="form__group" [formGroup]="form" (submit)="submitForm($event)">
-    <mat-form-field class="form-full-width">
+    <mat-form-field class="form-full-width" *ngIf="!username">
       <mat-label>Ваше имя</mat-label>
       <input matInput formControlName="username">
       <mat-error *ngIf="form.get('username').touched && form.get('username').invalid">

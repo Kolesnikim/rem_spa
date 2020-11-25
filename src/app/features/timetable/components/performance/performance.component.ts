@@ -17,6 +17,6 @@ export class PerformanceComponent implements OnInit {
   }
 
   postComment(data): void {
-    this.performanceData.comments.push({...data, date: Date.now(), photo: 'assets/photo.jpg'});
+    this.performanceData.comments.push({...data, username: 'Rubius Tests', date: Date.now(), photo: 'assets/photo.jpg'});
   }
 }

@@ -1,4 +1,4 @@
 export interface IComment {
-  username: string;
+  username?: string;
   comment: string;
 }
