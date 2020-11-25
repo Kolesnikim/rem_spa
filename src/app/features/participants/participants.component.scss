@@ -1,3 +1,6 @@
+// :host{
+//     min-height: 100vh;
+// }
 .participans_board{
     height: 30px;
     background-color: #4a96d7;
@@ -19,6 +22,7 @@
 .nav_item{
     float: left;
     overflow: hidden;
+    border-radius: 0.5rem
 }
 
 .nav_link{
@@ -40,6 +44,22 @@
 .active{
     background-color:  #c6d4e7cc;
 }
-mat-grid-tile {
-    background: lightblue;
- }
+.participans_content{
+    background-color: #c6d4e7cc;
+    padding: 10px;
+    padding-bottom: 30px;
+}
+.grid_wrapper{
+    display: grid;
+    grid-template-columns: repeat(3, 30%);
+    justify-content: space-around;
+    grid-row-gap: 3%;
+    
+        @media screen and (min-width: 481px) and (max-width: 860px) {
+            grid-template-columns: repeat(2, 47%);
+        }
+        @media screen and (max-width: 480px) {
+            grid-template-columns: repeat(1, 97%);
+        }
+        
+}

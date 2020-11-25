@@ -1,11 +1,10 @@
 .example-card {
-  max-width: 400px;
+  min-height: 120px;
 }
   
 .mat-card-avatar.example-header-image {
     height: 60px;
     width: 60px;
-    background-image: url('https://st2.depositphotos.com/5682790/10456/v/950/depositphotos_104564156-stock-illustration-male-user-icon.jpg');
     background-size: cover;
 }
  
@@ -15,4 +14,13 @@ mat-card-subtitle{
       font-weight: bold;
       margin: 0 0 3px;
     }
+}
+mat-card-actions a {
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.54);
+  
+  &:hover{
+      color: cornflowerblue;
+      text-decoration: underline;
+  }
 }

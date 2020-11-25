@@ -4,23 +4,17 @@ import { Participant } from '../../models/participant.model';
 @Component({
   selector: 'app-participant-card',
   template: `
-  <mat-card class="example-card" id = '123'>
+  <mat-card class="example-card" id="id">
     <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
+      <div mat-card-avatar class="example-header-image" [style.backgroundImage]="photoUrl"></div>
       <mat-card-title>{{participant.fullName}}</mat-card-title>
       <mat-card-subtitle>
         <p class= 'organization'>{{participant.organizationName}}</p>
-        <p>{{position}}</p>
+        <p>{{participant.position}}</p>
       </mat-card-subtitle>
     </mat-card-header>
-    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Фоторафия Участника">
-    <mat-card-content>
-      <p>
-        Краткая информация об участнике
-      </p>
-    </mat-card-content>
     <mat-card-actions>
-      <a routerLink="participants/information"  href='participants/information'>Подробная информация</a>
+      <a routerLink="participant/{{id}}/details">Подробная информация</a>
     </mat-card-actions>
     </mat-card>
     ` ,
@@ -28,14 +22,13 @@ import { Participant } from '../../models/participant.model';
 })
 export class ParticipantCardComponent implements OnInit {
   @Input() participant: Participant;
-  fullName: string;
-  organizationName: string;
+  id: number;
   photoUrl: string;
-  position: string;
-
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
+    this.id = this.participant.id;
+    this.photoUrl = `url(${this.participant.photoUrl})`;
   }
 
 }

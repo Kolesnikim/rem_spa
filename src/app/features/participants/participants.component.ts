@@ -5,22 +5,22 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-participants',
-  template:
-  `<router-outlet></router-outlet>
+  template: `
+  <router-outlet></router-outlet>
   <div class='participans_container'>
     <div class='participans_board'>
       <nav class='participans_nav'>
         <ul class='nav'>
           <li *ngFor="let tag of participantsTag" class='nav_item'>
-            <p [class.nav_link] = "true" [class.active] ="tag === activeTag" (click)='onTagChange(tag)'>#{{tag}} </p>
+            <p [class.nav_link] = "true" [class.active] ="tag === activeTag" (click)='onTagChange(tag)'>{{tag}}</p>
           </li>
         </ul>
       </nav>
     </div>
-    <div class='participans_content '>
-      <mat-grid-list cols = "3">
-        <app-participant-card *ngFor="let user of participants" [participant]="user" [id] = user.id ></app-participant-card>
-      </mat-grid-list>
+    <div class='participans_content'>
+      <div class = 'grid_wrapper'>
+        <app-participant-card *ngFor="let user of participants" [participant]="user" [id]="user.id" ></app-participant-card>
+      </div>
     </div>
   </div>`,
   styleUrls: ['./participants.component.scss']
@@ -32,24 +32,14 @@ export class ParticipantsComponent implements OnInit {
 
   id: number;
 
-
-
-  // private routeSubscription: Subscription;
-
-  //   constructor(private route: ActivatedRoute){
-
-  //       this.routeSubscription = route.params.subscribe(params=>this.id=params['id']);
-  //   }
-
-  constructor( private participantsServer: ParticipantsService ){}
+  constructor( private participantsServer: ParticipantsService){}
 
   ngOnInit(): void {
-    this.participantsServer.getAllParticipants().subscribe((users: Participant[]) => {
-      this.participants = users;
+    this.participantsServer.getAllParticipants().subscribe((participants: Participant[]) => {
+      this.participants = participants;
     });
 
     this.activeTag = this.participantsTag[0];
-
   }
 
   onTagChange(tag: string): void {

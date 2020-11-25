@@ -15,9 +15,13 @@ export class ParticipantsService {
  * Получить список участников
  */
   getAllParticipants(): Observable<Participant[]> {
-    const result = this.apiService.get(`/participant/get-all-users?count=100`);
+    const result = this.apiService.get(`/participant/get-all-users?count=10`);
     return result.pipe(map((data: any) => {
-      return data as Participant[];
+      return data.entities;
     }));
+  }
+
+  getParticipantsbyId(id: number): Observable<Participant> {
+    return this.apiService.get(`/participant/${id}`);
   }
 }
