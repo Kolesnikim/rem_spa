@@ -26,12 +26,11 @@ export class AuthService {
   public login(login: string, password: string): Observable<void> {
     return this.http.post<void>(`${environment.baseUrl}auth/login`, { login, password })
       .pipe(map(() => {
-      this.fetchUserInfo().subscribe();
       this.router.navigate(['/']);
     }));
   }
 
-  public fetchUserInfo(): Observable<any> {
+  public fetchUserInfo(): Observable<void> {
     return this.http.get<IUserInfo>(`${environment.baseUrl}account/info`)
       .pipe(map(user => {
         this.currentUserSubject.next(user);
@@ -41,8 +40,8 @@ export class AuthService {
   public logout(): Observable<void> {
     return this.http.get(`${environment.baseUrl}auth/logout`)
       .pipe(map(() => {
-        this.router.navigate(['/']);
         this.currentUserSubject.next(null);
+        this.router.navigate(['/']);
       }));
   }
 }
