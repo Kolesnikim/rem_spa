@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from './core/services/authService/auth.service';
 import { HttpSettingsService } from './core/services/httpService/http-settings.service';
 import { IUserInfo } from './core/interfaces/user-info';
-import {IAuthEnable} from './core/interfaces/auth-enable';
+import { IAuthEnable } from './core/interfaces/auth-enable';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +19,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.http.getAuthEnable.subscribe(settings => this.authSettings = settings);
-    this.auth.currentUserSubject.subscribe(user => this.user = user);
+    this.auth.currentUserValue.subscribe(user => this.user = user);
   }
 }

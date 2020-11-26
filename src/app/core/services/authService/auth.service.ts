@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
+import {BehaviorSubject, Observable, Subject} from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { environment } from '../../../../environments/environment';
@@ -12,14 +12,14 @@ import { IUserInfo } from '../../interfaces/user-info';
  */
 @Injectable()
 export class AuthService {
-  public currentUserSubject: BehaviorSubject<IUserInfo>;
+  private readonly currentUserSubject: BehaviorSubject<IUserInfo>;
   public url = environment.baseUrl;
 
   constructor(private http: HttpClient, private router: Router ) {
     this.currentUserSubject = new BehaviorSubject<IUserInfo>(null);
   }
 
-  public get currentUserValue(): Observable<IUserInfo> {
+  public get currentUserValue(): Subject<IUserInfo> {
     return this.currentUserSubject;
   }
 
