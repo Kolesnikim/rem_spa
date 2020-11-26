@@ -20,7 +20,8 @@
 .gallery_viewport {
     height: 100vh;
     overflow: scroll;
-    margin: 0 10px;
+    padding: 10px;
+    background-color: #c6d4e7cc;
 }
 .gallery_board{
     height: 30px;
@@ -43,6 +44,7 @@
 .nav_item{
     float: left;
     overflow: hidden;
+    border-radius: 0.5rem;
 }
 
 .nav_link{
