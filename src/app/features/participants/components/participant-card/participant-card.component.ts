@@ -4,7 +4,7 @@ import { Participant } from '../../models/participant.model';
 @Component({
   selector: 'app-participant-card',
   template: `
-  <mat-card class="example-card" id="id">
+  <mat-card class="participant_card" id="id">
     <mat-card-header>
       <div mat-card-avatar class="example-header-image" [style.backgroundImage]="photoUrl"></div>
       <mat-card-title>{{participant.fullName}}</mat-card-title>
