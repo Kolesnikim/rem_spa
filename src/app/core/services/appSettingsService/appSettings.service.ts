@@ -11,6 +11,7 @@ export class AppSettingsService {
     new ActiveModule('Избранное', 'favourites'),
     new ActiveModule('Фотогаллерея', 'gallery'),
     new ActiveModule('Участники', 'participants'),
+    new ActiveModule('Спонсоры', 'sponsors'),
     new ActiveModule('Документы', 'documents'),
     new ActiveModule('О приложении', 'about')];
 

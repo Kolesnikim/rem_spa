@@ -19,6 +19,11 @@ const routes: Routes = [
     loadChildren: () => import('./features/participants/participants.module').then(m => m.ParticipantsModule),
     canActivate: [ActiveModulesGuard]
   },
+  {
+    path: 'sponsors',
+    loadChildren: () => import('./features/sponsors/sponsors.module').then(m => m.SponsorsModule),
+    canActivate: [ActiveModulesGuard]
+  },
   { path: '',
   loadChildren: () => import('./features/main-page/main-page.module').then(m => m.MainPageModule)},
   { path: '**', component: NotFoundComponent }
