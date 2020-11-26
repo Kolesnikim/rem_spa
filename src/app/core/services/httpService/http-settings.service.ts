@@ -25,7 +25,7 @@ export class HttpSettingsService {
   public fetchAuthEnable(): Observable<void> {
     return this.http.get<IAuthEnable | null>(`${environment.baseUrl}general-settings/get-auth-settings`)
       .pipe(map( res => {
-        this.authSettingsSubject.next(null);
+        this.authSettingsSubject.next(res);
       }));
   }
 }
