@@ -15,12 +15,6 @@ mat-card-subtitle{
       margin: 0 0 3px;
     }
 }
-mat-card-actions a {
-  text-decoration: none;
+mat-card-content {
   color: rgba(0, 0, 0, 0.54);
-  
-  &:hover{
-      color: cornflowerblue;
-      text-decoration: underline;
-  }
 }

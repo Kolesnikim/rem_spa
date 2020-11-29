@@ -13,9 +13,9 @@ import { Participant } from '../../models/participant.model';
         <p>{{participant.position}}</p>
       </mat-card-subtitle>
     </mat-card-header>
-    <mat-card-actions>
-      <a routerLink="participant/{{id}}/details">Подробная информация</a>
-    </mat-card-actions>
+    <mat-card-content>
+      Подробная информация
+    </mat-card-content>
     </mat-card>
     ` ,
   styleUrls: ['./participant-card.component.scss']

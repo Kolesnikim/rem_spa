@@ -39,7 +39,7 @@ export class ParticipantDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.participantsServer.getParticipantsbyId(this.id).subscribe((participant: Participant) => {
+    this.participantsServer.getParticipantById(this.id).subscribe((participant: Participant) => {
       this.participant = participant;
       this.photoUrl = `url(${participant.photoUrl})`;
     });
