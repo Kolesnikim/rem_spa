@@ -6,7 +6,8 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { HelloWorldModule } from './features/hello-world/hello-world.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpService } from './core/services/httpService/http.service';
+import { HttpSettingsService } from './core/services/httpService/http-settings.service';
+
 
 @NgModule({
   declarations: [
@@ -20,14 +21,15 @@ import { HttpService } from './core/services/httpService/http.service';
     CoreModule
   ],
   providers: [
-    { provide: APP_INITIALIZER, useFactory: init, deps: [HttpService], multi: true}
+    { provide: APP_INITIALIZER, useFactory: init, deps: [HttpSettingsService], multi: true},
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
 
-export function init(http: HttpService): () => void  {
-  return () => http.fetchAuthEnable().subscribe();
+export function init(http: HttpSettingsService): () => void {
+  return () => {
+    http.fetchAuthEnable().subscribe();
+  };
 }
-
 

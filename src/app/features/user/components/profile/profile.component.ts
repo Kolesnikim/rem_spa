@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpService } from '../../../../core/services/httpService/http.service';
+import { HttpSettingsService } from '../../../../core/services/httpService/http-settings.service';
 import { AuthService } from '../../../../core/services/authService/auth.service';
 import { IUserInfo } from '../../../../core/interfaces/user-info';
 
@@ -9,12 +9,12 @@ import { IUserInfo } from '../../../../core/interfaces/user-info';
   styleUrls: ['./profile.component.less']
 })
 export class ProfileComponent implements OnInit {
-  user: IUserInfo | null;
+  user: IUserInfo;
 
-  constructor(private http: HttpService, private auth: AuthService) { }
+  constructor(private http: HttpSettingsService, private auth: AuthService) { }
 
   ngOnInit(): void {
-    this.user = this.auth.currentUserValue;
+    this.auth.currentUserValue.subscribe(userInfo => this.user = userInfo);
   }
 
   logout($event: Event): void {

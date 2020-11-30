@@ -4,16 +4,20 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
-import { AuthService} from '../services/authService/auth.service';
+import { AuthService } from '../services/authService/auth.service';
 
+/**
+ * Интерцептор, перехватывающий ошибку Unauthorized
+ * и перенаправляющий на форму входа.
+ */
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
   constructor(private router: Router, private auth: AuthService) {
   }
 
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    req = req.clone({withCredentials: true});
+  public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    req = req.clone({ withCredentials: true });
 
     return next
       .handle(req)

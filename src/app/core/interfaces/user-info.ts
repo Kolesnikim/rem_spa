@@ -1,3 +1,6 @@
+/**
+ * Интерфейс информации о авторизованном юзере
+ */
 export interface IUserInfo {
   additionalInfo: string;
   department: string;
