@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpService } from '../../services/http.service';
-import { AuthService } from '../../services/auth.service';
+import { HttpSettingsService } from '../../../../core/services/httpService/http-settings.service';
+import { AuthService } from '../../../../core/services/authService/auth.service';
+import { IUserInfo } from '../../../../core/interfaces/user-info';
 
 @Component({
   selector: 'app-profile',
@@ -8,12 +9,12 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./profile.component.less']
 })
 export class ProfileComponent implements OnInit {
-  user: null;
+  user: IUserInfo;
 
-  constructor(private http: HttpService, private auth: AuthService) { }
+  constructor(private http: HttpSettingsService, private auth: AuthService) { }
 
   ngOnInit(): void {
-    this.user = this.auth.currentUserValue;
+    this.auth.currentUserValue.subscribe(userInfo => this.user = userInfo);
   }
 
   logout($event: Event): void {

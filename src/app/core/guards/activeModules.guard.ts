@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
 import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot} from '@angular/router';
-import {Observable} from 'rxjs';
-import { AppSettingsService } from './services/appSettingsService/appSettings.service';
+import { Observable } from 'rxjs';
+import { AppSettingsService } from '../services/appSettingsService/appSettings.service';
 
-@Injectable({
-    providedIn: 'root',
-  })
+@Injectable()
 export class ActiveModulesGuard implements CanActivate{
 
     constructor(private appSettingsService: AppSettingsService) {

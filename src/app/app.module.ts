@@ -1,11 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { HelloWorldModule } from './features/hello-world/hello-world.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpSettingsService } from './core/services/httpService/http-settings.service';
+import { AuthService } from './core/services/authService/auth.service';
+
 
 @NgModule({
   declarations: [
@@ -18,7 +21,19 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserAnimationsModule,
     CoreModule
   ],
-  providers: [],
+  providers: [
+    { provide: APP_INITIALIZER, useFactory: init, deps: [HttpSettingsService, AuthService], multi: true},
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+/**
+ * Функция, выщываемая при инициализации приложения
+ */
+export function init(http: HttpSettingsService, auth: AuthService): () => void {
+  return () => {
+    http.fetchAuthEnable().subscribe();
+  };
+}
+
