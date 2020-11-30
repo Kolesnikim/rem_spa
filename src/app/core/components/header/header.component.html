@@ -1,4 +1,4 @@
-<div class = 'header_container'>
+<div class = 'header_container' *ngIf="isAuth || !authEnable">
     <div class = 'header_logo'><a routerLink='/'><img src ='#'></a></div>
     <nav class = 'header_nav'>
       <ul class = 'nav'>

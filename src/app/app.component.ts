@@ -18,7 +18,6 @@ export class AppComponent implements OnInit {
   constructor(private auth: AuthService, private http: HttpSettingsService) {}
 
   ngOnInit(): void {
-    this.http.getAuthEnable.subscribe(settings => this.authSettings = settings);
-    this.auth.currentUserValue.subscribe(user => this.user = user);
+
   }
 }
