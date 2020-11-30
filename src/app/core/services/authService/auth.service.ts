@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {BehaviorSubject, Observable, Subject} from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { environment } from '../../../../environments/environment';
@@ -19,7 +19,7 @@ export class AuthService {
     this.currentUserSubject = new BehaviorSubject<IUserInfo>(null);
   }
 
-  public get currentUserValue(): Subject<IUserInfo> {
+  public get currentUserValue(): BehaviorSubject<IUserInfo> {
     return this.currentUserSubject;
   }
 
