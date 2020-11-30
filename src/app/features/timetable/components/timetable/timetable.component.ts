@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { data } from '../../services/fake-data';
-import { PerformanceService } from '../../services/performanceService/performance.service';
 import { Router } from '@angular/router';
+import {ScheduleService} from '../../services/scheduleService/schedule.service';
+import {ISchedule} from '../../interfaces/schedule';
 
 @Component({
   selector: 'app-timetable',
@@ -11,11 +12,15 @@ import { Router } from '@angular/router';
 export class TimetableComponent implements OnInit {
   displayedColumns: string[] = [];
   newData: any;
+  bigdata: ISchedule;
 
-  constructor(private performance: PerformanceService, private router: Router) {
+  constructor(private router: Router, private schedule: ScheduleService) {
   }
 
   ngOnInit(): void {
+    this.schedule.fetchSchedule().subscribe(res => {
+      this.bigdata = res;
+    });
     this.newData = data;
   }
 

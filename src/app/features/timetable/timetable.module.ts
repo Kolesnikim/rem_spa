@@ -11,6 +11,7 @@ import { PerformanceComponent } from './components/performance/performance.compo
 import { PerformanceService } from './services/performanceService/performance.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatRippleModule } from '@angular/material/core';
+import {ScheduleService} from './services/scheduleService/schedule.service';
 
 
 @NgModule({
@@ -24,6 +25,6 @@ import { MatRippleModule } from '@angular/material/core';
     MatProgressSpinnerModule,
     MatRippleModule
   ],
-  providers: [PerformanceService]
+  providers: [PerformanceService, ScheduleService]
 })
 export class TimetableModule { }
