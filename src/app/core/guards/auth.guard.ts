@@ -14,13 +14,8 @@ import { map } from 'rxjs/operators';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-  authEnable: BehaviorSubject<boolean>;
-  user: IUserInfo;
-  isAuth: BehaviorSubject<boolean>;
 
-  constructor(private auth: AuthService, private router: Router, private http: HttpSettingsService) {
-    this.authEnable = this.http.getAuthEnable;
-    this.isAuth = this.auth.isAuthenticated;
+  constructor(private authService: AuthService, private router: Router, private httpSettingsService: HttpSettingsService) {
   }
 
   /**
@@ -31,18 +26,11 @@ export class AuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-    const authEnable = this.authEnable.value;
-    const isAuth = this.isAuth.value;
+    const authServiceEnable = this.httpSettingsService.getAuthEnable.value;
+    const isAuth = this.authService.isAuthenticated.value;
 
-    if (!isAuth && authEnable) {
-      return this.auth.fetchUserInfo().pipe(map(() => {
-        if (!this.isAuth.value) {
-          this.router.navigate(['user/', 'login']);
-          return false;
-        } else {
-          return true;
-        }
-      }));
+    if (!isAuth && authServiceEnable) {
+      return this.authService.isUserAuthenticated();
     }
     return true;
   }

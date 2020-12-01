@@ -25,7 +25,6 @@ export class AuthInterceptor implements HttpInterceptor {
       .pipe(catchError( err => {
         if (err instanceof HttpErrorResponse) {
           if (err.status === 401) {
-            this.auth.logout();
             this.router.navigate(['/user', 'login']);
             this.snackbar.open('Для просмотра войдите в систему', 'Закрыть', {
               duration: 2000,
