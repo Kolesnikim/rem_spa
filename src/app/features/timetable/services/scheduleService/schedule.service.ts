@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import {TimetableModule} from '../../timetable.module';
 import {HttpClient} from '@angular/common/http';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {environment} from '../../../../../environments/environment';
@@ -14,15 +13,18 @@ export class ScheduleService {
   baseUrl = environment.baseUrl;
 
   constructor(private http: HttpClient, private conference: ConferenceService) {
-    this.conference.getConference.subscribe(conf => this.conferenceId = conf.id);
     this.scheduleSubject = new BehaviorSubject<any>(null);
+    this.conference.getConference.subscribe(conf => {
+      this.conferenceId = conf.id;
+    });
   }
 
   public fetchSchedule(): Observable<void> {
-    return this.http.get<ISchedule>(`${this.baseUrl}schedule/conference/${this.conferenceId}`)
+    return this.http.get<ISchedule[]>(`${this.baseUrl}schedule/conference/${this.conferenceId}`)
       .pipe(map(schedule => {
-        this.scheduleSubject.next(schedule);
         console.log(schedule);
+
+        this.scheduleSubject.next(schedule);
       }));
   }
 }

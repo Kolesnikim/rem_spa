@@ -4,8 +4,8 @@ export interface ISession {
   id: 0;
   organization: string;
   title: string;
-  startTime: Date;
-  endTime: Date;
+  startTime: string;
+  endTime: string;
   location: string;
   canBeFavorited: boolean;
   speaker: ISpeaker;
