@@ -6,17 +6,23 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./button.component.scss']
 })
 export class ButtonComponent implements OnInit {
-  visibility = false;
+  public visibility = false;
   @Input() urlImage: string;
 
   constructor() { }
 
   ngOnInit(): void {}
 
-  onMouseOver(): void {
+  /**
+   * Обработать событие наведения мыши
+   */
+  public onMouseOver(): void {
     this.visibility = true;
 }
-  onMouseOut(): void {
+  /**
+   * Обработать событие отведения мыши
+   */
+  public onMouseOut(): void {
     this.visibility = false;
   }
 }

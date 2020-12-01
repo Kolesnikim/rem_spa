@@ -9,13 +9,13 @@ import { GalleryTag } from './models/tag.model';
   styleUrls: ['./gallery.component.scss']
 })
 export class GalleryComponent implements OnInit {
-  galleryTags: GalleryTag[];
-  activeTag: GalleryTag;
-  displayedItems: GalleryItem[];
-  maxCarouselItems = 100;
-  itemsPerScroll = 25;
-  galleryId = 'my-gallery';
-  firstCarouselItemIndex = 0;
+  public galleryTags: GalleryTag[];
+  public activeTag: GalleryTag;
+  public displayedItems: GalleryItem[];
+  private maxCarouselItems = 100;
+  private itemsPerScroll = 25;
+  public galleryId = 'my-gallery';
+  public firstCarouselItemIndex = 0;
 
   constructor(private galleryService: GalleryService, public gallery: Gallery) { }
 
@@ -31,7 +31,7 @@ export class GalleryComponent implements OnInit {
   /**
    * Вызов бесконечного скролла
    */
-  onScroll(): void {
+  public onScroll(): void {
     this.galleryService.getGalleryItems(this.activeTag, this.displayedItems.length, this.itemsPerScroll)
       .subscribe((items: GalleryItem[]) => {
         this.displayedItems.push(...items);
@@ -42,7 +42,7 @@ export class GalleryComponent implements OnInit {
    * Вызов увеличенного изображения
    * @param id изображения
    */
-  onImageClick(id: number): void {
+  public onImageClick(id: number): void {
     this.firstCarouselItemIndex = id - this.maxCarouselItems / 2;
     if (this.firstCarouselItemIndex < 0) {
       this.firstCarouselItemIndex = 0;
@@ -57,7 +57,7 @@ export class GalleryComponent implements OnInit {
    * Обработать смену тэга
    * @param tag название тега
    */
-  onTagChange(tag: GalleryTag): void {
+  public onTagChange(tag: GalleryTag): void {
     if (this.activeTag === tag) {
       return;
     }
