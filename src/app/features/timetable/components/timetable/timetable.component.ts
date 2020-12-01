@@ -18,6 +18,8 @@ export class TimetableComponent implements OnInit {
   titles: any[];
   datas: any[];
   param: any;
+  object: any;
+  object2: any;
 
   constructor(private router: Router, private schedule: ScheduleService) {
   }
@@ -25,48 +27,48 @@ export class TimetableComponent implements OnInit {
   ngOnInit(): void {
     this.schedule.fetchSchedule().subscribe(() => {
       this.schedule.scheduleSubject.subscribe(schedule => {
-        this.bigdata = schedule;
-        this.titles = this.bigdata.map(el => el.title);
-        this.extractSessio();
+        this.dates = schedule.map(date => formatDate(date.date, 'd MMMM', 'ru'));
+        this.titles = schedule.map(date => date.sections.map(section => section.title));
 
-        console.log(this.extractSessio());
+        this.object = this.dates.map((date, index) => ({
+          date,
+          topics: this.titles[index].map(title => ({title})),
+          sessions: schedule[index].sections.map((section, j) => {
+            return {
+              [`${section.title}`]: [...section.sessions]
+            };
+          })
+        }));
+        console.log(this.extractArray(schedule[0]));
       });
     });
     this.newData = data;
   }
 
-  extractTopicsFromServer(): string[] {
-    return this.bigdata.map(el => el.title);
-  }
-
-  extractDatesFromServer(): any {
-    const element = this.bigdata[0];
-    return new Set(element.sessions.map(section => {
-      return formatDate(section.startTime, 'd MMMM', 'ru');
-    }));
-  }
-
-  extractSessio(): any {
-    const dates = Array.from(this.extractDatesFromServer());
-    const firstVersion = dates.map(date => (
-        {
-          date,
-          topics: this.bigdata.map(topic => topic.title),
-          performances: this.bigdata.map((topic, index) => {
-              return topic.sessions.filter(session => {
-                return formatDate(session.startTime, 'd MMMM', 'ru') === date;
-              });
-            }
-          )
-        }
-      )
-    );
-
-    return firstVersion;
-  }
-
   extractTopics(table): string[] {
     return Object.keys(table.performances[0]);
+  }
+
+  extractArray(arr): any {
+    const result = [];
+    let needIterate = true;
+    let num = 0;
+    while (needIterate) {
+      let sessionIdx = 0;
+      // tslint:disable-next-line:prefer-for-of
+      for (let i = 0; i < arr.sections.length; i++) {
+        if (arr.sections[i].sessions.length > sessionIdx) {
+          result.push(arr.sections[i].sessions[sessionIdx]);
+        }
+      }
+
+      sessionIdx += 1;
+      num++;
+      if (result.length > 20) {
+        needIterate = false;
+      }
+    }
+    return result;
   }
 
   showPerformance(id): void {

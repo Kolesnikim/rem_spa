@@ -35,40 +35,6 @@
 
   </mat-table>
 </div>
-<div class="table-container mat-elevation-z8" *ngIf="datas; else spinnerContainer">
-  <mat-table [dataSource]="table.performances" *ngFor="let table of datas; let i = index;">
-    <ng-container [matColumnDef]="topic" *ngFor="let topic of datas">
-      <mat-header-cell class="headers__group"  *matHeaderCellDef>
-        <h3 class="heading__theme">{{topic}}</h3>
-      </mat-header-cell>
-      <mat-cell *matCellDef="let element">
-          <mat-card-header>
-            <img mat-card-avatar src="assets/photo.jpg" alt="Avatar" class="cell__item--avatar">
-            <mat-card-title>{{element[topic].name}}</mat-card-title>
-            <mat-card-subtitle>{{element[topic].organization}}</mat-card-subtitle>
-          </mat-card-header>
-          <mat-card-content>
-            <h3>{{element[topic].startDate}} - {{element[topic].endDate}}</h3>
-            <p>{{element[topic].topic}}</p>
-          </mat-card-content>
-        </mat-card>
-      </mat-cell>
-    </ng-container>
-
-    <ng-container class="header__main" [matColumnDef]="table.date" >
-      <mat-header-cell class="header__main" *matHeaderCellDef
-                       [attr.colspan]="2">{{table.date}}
-      </mat-header-cell>
-    </ng-container>
-
-    <mat-header-row *matHeaderRowDef="[table.date]; sticky: true;"></mat-header-row>
-
-    <mat-header-row *matHeaderRowDef="table.topics; sticky: true"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: table.topics;"></mat-row>
-
-  </mat-table>
-</div>
-
 <ng-template #spinnerContainer>
   <mat-spinner></mat-spinner>
 </ng-template>
