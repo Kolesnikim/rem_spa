@@ -13,10 +13,10 @@ export class SponsorsService {
   /**
    * Получить список спонсоров
    */
-  getAllSponsirs(): Observable<Sponsor[]> {
-    const result = this.apiService.get(`/sponsors/get-all-sponsors?count=10`);
+  getAllSponsorsLogo(id: number): Observable<Sponsor[]> {
+    const result = this.apiService.get(`/sponsor/by-conference-id/1`);
     return result.pipe(map((data: any) => {
-      return data.entities;
+      return data;
     }));
   }
 }

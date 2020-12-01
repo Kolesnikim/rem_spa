@@ -5,15 +5,26 @@
 }
 .grid_wrapper{
     display: grid;
-    grid-template-columns: repeat(3, 30%);
+    grid-template-columns: repeat(4, 24%);
     justify-content: space-around;
-    grid-row-gap: 3%;
+    grid-row-gap: 2%;
     
         @media screen and (min-width: 481px) and (max-width: 860px) {
-            grid-template-columns: repeat(2, 47%);
+            grid-template-columns: repeat(3, 32%);
         }
         @media screen and (max-width: 480px) {
-            grid-template-columns: repeat(1, 97%);
+            grid-template-columns: repeat(2, 48%);
         }
         
+}
+.sponsor_item {
+    display: inline-block;
+    list-style: none;
+}
+
+.sponsor_logo{
+    display: inline-block;
+}
+.logo_img{
+    width: 100%;
 }

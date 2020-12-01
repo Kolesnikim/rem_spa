@@ -1,9 +1,11 @@
 export class Sponsor {
     id: number;
-    organizationName: string;
-    additionalInfo: string;
-    imgUrl: string;
-    link: string;
-    email: string;
-    index: number;
+    isHidden: boolean;
+    logoUrl: string;
+    webSite: string;
+    title = '';
+    text: string;
+    conferenceId: number;
+    sponsorTypeTag: string;
+    photoUrl: null;
 }
