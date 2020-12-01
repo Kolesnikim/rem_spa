@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
-import { ApiService } from '../../gallery/services/apiService/api.service';
+import { ApiService } from '../../../core/services/apiService/api.service';
 import { Participant } from '../models/participant.model';
 import { ParticipantRole } from '../models/participantRole.model';
 
