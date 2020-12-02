@@ -1,9 +1,13 @@
 /**
  * Тег галереи
- * @param id - идентификатор тега
- * @param tagString - наименование тега
  */
 export interface GalleryTag {
+    /**
+     *  id -  идентификатор тега
+     */
     id: number;
+    /**
+     *  tagString - наименование тега
+     */
     tagString: 'string';
 }

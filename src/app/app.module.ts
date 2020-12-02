@@ -7,9 +7,7 @@ import { CoreModule } from './core/core.module';
 import { HelloWorldModule } from './features/hello-world/hello-world.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LIGHTBOX_CONFIG } from 'ng-gallery/lightbox';
-import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import { HttpClientModule } from '@angular/common/http';
 import { HttpSettingsService } from './core/services/httpService/http-settings.service';
 
 
@@ -23,8 +21,6 @@ import { HttpSettingsService } from './core/services/httpService/http-settings.s
     HelloWorldModule,
     BrowserAnimationsModule,
     CoreModule,
-    InfiniteScrollModule,
-    HttpClientModule,
   ],
   providers: [
     {
