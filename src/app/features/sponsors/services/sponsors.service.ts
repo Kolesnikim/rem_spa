@@ -12,6 +12,7 @@ export class SponsorsService {
 
   /**
    * Получить список спонсоров
+   * id - идентификатор конференции
    */
   public getAllSponsorsLogo(id: number): Observable<Sponsor[]> {
     const result = this.apiService.get(`/sponsor/by-conference-id/${id}`);

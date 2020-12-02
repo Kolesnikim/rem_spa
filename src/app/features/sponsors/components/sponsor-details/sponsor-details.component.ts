@@ -10,10 +10,10 @@ import { SponsorsService} from '../../services/sponsors.service';
   styleUrls: ['./sponsor-details.component.scss']
 })
 export class SponsorDetailsComponent implements OnInit {
-  routeSubscription: Subscription;
-  id: number;
-  idConference = 1;
-  sponsor: Sponsor = new Sponsor();
+  public routeSubscription: Subscription;
+  public id: number;
+  public idConference = 1;
+  public sponsor: Sponsor = new Sponsor();
 
   constructor(private sponsorsService: SponsorsService, private route: ActivatedRoute){
     this.routeSubscription = route.params.subscribe((params: Params) => this.id = Number(params.id));
