@@ -30,12 +30,7 @@ export class AuthGuard implements CanActivate {
         if (!value) {
           return of(true);
         }
-        return this.authService.isAuthenticated$.pipe(switchMap(val => {
-          if (!val) {
-            return of(val);
-          }
-          return of(true);
-        }));
+        return this.authService.isAuthenticated$;
       }));
   }
 }
