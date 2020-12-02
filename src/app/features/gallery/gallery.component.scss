@@ -17,8 +17,11 @@
     }
 }
 
+:host{
+    flex: 1 0 auto;
+}
 .gallery_viewport {
-    height: 100vh;
+    height: 71vh;
     overflow: scroll;
     padding: 10px;
     background-color: #c6d4e7cc;

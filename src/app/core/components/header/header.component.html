@@ -1,5 +1,5 @@
-<div class = 'header_container'>
-    <div class = 'header_logo'><a routerLink='/' href='/'><img src ='#'></a></div>
+<div class = 'header_container' *ngIf="isAuthenticated || !isAuthEnabled">
+    <div class = 'header_logo'><a routerLink='/'><img src ='#'></a></div>
     <nav class = 'header_nav'>
       <ul class = 'nav'>
         <li *ngFor="let item of menuItems" class='nav_item'>

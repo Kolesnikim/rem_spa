@@ -13,6 +13,7 @@ export class AppSettingsService {
     new ActiveModule('Участники', 'participants'),
     new ActiveModule('Спонсоры', 'sponsors'),
     new ActiveModule('Документы', 'documents'),
+    new ActiveModule('Профиль', 'user'),
     new ActiveModule('О приложении', 'about')];
 
 

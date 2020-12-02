@@ -1,6 +1,9 @@
 import { Component, OnInit} from '@angular/core';
 import { AppSettingsService } from '../../services/appSettingsService/appSettings.service';
 import { ActiveModule } from '../../models/active.module';
+import { AuthService } from '../../services/authService/auth.service';
+import { HttpSettingsService } from '../../services/httpService/http-settings.service';
+
 
 @Component({
   selector: 'app-header',
@@ -12,15 +15,23 @@ export class HeaderComponent implements OnInit {
   menuItems: ActiveModule[];
   menuPaths: string[];
   language: string;
+  isAuthenticated: boolean;
+  isAuthEnabled: boolean;
 
-  constructor(private routingService: AppSettingsService) {
+  constructor(private routingService: AppSettingsService, private auth: AuthService, private http: HttpSettingsService) {
   }
 
   ngOnInit(): void {
+    this.auth.isAuthenticated$.subscribe(auth => this.isAuthenticated = auth);
+    this.http.authSettingsSubject$.subscribe(isAuthEnable => this.isAuthEnabled = isAuthEnable);
+
     this.updateMenuItems();
   }
 
-  updateMenuItems(): void {
+  /**
+   * присваивает список элементов меню
+   */
+  public updateMenuItems(): void {
     this.menuItems = this.routingService.getAvailableModules();
   }
 }
