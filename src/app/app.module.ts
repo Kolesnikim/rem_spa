@@ -7,7 +7,6 @@ import { CoreModule } from './core/core.module';
 import { HelloWorldModule } from './features/hello-world/hello-world.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpSettingsService } from './core/services/httpService/http-settings.service';
-import { AuthService } from './core/services/authService/auth.service';
 
 
 @NgModule({
@@ -16,10 +15,10 @@ import { AuthService } from './core/services/authService/auth.service';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     HelloWorldModule,
     BrowserAnimationsModule,
-    CoreModule
+    CoreModule,
+    AppRoutingModule,
   ],
   providers: [
     { provide: APP_INITIALIZER, useFactory: init, deps: [HttpSettingsService], multi: true},

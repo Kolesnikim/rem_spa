@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, ReplaySubject, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { environment } from '../../../../environments/environment';
@@ -14,7 +14,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 @Injectable()
 export class AuthService {
   private readonly currentUserSubject = new BehaviorSubject<IUserInfo>(null);
-  private readonly isAuthenticated = new BehaviorSubject<boolean>(false);
+  private readonly isAuthenticated = new ReplaySubject<boolean>(1);
   public currentUserSubject$ = this.currentUserSubject.asObservable();
   public isAuthenticated$ = this.isAuthenticated.asObservable();
 
@@ -27,7 +27,9 @@ export class AuthService {
       this.init();
   }
   private init(): void {
-    this.fetchUserInfo().subscribe();
+    this.fetchUserInfo().subscribe(() => {
+      this.isAuthenticated.next(true);
+    });
   }
 
   /**
@@ -72,7 +74,7 @@ export class AuthService {
       .pipe(map(() => {
         this.currentUserSubject.next(null);
         this.isAuthenticated.next(false);
-        this.router.navigate(['/']);
+        this.router.navigate(['user/', 'login']);
       }));
   }
 }

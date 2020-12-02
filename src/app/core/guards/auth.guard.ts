@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 import { AuthService } from '../services/authService/auth.service';
 import { HttpSettingsService } from '../services/httpService/http-settings.service';
-import { IUserInfo } from '../interfaces/user-info';
-import { map, switchMap } from 'rxjs/operators';
+import { switchMap } from 'rxjs/operators';
 
 /**
  * Гвард, который получает данные о наличии авторизации.
@@ -31,8 +30,12 @@ export class AuthGuard implements CanActivate {
         if (!value) {
           return of(true);
         }
-
-        return this.authService.isAuthenticated$;
+        return this.authService.isAuthenticated$.pipe(switchMap(val => {
+          if (!val) {
+            return of(val);
+          }
+          return of(true);
+        }));
       }));
   }
 }
