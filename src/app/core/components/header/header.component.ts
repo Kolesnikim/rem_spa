@@ -22,8 +22,8 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.auth.isAuthenticated.subscribe(auth => this.isAuth = auth);
-    this.http.getAuthEnable.subscribe(authEnable => this.authEnable = authEnable);
+    this.auth.isAuthenticated$.subscribe(auth => this.isAuth = auth);
+    this.http.authSettingsSubject$.subscribe(authEnable => this.authEnable = authEnable);
 
     this.updateMenuItems();
   }

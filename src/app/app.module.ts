@@ -22,7 +22,7 @@ import { AuthService } from './core/services/authService/auth.service';
     CoreModule
   ],
   providers: [
-    { provide: APP_INITIALIZER, useFactory: init, deps: [HttpSettingsService, AuthService], multi: true},
+    { provide: APP_INITIALIZER, useFactory: init, deps: [HttpSettingsService], multi: true},
   ],
   bootstrap: [AppComponent]
 })
@@ -31,7 +31,7 @@ export class AppModule { }
 /**
  * Функция, выщываемая при инициализации приложения
  */
-export function init(http: HttpSettingsService, auth: AuthService): () => void {
+export function init(http: HttpSettingsService): () => void {
   return () => {
     http.fetchAuthEnable().subscribe();
   };

@@ -1,20 +1,22 @@
 import { Injectable } from '@angular/core';
-import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpErrorResponse} from '@angular/common/http';
+import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
-import { AuthService } from '../services/authService/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 /**
  * Интерцептор, перехватывающий ошибку Unauthorized
  * и перенаправляющий на форму входа.
  */
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class AuthInterceptor implements HttpInterceptor {
 
-  constructor(private router: Router, private auth: AuthService, private snackbar: MatSnackBar) {
+  constructor(
+    private router: Router,
+    private snackbar: MatSnackBar
+  ) {
   }
 
   public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -22,7 +24,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
     return next
       .handle(req)
-      .pipe(catchError( err => {
+      .pipe(catchError(err => {
         if (err instanceof HttpErrorResponse) {
           if (err.status === 401) {
             this.router.navigate(['/user', 'login']);
@@ -32,7 +34,7 @@ export class AuthInterceptor implements HttpInterceptor {
           }
         }
         return throwError(err);
-        }
+      }
       ));
   }
 }

@@ -14,7 +14,7 @@ export class ProfileComponent implements OnInit {
   constructor(private http: HttpSettingsService, private auth: AuthService) { }
 
   ngOnInit(): void {
-    this.auth.currentUserValue.subscribe(userInfo => this.user = userInfo);
+    this.auth.currentUserSubject$.subscribe(userInfo => this.user = userInfo);
   }
 
   logout($event: Event): void {

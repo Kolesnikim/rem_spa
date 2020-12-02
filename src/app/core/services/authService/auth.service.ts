@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {BehaviorSubject, Observable, of, throwError} from 'rxjs';
-import {catchError, map} from 'rxjs/operators';
+import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { environment } from '../../../../environments/environment';
 import { IUserInfo } from '../../interfaces/user-info';
@@ -13,43 +13,21 @@ import { MatSnackBar } from '@angular/material/snack-bar';
  */
 @Injectable()
 export class AuthService {
-  private readonly currentUserSubject: BehaviorSubject<IUserInfo>;
-  public readonly isAuthenticated: BehaviorSubject<boolean>;
+  private readonly currentUserSubject = new BehaviorSubject<IUserInfo>(null);
+  private readonly isAuthenticated = new BehaviorSubject<boolean>(false);
+  public currentUserSubject$ = this.currentUserSubject.asObservable();
+  public isAuthenticated$ = this.isAuthenticated.asObservable();
 
   public url = environment.baseUrl;
 
-  constructor(private http: HttpClient, private router: Router, private snackbar: MatSnackBar ) {
-    this.currentUserSubject = new BehaviorSubject<IUserInfo>(null);
-    this.isAuthenticated = new BehaviorSubject<boolean>(false);
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private snackbar: MatSnackBar) {
+      this.init();
   }
-
-  /**
-   * Геттер, возвращающий субъект данных пользователя
-   */
-  public get currentUserValue(): BehaviorSubject<IUserInfo> {
-    return this.currentUserSubject;
-  }
-
-
-  /**
-   * Метод, проверяющий, авторизован ли пользователь.
-   * При отсутствии вторизации запрашиваются данные, на которые вовзращается значение авторизации
-   * При наличии ошибок пользователь неавторизован. Метод вызывается в гварде
-   */
-
-  public isUserAuthenticated(): Observable<boolean> {
-    if (this.isAuthenticated?.value) {
-      return of(this.isAuthenticated.value);
-    } else {
-      return this.fetchUserInfo().pipe(map(() => {
-        this.isAuthenticated.next(true);
-        return this.isAuthenticated.value;
-        }),
-        catchError(() => {
-          return of(this.isAuthenticated.value);
-        })
-      );
-    }
+  private init(): void {
+    this.fetchUserInfo().subscribe();
   }
 
   /**
@@ -61,7 +39,7 @@ export class AuthService {
       .pipe(map(() => {
         this.isAuthenticated.next(true);
         this.router.navigate(['/']);
-    }),
+      }),
         catchError((err) => {
           this.snackbar.open('Что-то произошло. Попробуйте позднее', 'Закрыть', {
             duration: 2000,

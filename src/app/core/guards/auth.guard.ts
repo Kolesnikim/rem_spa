@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 
 import { AuthService } from '../services/authService/auth.service';
 import { HttpSettingsService } from '../services/httpService/http-settings.service';
 import { IUserInfo } from '../interfaces/user-info';
-import { map } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 
 /**
  * Гвард, который получает данные о наличии авторизации.
  * В зависимости от наличия или отсутствия авторизации открывается доступ
  */
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class AuthGuard implements CanActivate {
 
   constructor(private authService: AuthService, private router: Router, private httpSettingsService: HttpSettingsService) {
@@ -26,12 +26,13 @@ export class AuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-    const authServiceEnable = this.httpSettingsService.getAuthEnable.value;
-    const isAuth = this.authService.isAuthenticated.value;
+    return this.httpSettingsService.authSettingsSubject$
+      .pipe(switchMap((value) => {
+        if (!value) {
+          return of(true);
+        }
 
-    if (!isAuth && authServiceEnable) {
-      return this.authService.isUserAuthenticated();
-    }
-    return true;
+        return this.authService.isAuthenticated$;
+      }));
   }
 }
