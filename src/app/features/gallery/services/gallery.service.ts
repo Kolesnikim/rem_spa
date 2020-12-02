@@ -19,7 +19,7 @@ export class GalleryService {
    * @returns массив объектов GalleryTag
    */
   public getGalleryTags(): Observable<GalleryTag[]> {
-    return this.apiService.get('/gallery/get-all-photo-tags').pipe(
+    return this.apiService.get('gallery/get-all-photo-tags').pipe(
       map((data: any) => {
         return data as GalleryTag[];
       }));
@@ -31,7 +31,7 @@ export class GalleryService {
    * @returns  массив изображений хранящихся под оределенным тегом
    */
   public getGalleryItems(tag: GalleryTag, offset: number, count: number): Observable<GalleryItem[]> {
-    const result = this.apiService.get(`/gallery/get-photos-by-tags?tag=${tag.id}&offset=${offset}&count=${count}`);
+    const result = this.apiService.get(`gallery/get-photos-by-tags?tag=${tag.id}&offset=${offset}&count=${count}`);
     return result.pipe(map(data => {
       const galleryItems = data.entities;
       return galleryItems.map((item: any) => {

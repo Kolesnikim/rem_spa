@@ -18,6 +18,7 @@ import { HttpSettingsService } from './core/services/httpService/http-settings.s
     AppComponent,
   ],
   imports: [
+    AppRoutingModule,
     BrowserModule,
     HelloWorldModule,
     BrowserAnimationsModule,
