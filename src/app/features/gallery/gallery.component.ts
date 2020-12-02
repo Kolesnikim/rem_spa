@@ -9,11 +9,11 @@ import { GalleryTag } from './models/tag.model';
   styleUrls: ['./gallery.component.scss']
 })
 export class GalleryComponent implements OnInit {
+  private maxCarouselItems = 100;
+  private itemsPerScroll = 25;
   public galleryTags: GalleryTag[];
   public activeTag: GalleryTag;
   public displayedItems: GalleryItem[];
-  private maxCarouselItems = 100;
-  private itemsPerScroll = 25;
   public galleryId = 'my-gallery';
   public firstCarouselItemIndex = 0;
 

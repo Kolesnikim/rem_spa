@@ -24,7 +24,7 @@ export class ApiService {
    * @param params параметры запроса
    */
   public get(path: string, params: HttpParams = new HttpParams()): Observable<any> {
-    return this.http.get(`${environment.apiUrl}${path}`, { params })
+    return this.http.get(`${environment.baseUrl}${path}`, { params })
       .pipe(catchError(this.formatErrors));
   }
 
@@ -35,7 +35,7 @@ export class ApiService {
    */
   public put(path: string, body: object = {}): Observable<any> {
     return this.http.put(
-      `${environment.apiUrl}${path}`,
+      `${environment.baseUrl}${path}`,
       JSON.stringify(body)
     ).pipe(catchError(this.formatErrors));
   }
@@ -47,7 +47,7 @@ export class ApiService {
    */
   public post(path: string, body: object = {}): Observable<any> {
     return this.http.post(
-      `${environment.apiUrl}${path}`,
+      `${environment.baseUrl}${path}`,
       JSON.stringify(body)
     ).pipe(catchError(this.formatErrors));
   }
@@ -58,7 +58,7 @@ export class ApiService {
    */
   public delete(path): Observable<any> {
     return this.http.delete(
-      `${environment.apiUrl}${path}`
+      `${environment.baseUrl}${path}`
     ).pipe(catchError(this.formatErrors));
   }
 }
