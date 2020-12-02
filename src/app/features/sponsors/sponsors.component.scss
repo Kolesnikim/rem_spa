@@ -1,8 +1,10 @@
-.sponsors_content{
+:host{
     background-color: #c6d4e7cc;
+    flex: 1 0 auto;
     padding: 10px;
     padding-bottom: 30px;
 }
+
 .grid_wrapper{
     display: grid;
     grid-template-columns: repeat(4, 24%);

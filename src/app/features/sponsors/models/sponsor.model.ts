@@ -3,7 +3,7 @@ export class Sponsor {
     isHidden: boolean;
     logoUrl: string;
     webSite: string;
-    title = '';
+    title: string;
     text: string;
     conferenceId: number;
     sponsorTypeTag: string;

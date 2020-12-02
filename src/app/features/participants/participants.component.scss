@@ -1,3 +1,8 @@
+:host{
+    flex: 1 0 auto;
+    background-color: #c6d4e7cc;
+    padding-bottom: 30px;
+}
 .participans_board{
     height: 30px;
     background-color: #4a96d7;
@@ -42,7 +47,6 @@
     background-color:  #c6d4e7cc;
 }
 .participans_content{
-    background-color: #c6d4e7cc;
     padding: 10px;
     padding-bottom: 30px;
 }

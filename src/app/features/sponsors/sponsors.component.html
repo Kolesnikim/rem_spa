@@ -1,1 +1,11 @@
-<p>sponsors works!</p>
+<div class='sponsors_content'>
+    <ul class = 'grid_wrapper'>
+      <li  *ngFor="let sponsor of sponsors" class='sponsor_item'>
+        <a  class='sponsor_logo'
+        routerLink="sponsor/{{sponsor.id}}/details"
+        [state]="{data: sponsor}">
+          <img class='logo_img' src = {{sponsor.logoUrl}}>
+        </a>
+      </li>
+    </ul>
+</div>
