@@ -17,7 +17,7 @@ export class ParticipantsService {
    */
 
   getAllParticipantsRoles(): Observable<ParticipantRole[]> {
-    return this.apiService.get('/participant/get-all-roles').pipe(
+    return this.apiService.get('participant/get-all-roles').pipe(
       map((data: any) => {
         return data as ParticipantRole[];
       }));
@@ -33,7 +33,7 @@ export class ParticipantsService {
  * Получить список участников по роли
  */
   getParticipantsByRole(role: ParticipantRole, offset: number, count: number): Observable<Participant[]> {
-    const result = this.apiService.get(`/participant/get-users-by-role?count=25&RoleId=${role.id}`);
+    const result = this.apiService.get(`participant/get-users-by-role?count=25&RoleId=${role.id}`);
     return result.pipe(map((data: any) => {
       return data.entities;
     }));
@@ -44,6 +44,6 @@ export class ParticipantsService {
    * @param id -идентификатор представителя
    */
   getParticipantById(id: number): Observable<Participant> {
-    return this.apiService.get(`/participant/${id}`);
+    return this.apiService.get(`participant/${id}`);
   }
 }
