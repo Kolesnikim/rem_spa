@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { filter, map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { ApiService } from '../../../core/services/apiService/api.service';
 import { Participant } from '../models/participant.model';
+import { Participants } from '../models/partisipants.interface';
 import { ParticipantRole } from '../models/participantRole.model';
+import {Session} from '../models/session.model';
 
 @Injectable({
   providedIn: 'root'
@@ -16,25 +18,16 @@ export class ParticipantsService {
    * @returns массив объектов
    */
 
-  getAllParticipantsRoles(): Observable<ParticipantRole[]> {
-    return this.apiService.get('participant/get-all-roles').pipe(
-      map((data: any) => {
-        return data as ParticipantRole[];
-      }));
-  }
-
-  isRoleEmpty(role: ParticipantRole): Observable<boolean> {
-    return this.getParticipantsByRole(role, 0, 1).pipe(
-      map((participants: Participant[]) => participants.length === 0)
-    );
+  public getAllParticipantsRoles(): Observable<ParticipantRole[]> {
+    return this.apiService.get<ParticipantRole[]>('participant/get-all-roles');
   }
 
 /**
- * Получить список участников по роли
+ * Получить список участников по выбранной роли
  */
   getParticipantsByRole(role: ParticipantRole, offset: number, count: number): Observable<Participant[]> {
-    const result = this.apiService.get(`participant/get-users-by-role?count=25&RoleId=${role.id}`);
-    return result.pipe(map((data: any) => {
+    const result = this.apiService.get<Participants>(`participant/get-users-by-role?count=25&RoleId=${role.id}`);
+    return result.pipe(map((data) => {
       return data.entities;
     }));
   }
@@ -44,6 +37,14 @@ export class ParticipantsService {
    * @param id -идентификатор представителя
    */
   getParticipantById(id: number): Observable<Participant> {
-    return this.apiService.get(`participant/${id}`);
+    return this.apiService.get<Participant>(`participant/${id}`);
+  }
+
+  /**
+   * Получить список докладов участника
+   * @param id - идентификатор участника
+   */
+  getParticipantSessions(id: number): Observable<Session[]>{
+    return this.apiService.get<Session[]>(`participant/${id}/sessions`);
   }
 }

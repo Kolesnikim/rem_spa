@@ -1,11 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Session } from '../../models/session.model';
+import { ParticipantsService } from '../../services/participants.service';
 
 @Component({
   selector: 'app-participant-sessions',
   template: `
   <div class='sessions_wrapper'>
-    <div *ngFor="let session of  mySessions"  class='session'>
+    <div *ngFor="let session of  sessions"  class='session'>
       <h3>Время: {{session.startTime}} - {{session.endTime}}</h3>
       <h2>{{session.title}}</h2>
       <h4>Секция: {{session.section}}</h4>
@@ -17,69 +18,14 @@ import { Session } from '../../models/session.model';
 })
 export class ParticipantSessionsComponent implements OnInit {
   @Input() id: number;
-  session: Session;
-  // mySession: Session = {
-  //   id: 0,
-  //   organization: '',
-  //   title: 'Заголовок',
-  //   startTime: '12.00',
-  //   endTime: '12.30',
-  //   location: '123',
-  //   section: '1',
-  //   speaker: {
-  //       name: 'abc',
-  //       photoUrl: '111',
-  //   }
-  // };
-  // sessions: Session[];
+  public sessions: Session[] = [];
 
-  mySessions: Session[] = [
-    {
-      id: 0,
-      organization: '',
-      title: 'Заголовок',
-      startTime: '12.00',
-      endTime: '12.30',
-      location: '123',
-      section: '1',
-      speaker: {
-          name: 'abc',
-          photoUrl: '111',
-      }
-    },
-    {
-      id: 0,
-      organization: '',
-      title: 'Заголовок',
-      startTime: '12.00',
-      endTime: '12.30',
-      location: '123',
-      section: '1',
-      speaker: {
-          name: 'abc',
-          photoUrl: '111',
-      }
-    },
-    {
-      id: 0,
-      organization: '',
-      title: 'Заголовок',
-      startTime: '12.00',
-      endTime: '12.30',
-      location: '123',
-      section: '1',
-      speaker: {
-          name: 'abc',
-          photoUrl: '111',
-      }
-    },
-  ];
-
-
-
-  constructor() { }
+  constructor(private participantService: ParticipantsService) { }
 
   ngOnInit(): void {
+    this.participantService.getParticipantSessions(this.id).subscribe((sessions: Session[]) => {
+      this.sessions = sessions;
+      console.log(sessions);
+    });
   }
-
 }
