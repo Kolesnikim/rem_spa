@@ -6,9 +6,10 @@ import { ParticipantsRoutingModule } from './participants-routing.module';
 import { ParticipantsComponent } from './participants.component';
 import { ParticipantCardComponent } from './components/participant-card/participant-card.component';
 import { ParticipantDetailsComponent } from './components/participant-details/participant-details.component';
+import { ParticipantSessionsComponent } from './components/participant-sessions/participant-sessions.component';
 
 @NgModule({
-  declarations: [ParticipantsComponent, ParticipantCardComponent, ParticipantDetailsComponent],
+  declarations: [ParticipantsComponent, ParticipantCardComponent, ParticipantDetailsComponent, ParticipantSessionsComponent],
   imports: [
     CommonModule,
     ParticipantsRoutingModule,

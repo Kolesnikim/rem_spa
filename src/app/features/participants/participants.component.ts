@@ -1,13 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ParticipantsService } from './services/participants.service';
 import { Participant } from './models/participant.model';
-import { ActivatedRoute } from '@angular/router';
-import { forkJoin, Subscription } from 'rxjs';
 import { ParticipantRole } from './models/participantRole.model';
 @Component({
   selector: 'app-participants',
   template: `
-  <router-outlet></router-outlet>
   <div class='participans_container'>
     <div class='participans_board'>
       <nav class='participans_nav'>
@@ -31,41 +28,29 @@ import { ParticipantRole } from './models/participantRole.model';
   styleUrls: ['./participants.component.scss']
 })
 export class ParticipantsComponent implements OnInit {
-  activeRole: ParticipantRole;
-  participants: Participant[];
-  activeRoles: ParticipantRole[];
-
-  id: number;
+  public activeRole: ParticipantRole;
+  public participants: Participant[];
+  public activeRoles: ParticipantRole[];
+  public id: number;
 
   constructor(private participantsService: ParticipantsService) { }
 
   ngOnInit(): void {
     this.participantsService.getAllParticipantsRoles().subscribe((roles: ParticipantRole[]) => {
-      this.activeRoles = [];
+      this.activeRoles = [...roles];
 
-      // Чтобы отфильтровать пустые, запросим по всем ролям участников
-      const request = roles.map((role: ParticipantRole) => {
-        return this.participantsService.getParticipantsByRole(role, 0, 1);
-      });
+      if (this.activeRoles.length > 0) {
+        this.onRoleChange(this.activeRoles[0]);
+      }
 
-      forkJoin(request).subscribe((result: Participant[][]) => {
-        for (let i = 0; i < roles.length; i++) {
-          const role = roles[i];
-          const participants = result[i];
-          if (participants.length > 0) {
-            this.activeRoles.push(role);
-          }
-        }
-
-        if (this.activeRoles.length > 0) {
-          this.onRoleChange(this.activeRoles[0]);
-        }
-
-      });
     });
   }
 
-  onRoleChange(role: ParticipantRole): void {
+  /**
+   * Обработать смену роли(тега)
+   * @param role зазвание роли, на которую переходим
+   */
+  public onRoleChange(role: ParticipantRole): void {
     if (this.activeRole === role) {
       return;
     }

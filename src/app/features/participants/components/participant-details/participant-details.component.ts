@@ -22,6 +22,7 @@ import { ParticipantsService } from '../../services/participants.service';
       <p>link:{{participant.link}}</p>
       <p>phone:{{participant.phone}}</p>
     </div>
+    <app-participant-sessions [id]='this.id'></app-participant-sessions>
   </div>
   ` ,
   styleUrls: ['./participant-details.component.scss']
