@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../../environments/environment';
-import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
-import { Observable ,  throwError } from 'rxjs';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { Data } from '@angular/router';
 
 /**
  * Вспомогательный сервис для выполнения запросов к api бекенда
@@ -12,12 +11,7 @@ import { Data } from '@angular/router';
   providedIn: 'root'
 })
 export class ApiService {
-
-  constructor(private http: HttpClient) {}
-
-  private formatErrors(error: any): any {
-    return  throwError(error.error);
-  }
+  constructor(private http: HttpClient) { }
 
   /**
    * Выполнить get запрос
@@ -25,8 +19,11 @@ export class ApiService {
    * @param params параметры запроса
    */
   public get<T = any>(path: string, params: HttpParams = new HttpParams()): Observable<T> {
-    return this.http.get<any>(`${environment.baseUrl}${path}`, { params })
-      .pipe(catchError(this.formatErrors));
+    return this.http.get<T>(`${environment.baseUrl}${path}`, { params })
+      .pipe(catchError((err) => {
+        this.formatErrors(err);
+        return throwError(err);
+      }));
   }
 
   /**
@@ -35,10 +32,13 @@ export class ApiService {
    * @param body тело запроса
    */
   public put<T = any>(path: string, body: object = {}): Observable<T> {
-    return this.http.put<any>(
+    return this.http.put<T>(
       `${environment.baseUrl}${path}`,
       JSON.stringify(body)
-    ).pipe(catchError(this.formatErrors));
+    ).pipe(catchError((err) => {
+      this.formatErrors(err);
+      return throwError(err);
+    }));
   }
 
   /**
@@ -47,10 +47,13 @@ export class ApiService {
    * @param body  тело запроса
    */
   public post<T = any>(path: string, body: object = {}): Observable<T> {
-    return this.http.post<any>(
+    return this.http.post<T>(
       `${environment.baseUrl}${path}`,
       JSON.stringify(body)
-    ).pipe(catchError(this.formatErrors));
+    ).pipe(catchError((err) => {
+      this.formatErrors(err);
+      return throwError(err);
+    }));
   }
 
   /**
@@ -58,8 +61,15 @@ export class ApiService {
    * @param path путь запроса
    */
   public delete<T = any>(path): Observable<T> {
-    return this.http.delete<any>(
+    return this.http.delete<T>(
       `${environment.baseUrl}${path}`
-    ).pipe(catchError(this.formatErrors));
+    ).pipe(catchError((err) => {
+      this.formatErrors(err);
+      return throwError(err);
+    }));
+  }
+
+  private formatErrors(error: any): any {
+    return throwError(error.error);
   }
 }
