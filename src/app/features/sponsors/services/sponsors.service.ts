@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { ApiService } from '../../../core/services/apiService/api.service';
 import { Sponsor } from '../models/sponsor.model';
 @Injectable({
@@ -15,9 +14,6 @@ export class SponsorsService {
    * id - идентификатор конференции
    */
   public getAllSponsorsLogo(id: number): Observable<Sponsor[]> {
-    const result = this.apiService.get(`sponsor/by-conference-id/${id}`);
-    return result.pipe(map((data: any) => {
-      return data;
-    }));
+    return this.apiService.get<Sponsor[]>(`sponsor/by-conference-id/${id}`);
   }
 }
