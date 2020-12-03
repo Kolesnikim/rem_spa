@@ -1,7 +1,7 @@
 /**
  * Тег галереи
  */
-export interface GalleryTag {
+export interface IGalleryTag {
     /**
      *  id -  идентификатор тега
      */

@@ -1,5 +1,5 @@
 import { GalleryItem } from 'ng-gallery';
-import { IImageData } from './interfaces/iImageData.interface';
+import { IImageData } from './interfaces/IImageData';
 
 /**
  * Изображение галереи

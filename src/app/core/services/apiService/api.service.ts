@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../../environments/environment';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
 import { Observable ,  throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { Data } from '@angular/router';
 
 /**
  * Вспомогательный сервис для выполнения запросов к api бекенда
@@ -23,8 +24,8 @@ export class ApiService {
    * @param path путь запроса
    * @param params параметры запроса
    */
-  public get(path: string, params: HttpParams = new HttpParams()): Observable<any> {
-    return this.http.get(`${environment.baseUrl}${path}`, { params })
+  public get<T = any>(path: string, params: HttpParams = new HttpParams()): Observable<T> {
+    return this.http.get<any>(`${environment.baseUrl}${path}`, { params })
       .pipe(catchError(this.formatErrors));
   }
 
@@ -33,8 +34,8 @@ export class ApiService {
    * @param path путь запроса
    * @param body тело запроса
    */
-  public put(path: string, body: object = {}): Observable<any> {
-    return this.http.put(
+  public put<T = any>(path: string, body: object = {}): Observable<T> {
+    return this.http.put<any>(
       `${environment.baseUrl}${path}`,
       JSON.stringify(body)
     ).pipe(catchError(this.formatErrors));
@@ -45,8 +46,8 @@ export class ApiService {
    * @param path путь запроса
    * @param body  тело запроса
    */
-  public post(path: string, body: object = {}): Observable<any> {
-    return this.http.post(
+  public post<T = any>(path: string, body: object = {}): Observable<T> {
+    return this.http.post<any>(
       `${environment.baseUrl}${path}`,
       JSON.stringify(body)
     ).pipe(catchError(this.formatErrors));
@@ -56,8 +57,8 @@ export class ApiService {
    * Выполнить delete запрос
    * @param path путь запроса
    */
-  public delete(path): Observable<any> {
-    return this.http.delete(
+  public delete<T = any>(path): Observable<T> {
+    return this.http.delete<any>(
       `${environment.baseUrl}${path}`
     ).pipe(catchError(this.formatErrors));
   }
