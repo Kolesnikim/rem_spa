@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
 import { GalleryItem } from 'ng-gallery';
-
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ApiService } from '../../../core/services/apiService/api.service';
-import { GalleryTag } from '../models/tag.model';
+import { GalleryTag } from '../models/interfaces/galleryTag.interface';
 import { GalleryImageItem } from '../models/galleryImageItem.model';
-
+import { DatabaseImages } from '../models/interfaces/databaseImages.interface';
 @Injectable({
   providedIn: 'root'
 })
@@ -19,10 +18,7 @@ export class GalleryService {
    * @returns массив объектов GalleryTag
    */
   public getGalleryTags(): Observable<GalleryTag[]> {
-    return this.apiService.get('gallery/get-all-photo-tags').pipe(
-      map((data: any) => {
-        return data as GalleryTag[];
-      }));
+    return this.apiService.get<GalleryTag[]>('gallery/get-all-photo-tags');
   }
 
   /**
@@ -31,10 +27,10 @@ export class GalleryService {
    * @returns  массив изображений хранящихся под оределенным тегом
    */
   public getGalleryItems(tag: GalleryTag, offset: number, count: number): Observable<GalleryItem[]> {
-    const result = this.apiService.get(`gallery/get-photos-by-tags?tag=${tag.id}&offset=${offset}&count=${count}`);
+    const result = this.apiService.get<DatabaseImages>(`gallery/get-photos-by-tags?tag=${tag.id}&offset=${offset}&count=${count}`);
     return result.pipe(map(data => {
       const galleryItems = data.entities;
-      return galleryItems.map((item: any) => {
+      return galleryItems.map((item) => {
         return new GalleryImageItem(item.url, item.smallUrl);
       });
     }));
