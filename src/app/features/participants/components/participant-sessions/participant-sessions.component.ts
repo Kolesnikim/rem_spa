@@ -5,12 +5,12 @@ import { Session } from '../../models/session.model';
   selector: 'app-participant-sessions',
   template: `
   <div class='sessions_wrapper'>
-    <!-- <div *ngFor="let session of sessions"> -->
-      <h1>Название: {{mySession.title}}</h1>
-      <h2>Секция: {{mySession.section}}</h2>
-      <h3>Место проведения: {{mySession.location}}</h3>
-      <h6>Время: {{mySession.startTime}} - {{mySession.endTime}}</h6>
-    <!-- </div> -->
+    <div *ngFor="let session of  mySessions"  class='session'>
+      <h3>Время: {{session.startTime}} - {{session.endTime}}</h3>
+      <h2>{{session.title}}</h2>
+      <h4>Секция: {{session.section}}</h4>
+      <h4>Место проведения: {{session.location}}</h4>
+    </div>
   </div>
   `,
   styleUrls: ['./participant-sessions.component.scss']
@@ -18,20 +18,64 @@ import { Session } from '../../models/session.model';
 export class ParticipantSessionsComponent implements OnInit {
   @Input() id: number;
   session: Session;
-  mySession: Session = {
-    id: 0,
-    organization: '',
-    title: 'Заголовок',
-    startTime: '12.00',
-    endTime: '12.30',
-    location: '123',
-    section: '1',
-    speaker: {
-        name: 'abc',
-        photoUrl: '111',
-    }
-  };
-  sessions: Session[];
+  // mySession: Session = {
+  //   id: 0,
+  //   organization: '',
+  //   title: 'Заголовок',
+  //   startTime: '12.00',
+  //   endTime: '12.30',
+  //   location: '123',
+  //   section: '1',
+  //   speaker: {
+  //       name: 'abc',
+  //       photoUrl: '111',
+  //   }
+  // };
+  // sessions: Session[];
+
+  mySessions: Session[] = [
+    {
+      id: 0,
+      organization: '',
+      title: 'Заголовок',
+      startTime: '12.00',
+      endTime: '12.30',
+      location: '123',
+      section: '1',
+      speaker: {
+          name: 'abc',
+          photoUrl: '111',
+      }
+    },
+    {
+      id: 0,
+      organization: '',
+      title: 'Заголовок',
+      startTime: '12.00',
+      endTime: '12.30',
+      location: '123',
+      section: '1',
+      speaker: {
+          name: 'abc',
+          photoUrl: '111',
+      }
+    },
+    {
+      id: 0,
+      organization: '',
+      title: 'Заголовок',
+      startTime: '12.00',
+      endTime: '12.30',
+      location: '123',
+      section: '1',
+      speaker: {
+          name: 'abc',
+          photoUrl: '111',
+      }
+    },
+  ];
+
+
 
   constructor() { }
 

@@ -1,8 +1,15 @@
-.sessions_wrapper{
-    margin-top: 20px;
-    padding: 20px;
-    h1, h2, h3, h6{
+.sessions_wrapper {
+    margin-top: 0px;
+    padding: 10px;
+    h2, h3, h4, h5{
         margin: 0;
     }
-    border-left: solid black 2px;
+    border-left: solid #3f51b5 2px;
+
+    .session {
+        margin-bottom: 15px;
+        h3 {
+            border-bottom:solid cornflowerblue 1px;
+        }
+    }
 }
