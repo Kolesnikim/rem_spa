@@ -1,7 +1,7 @@
 /**
  * Данные изображения
  */
-export interface IImageData {
+export interface ImageData {
     src: string;
     thumb: string;
 }

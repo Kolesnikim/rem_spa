@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable ,  throwError } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 /**
@@ -11,21 +11,19 @@ import { catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ApiService {
-
-  constructor(private http: HttpClient) {}
-
-  private formatErrors(error: any): any {
-    return  throwError(error.error);
-  }
+  constructor(private http: HttpClient) { }
 
   /**
    * Выполнить get запрос
    * @param path путь запроса
    * @param params параметры запроса
    */
-  public get(path: string, params: HttpParams = new HttpParams()): Observable<any> {
-    return this.http.get(`${environment.baseUrl}${path}`, { params })
-      .pipe(catchError(this.formatErrors));
+  public get<T>(path: string, params: HttpParams = new HttpParams()): Observable<T> {
+    return this.http.get<T>(`${environment.baseUrl}${path}`, { params })
+      .pipe(catchError((err) => {
+        this.formatErrors(err);
+        return throwError(err);
+      }));
   }
 
   /**
@@ -33,11 +31,14 @@ export class ApiService {
    * @param path путь запроса
    * @param body тело запроса
    */
-  public put(path: string, body: object = {}): Observable<any> {
-    return this.http.put(
+  public put<T>(path: string, body: object = {}): Observable<T> {
+    return this.http.put<T>(
       `${environment.baseUrl}${path}`,
       JSON.stringify(body)
-    ).pipe(catchError(this.formatErrors));
+    ).pipe(catchError((err) => {
+      this.formatErrors(err);
+      return throwError(err);
+    }));
   }
 
   /**
@@ -45,20 +46,30 @@ export class ApiService {
    * @param path путь запроса
    * @param body  тело запроса
    */
-  public post(path: string, body: object = {}): Observable<any> {
-    return this.http.post(
+  public post<T>(path: string, body: object = {}): Observable<T> {
+    return this.http.post<T>(
       `${environment.baseUrl}${path}`,
       JSON.stringify(body)
-    ).pipe(catchError(this.formatErrors));
+    ).pipe(catchError((err) => {
+      this.formatErrors(err);
+      return throwError(err);
+    }));
   }
 
   /**
    * Выполнить delete запрос
    * @param path путь запроса
    */
-  public delete(path): Observable<any> {
-    return this.http.delete(
+  public delete<T>(path: string): Observable<T> {
+    return this.http.delete<T>(
       `${environment.baseUrl}${path}`
-    ).pipe(catchError(this.formatErrors));
+    ).pipe(catchError((err) => {
+      this.formatErrors(err);
+      return throwError(err);
+    }));
+  }
+
+  private formatErrors(error: any): any {
+    return throwError(error.error);
   }
 }

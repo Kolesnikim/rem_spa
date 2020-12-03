@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GalleryService } from './services/gallery.service';
 import { Gallery, GalleryItem } from 'ng-gallery';
-import { GalleryTag } from './models/tag.model';
+import { GalleryTag } from './models/interfaces/galleryTag.interface';
 
 @Component({
   selector: 'app-gallery',
@@ -40,10 +40,10 @@ export class GalleryComponent implements OnInit {
 
   /**
    * Вызов увеличенного изображения
-   * @param id изображения
+   * @param index изображения
    */
-  public onImageClick(id: number): void {
-    this.firstCarouselItemIndex = id - this.maxCarouselItems / 2;
+  public onImageClick(index: number): void {
+    this.firstCarouselItemIndex = index - this.maxCarouselItems / 2;
     if (this.firstCarouselItemIndex < 0) {
       this.firstCarouselItemIndex = 0;
     }
@@ -66,5 +66,4 @@ export class GalleryComponent implements OnInit {
       this.displayedItems = items;
     });
   }
-
 }
