@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GalleryService } from './services/gallery.service';
 import { Gallery, GalleryItem } from 'ng-gallery';
-import { IGalleryTag } from './models/interfaces/IGalleryTag';
+import { GalleryTag } from './models/interfaces/galleryTag.interface';
 
 @Component({
   selector: 'app-gallery',
@@ -11,8 +11,8 @@ import { IGalleryTag } from './models/interfaces/IGalleryTag';
 export class GalleryComponent implements OnInit {
   private maxCarouselItems = 100;
   private itemsPerScroll = 25;
-  public galleryTags: IGalleryTag[];
-  public activeTag: IGalleryTag;
+  public galleryTags: GalleryTag[];
+  public activeTag: GalleryTag;
   public displayedItems: GalleryItem[];
   public galleryId = 'my-gallery';
   public firstCarouselItemIndex = 0;
@@ -20,7 +20,7 @@ export class GalleryComponent implements OnInit {
   constructor(private galleryService: GalleryService, public gallery: Gallery) { }
 
   ngOnInit(): void {
-    this.galleryService.getGalleryTags().subscribe((tags: IGalleryTag[]) => {
+    this.galleryService.getGalleryTags().subscribe((tags: GalleryTag[]) => {
       this.galleryTags = tags;
       if (this.galleryTags.length > 0) {
         this.onTagChange(this.galleryTags[0]);
@@ -57,7 +57,7 @@ export class GalleryComponent implements OnInit {
    * Обработать смену тэга
    * @param tag название тега
    */
-  public onTagChange(tag: IGalleryTag): void {
+  public onTagChange(tag: GalleryTag): void {
     if (this.activeTag === tag) {
       return;
     }

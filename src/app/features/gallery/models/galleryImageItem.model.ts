@@ -1,11 +1,11 @@
 import { GalleryItem } from 'ng-gallery';
-import { IImageData } from './interfaces/IImageData';
+import { ImageData } from './interfaces/imageData.interface';
 
 /**
  * Изображение галереи
  */
 export class GalleryImageItem implements GalleryItem {
-    public data: IImageData;
+    public data: ImageData;
     public type = 'image';
 
     constructor(url: string, smallUrl: string){
