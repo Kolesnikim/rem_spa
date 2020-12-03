@@ -18,7 +18,7 @@ export class ApiService {
    * @param path путь запроса
    * @param params параметры запроса
    */
-  public get<T = any>(path: string, params: HttpParams = new HttpParams()): Observable<T> {
+  public get<T>(path: string, params: HttpParams = new HttpParams()): Observable<T> {
     return this.http.get<T>(`${environment.baseUrl}${path}`, { params })
       .pipe(catchError((err) => {
         this.formatErrors(err);
@@ -31,7 +31,7 @@ export class ApiService {
    * @param path путь запроса
    * @param body тело запроса
    */
-  public put<T = any>(path: string, body: object = {}): Observable<T> {
+  public put<T>(path: string, body: object = {}): Observable<T> {
     return this.http.put<T>(
       `${environment.baseUrl}${path}`,
       JSON.stringify(body)
@@ -46,7 +46,7 @@ export class ApiService {
    * @param path путь запроса
    * @param body  тело запроса
    */
-  public post<T = any>(path: string, body: object = {}): Observable<T> {
+  public post<T>(path: string, body: object = {}): Observable<T> {
     return this.http.post<T>(
       `${environment.baseUrl}${path}`,
       JSON.stringify(body)
@@ -60,7 +60,7 @@ export class ApiService {
    * Выполнить delete запрос
    * @param path путь запроса
    */
-  public delete<T = any>(path): Observable<T> {
+  public delete<T>(path): Observable<T> {
     return this.http.delete<T>(
       `${environment.baseUrl}${path}`
     ).pipe(catchError((err) => {
