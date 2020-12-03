@@ -7,10 +7,7 @@ import { CoreModule } from './core/core.module';
 import { HelloWorldModule } from './features/hello-world/hello-world.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LIGHTBOX_CONFIG } from 'ng-gallery/lightbox';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { HttpSettingsService } from './core/services/httpService/http-settings.service';
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,12 +27,10 @@ import { HttpSettingsService } from './core/services/httpService/http-settings.s
       }
     },
     { provide: APP_INITIALIZER, useFactory: init, deps: [HttpSettingsService], multi: true},
-    AppRoutingModule,
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-platformBrowserDynamic().bootstrapModule(AppModule);
 
 /**
  * Функция, выщываемая при инициализации приложения
