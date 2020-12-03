@@ -60,7 +60,7 @@ export class ApiService {
    * Выполнить delete запрос
    * @param path путь запроса
    */
-  public delete<T>(path): Observable<T> {
+  public delete<T>(path: string): Observable<T> {
     return this.http.delete<T>(
       `${environment.baseUrl}${path}`
     ).pipe(catchError((err) => {
