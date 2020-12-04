@@ -3,27 +3,14 @@ import { Participant } from '../../models/participant.model';
 
 @Component({
   selector: 'app-participant-card',
-  template: `
-  <mat-card class="participant_card" id="id">
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image" [style.backgroundImage]="photoUrl"></div>
-      <mat-card-title>{{participant.fullName}}</mat-card-title>
-      <mat-card-subtitle>
-        <p class= 'organization'>{{participant.organizationName}}</p>
-        <p>{{participant.position}}</p>
-      </mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
-      Подробная информация
-    </mat-card-content>
-    </mat-card>
-    ` ,
+  templateUrl: './participant-card.component.html',
   styleUrls: ['./participant-card.component.scss']
 })
 export class ParticipantCardComponent implements OnInit {
   @Input() participant: Participant;
-  id: number;
-  photoUrl: string;
+  public id: number;
+  public photoUrl: string;
+
   constructor() {}
 
   ngOnInit(): void {

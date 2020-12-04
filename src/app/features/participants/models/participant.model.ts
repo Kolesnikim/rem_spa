@@ -1,14 +1,17 @@
+/**
+ * Модель участника конференции
+ */
 export class Participant {
-    id = 0;
-    additionalInfo = '';
-    department = '';
-    email = '';
-    fullName = '';
-    index = 0;
-    link = '';
-    login = '';
-    phone = '';
-    photoUrl = '';
-    position = '';
-    organizationName = '';
+    id: number;
+    additionalInfo: string;
+    department: string;
+    email: string;
+    fullName: string;
+    index: number;
+    link: string;
+    login: string ;
+    phone: string;
+    photoUrl: string;
+    position: string;
+    organizationName: string;
 }

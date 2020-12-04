@@ -1,1 +1,10 @@
-<p>participant-sessions works!</p>
+<div class='sessions_wrapper'>
+    <div *ngFor="let session of  sessions" class='session'>
+        <h3>{{session.startTime|date:'HH:mm'}} - {{session.endTime|date:'HH:mm, d MMM'}}</h3>
+        <div class='session_info'>
+            <h2>{{session.title}}</h2>
+            <h4>{{session.section}}</h4>
+            <h4>{{session.location}}</h4>
+        </div>
+    </div>
+</div>

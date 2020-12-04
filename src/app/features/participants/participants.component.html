@@ -1,1 +1,21 @@
-<p>participants works!</p>
+<div class='participans_container'>
+    <div class='participans_board'>
+        <nav class='participans_nav'>
+            <ul class='nav'>
+                <li *ngFor="let role of activeRoles" class='nav_item'>
+                    <p [class.nav_link]="true" [class.active]="role === activeRole" (click)='onRoleChange(role)'>
+                        {{role.alias}}</p>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class='participans_content'>
+        <ul class='grid_wrapper'>
+            <li *ngFor="let user of participants" class='participant_element'>
+                <a routerLink="participant/{{user.id}}/details" class='participant_link'>
+                    <app-participant-card [participant]="user" [id]="user.id"></app-participant-card>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

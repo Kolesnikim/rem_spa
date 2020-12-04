@@ -1,3 +1,6 @@
+/**
+ * Модель выступления участника
+ */
 export class Session {
     id: number;
     organization: string;
