@@ -22,7 +22,11 @@ import { ParticipantsService } from '../../services/participants.service';
       <p>link:{{participant.link}}</p>
       <p>phone:{{participant.phone}}</p>
     </div>
-    <app-participant-sessions [id]='this.id'></app-participant-sessions>
+    <app-participant-sessions 
+        [id]='this.id' 
+      (isVisibility)="isVisibility($event)" 
+      [style.display]="visibility?'block':'none'">
+    </app-participant-sessions>
   </div>
   ` ,
   styleUrls: ['./participant-details.component.scss']
@@ -30,9 +34,11 @@ import { ParticipantsService } from '../../services/participants.service';
 
 export class ParticipantDetailsComponent implements OnInit {
   private routeSubscription: Subscription;
-  participant: Participant = new Participant();
-  id: number;
-  photoUrl: string;
+  public participant: Participant = new Participant();
+  public id: number;
+  public photoUrl: string;
+  public visibility: boolean = false;
+  
 
   constructor(private participantsServer: ParticipantsService, private route: ActivatedRoute){
 
@@ -46,4 +52,9 @@ export class ParticipantDetailsComponent implements OnInit {
     });
 
   }
+
+  isVisibility(visibility:boolean){
+    this.visibility = visibility;
+  }
+
 }
