@@ -21,6 +21,12 @@ const routes: Routes = [
       .then((m) => m.UserModule),
     canActivate: [ActiveModulesGuard]
   },
+  {
+    path: 'interestingPlaces',
+    loadChildren: () => import('./features/interesting-places/interesting-places.module')
+      .then(m => m.InterestingPlacesModule),
+      canActivate: [ActiveModulesGuard]
+    },
   { path: '',
   loadChildren: () => import('./features/main-page/main-page.module').then(m => m.MainPageModule),
   canActivate: [AuthGuard]

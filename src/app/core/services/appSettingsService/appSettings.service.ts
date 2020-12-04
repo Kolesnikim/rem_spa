@@ -12,6 +12,7 @@ export class AppSettingsService {
     new ActiveModule('Фотогалерея', 'gallery'),
     new ActiveModule('Документы', 'documents'),
     new ActiveModule('Профиль', 'user'),
+    new ActiveModule('Интересные места', 'interestingPlaces'),
     new ActiveModule('О приложении', 'about')];
 
 
