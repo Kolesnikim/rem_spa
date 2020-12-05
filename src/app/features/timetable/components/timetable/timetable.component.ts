@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { data } from '../../services/fake-data';
 import { Router } from '@angular/router';
 import {ScheduleService} from '../../services/scheduleService/schedule.service';
 import {ISchedule} from '../../interfaces/schedule';
@@ -12,14 +11,12 @@ import {formatDate} from '@angular/common';
 })
 export class TimetableComponent implements OnInit {
   displayedColumns: string[] = [];
-  newData: any;
+  data: any;
+  prevData: any;
   bigdata: ISchedule[] = [];
   dates: any[];
   titles: any[];
-  datas: any[];
-  param: any;
   object: any;
-  object2: any;
 
   constructor(private router: Router, private schedule: ScheduleService) {
   }
@@ -29,19 +26,17 @@ export class TimetableComponent implements OnInit {
       this.schedule.scheduleSubject.subscribe(schedule => {
         this.dates = schedule.map(date => formatDate(date.date, 'd MMMM', 'ru'));
         this.titles = schedule.map(date => date.sections.map(section => section.title));
-
-        this.object = this.dates.map((date, index) => ({
+        this.prevData = this.dates.map((date, index) => ({
           date,
           topics: this.titles[index].map(title => title),
           sessions: schedule[index].sections.map((section, j) => {
             return [...section.sessions];
           })
         }));
-        this.extractSessions(this.object[0]);
-
+        this.data = this.prevData.map(date => ({...date, sessions: this.extractSessions(date)}));
+        console.log(this.data);
       });
     });
-    this.newData = data;
   }
 
   extractTopics(table): string[] {
@@ -57,31 +52,29 @@ export class TimetableComponent implements OnInit {
 
 
     while (needSerialize) {
-
       for (let i = 0; i < sessions.length; i++) {
         if (limitIndex < sessions[i].length - 1) {
           limitIndex = sessions[i].length - 1;
         }
 
-        externalObject[topics[i]] = sessions[i][externalIndex];
+        if (sessions[i][externalIndex]) {
+          externalObject[topics[i]] = sessions[i][externalIndex];
+        } else {
+          externalObject[topics[i]] = {};
+        }
 
         if (i === (sessions.length - 1)) {
           resultArray.push(externalObject);
           externalIndex += 1;
-
           externalObject = {};
         }
-
       }
 
       if (externalIndex === limitIndex + 1) {
         needSerialize = false;
       }
     }
-
-    console.log(resultArray);
-    console.log(topics);
-    console.log(sessions);
+    return resultArray;
   }
 
 

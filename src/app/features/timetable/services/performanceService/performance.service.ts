@@ -1,21 +1,24 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import {BehaviorSubject, Observable} from 'rxjs';
+import {environment} from '../../../../../environments/environment';
+import {map} from 'rxjs/operators';
 
 @Injectable()
 export class PerformanceService {
-  constructor(private http: HttpClient) {}
+  private readonly performanceSubject: BehaviorSubject<any>;
+  public performance: Observable<any>;
+  baseUrl = environment.baseUrl;
 
+  constructor(private http: HttpClient) {
+    this.performanceSubject = new BehaviorSubject<any>(null);
+    this.performance = this.performanceSubject.asObservable();
+
+  }
   public fetchPerformance(id): any {
-    return {
-      title: 'Новое выступление про одну из секций конференции',
-      annotation: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.Beatae, consectetur cupiditate dignissimos expedita illo, ipsam, iste itaque laudantium numquam odit placeat quia quo rem sequi unde. Ab aliquam amet cumque dolorem eligendi iusto labore mollitia similique suscipit! Debitis, exercitaLorem ipsum dolor sit amet, consectetur adipisicing elit.Beatae, consectetur cupietur adipisicing elit.Beatae, consectetur cupiditate dignissimos expedita illo, ipsam, iste itaque laudantium numquam odit placeat quia quo rem sequi unde. Ab aliquam amet cumque dolorem eligendi iusto labore mollitia similique suscipit! Debitis, exercitaLorem ipsum dolor sit amet, consectetur adipisicing elit.Beatae, consectetur cupiditate dignissimos expedita illo, ipsam, iste itaque laudantium numquam odit placeat quia quo rem sequi unde. Ab aliquam amet cumque dolorem eligendi iusto labore mollitia similique suscipit! Debitis, exercitaLorem ipsum dolor sit amet, consectetur adipisicing elit.Beatae, consectetur cupiditate dignissimos expedita illo, ipsam, iste itaque laudantium numquam odit placeat quia quo rem sequi unde. Ab aliquam amet cumque dolorem eligendi iusto labore mollitia similique suscipit! Debitis, exercitaLorem ipsum dolor sit amet, consectetur adipisicing elit.Beatae, consectetur cupiditate dignissimos expedita illo, ipsam, iste itaque laudantium numquam odit placeat quia quo rem sequi unde. Ab aliquam amet cumque dolorem eligendi iusto labore mollitia similique suscipit! Debitis, exercita',
-      startTime: '12:00',
-      endTime: '13:00',
-      organization: 'Sberbank',
-      name: 'Иван Иванов',
-      photo: '/photo.jpg',
-      topic: 'DevOps'
-    };
+    return this.http.get(`${this.baseUrl}schedule/session/${id}`).pipe(map(performance => {
+      this.performanceSubject.next(performance);
+    }));
   }
 
 

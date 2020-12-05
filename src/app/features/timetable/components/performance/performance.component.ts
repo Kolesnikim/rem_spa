@@ -12,7 +12,12 @@ export class PerformanceComponent implements OnInit {
   constructor(private performance: PerformanceService, private router: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.router.params.subscribe(params =>
-      this.performanceData = this.performance.fetchPerformance(params.id));
+    this.router.params.subscribe(params => {
+      this.performance.fetchPerformance(params.id).subscribe();
+      this.performance.performance.subscribe(perf => {
+        this.performanceData = perf;
+      });
+    });
   }
+
 }
