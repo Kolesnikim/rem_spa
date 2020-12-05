@@ -4,7 +4,6 @@ import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { environment } from '../../../../environments/environment';
 import { catchError, map } from 'rxjs/operators';
 import { IAuthEnable } from '../../interfaces/auth-enable';
-import { AuthService } from '../authService/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 /**
@@ -12,18 +11,13 @@ import { MatSnackBar } from '@angular/material/snack-bar';
  */
 @Injectable()
 export class HttpSettingsService {
-  private readonly authSettingsSubject: BehaviorSubject<boolean>;
+  private readonly authSettingsSubject = new BehaviorSubject<boolean>(false);
+  public authSettingsSubject$ = this.authSettingsSubject.asObservable();
   public url = environment.baseUrl;
 
-  constructor(private http: HttpClient, private auth: AuthService, private snackbar: MatSnackBar) {
-    this.authSettingsSubject = new BehaviorSubject<boolean>(false);
-  }
-
-  /**
-   * Геттер, возвращающий субъект настроек авторизации
-   */
-  public get getAuthEnable(): BehaviorSubject<boolean> {
-    return this.authSettingsSubject;
+  constructor(
+    private http: HttpClient,
+    private snackbar: MatSnackBar) {
   }
 
   /**
@@ -33,7 +27,7 @@ export class HttpSettingsService {
     return this.http.get<IAuthEnable>(`${environment.baseUrl}general-settings/get-auth-settings`)
       .pipe(
         map( res => {
-          this.authSettingsSubject.next(res?.isAuthenticationEnabled);
+          this.authSettingsSubject.next(res.isAuthenticationEnabled);
       }),
         catchError((err) => {
           this.snackbar.open('Что-то произошло. Попробуйте позднее', 'Закрыть', {

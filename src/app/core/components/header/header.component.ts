@@ -15,15 +15,15 @@ export class HeaderComponent implements OnInit {
   menuItems: ActiveModule[];
   menuPaths: string[];
   language: string;
-  isAuth: boolean;
-  authEnable: boolean;
+  isAuthenticated: boolean;
+  isAuthEnabled: boolean;
 
   constructor(private routingService: AppSettingsService, private auth: AuthService, private http: HttpSettingsService) {
   }
 
   ngOnInit(): void {
-    this.auth.isAuthenticated.subscribe(auth => this.isAuth = auth);
-    this.http.getAuthEnable.subscribe(authEnable => this.authEnable = authEnable);
+    this.auth.isAuthenticated$.subscribe(auth => this.isAuthenticated = auth);
+    this.http.authSettingsSubject$.subscribe(isAuthEnable => this.isAuthEnabled = isAuthEnable);
 
     this.updateMenuItems();
   }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {BehaviorSubject, Observable, throwError} from 'rxjs';
-import {catchError, map} from 'rxjs/operators';
+import { BehaviorSubject, Observable, ReplaySubject, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { environment } from '../../../../environments/environment';
 import { IUserInfo } from '../../interfaces/user-info';
@@ -9,25 +9,27 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 /**
  * Сервис, отвечающий за авторизацию:
- * (логин, логаут, запрос данных о авторизованном пользователе
+ * (логин, логаут, запрос данных о авторизованном пользователе)
  */
 @Injectable()
 export class AuthService {
-  private readonly currentUserSubject: BehaviorSubject<IUserInfo>;
-  public readonly isAuthenticated: BehaviorSubject<boolean>;
+  private readonly currentUserSubject = new BehaviorSubject<IUserInfo>(null);
+  private readonly isAuthenticated = new ReplaySubject<boolean>(1);
+  public currentUserSubject$ = this.currentUserSubject.asObservable();
+  public isAuthenticated$ = this.isAuthenticated.asObservable();
 
   public url = environment.baseUrl;
 
-  constructor(private http: HttpClient, private router: Router, private snackbar: MatSnackBar ) {
-    this.currentUserSubject = new BehaviorSubject<IUserInfo>(null);
-    this.isAuthenticated = new BehaviorSubject<boolean>(false);
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private snackbar: MatSnackBar) {
+      this.init();
   }
-
-  /**
-   * Геттер, возвращающий субъект данных пользователя
-   */
-  public get currentUserValue(): BehaviorSubject<IUserInfo> {
-    return this.currentUserSubject;
+  private init(): void {
+    this.fetchUserInfo().subscribe(() => {
+      this.isAuthenticated.next(true);
+    });
   }
 
   /**
@@ -37,10 +39,9 @@ export class AuthService {
   public login(login: string, password: string): Observable<void> {
     return this.http.post<void>(`${environment.baseUrl}auth/login`, { login, password })
       .pipe(map(() => {
-        this.fetchUserInfo().subscribe(() => {
-          this.router.navigate(['/']);
-        });
-    }),
+        this.isAuthenticated.next(true);
+        this.router.navigate(['/']);
+      }),
         catchError((err) => {
           this.snackbar.open('Что-то произошло. Попробуйте позднее', 'Закрыть', {
             duration: 2000,
@@ -55,7 +56,6 @@ export class AuthService {
   public fetchUserInfo(): Observable<void> {
     return this.http.get<IUserInfo>(`${environment.baseUrl}account/info`)
       .pipe(map(user => {
-        this.isAuthenticated.next(true);
         this.currentUserSubject.next(user);
       }),
         catchError((err) => {
@@ -74,7 +74,7 @@ export class AuthService {
       .pipe(map(() => {
         this.currentUserSubject.next(null);
         this.isAuthenticated.next(false);
-        this.router.navigate(['/']);
+        this.router.navigate(['user/', 'login']);
       }));
   }
 }
