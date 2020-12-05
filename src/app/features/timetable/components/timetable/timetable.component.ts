@@ -32,14 +32,13 @@ export class TimetableComponent implements OnInit {
 
         this.object = this.dates.map((date, index) => ({
           date,
-          topics: this.titles[index].map(title => ({title})),
+          topics: this.titles[index].map(title => title),
           sessions: schedule[index].sections.map((section, j) => {
-            return {
-              [`${section.title}`]: [...section.sessions]
-            };
+            return [...section.sessions];
           })
         }));
-        console.log(this.extractArray(schedule[0]));
+        this.extractSessions(this.object[0]);
+
       });
     });
     this.newData = data;
@@ -49,27 +48,42 @@ export class TimetableComponent implements OnInit {
     return Object.keys(table.performances[0]);
   }
 
-  extractArray(arr): any {
-    const result = [];
-    let needIterate = true;
-    let num = 0;
-    while (needIterate) {
-      let sessionIdx = 0;
-      // tslint:disable-next-line:prefer-for-of
-      for (let i = 0; i < arr.sections.length; i++) {
-        if (arr.sections[i].sessions.length > sessionIdx) {
-          result.push(arr.sections[i].sessions[sessionIdx]);
+  extractSessions({sessions, topics}): any {
+    const resultArray = [];
+    let needSerialize = true;
+    let externalIndex = 0;
+    let limitIndex = 0;
+    let externalObject = {};
+
+
+    while (needSerialize) {
+
+      for (let i = 0; i < sessions.length; i++) {
+        if (limitIndex < sessions[i].length - 1) {
+          limitIndex = sessions[i].length - 1;
         }
+
+        externalObject[topics[i]] = sessions[i][externalIndex];
+
+        if (i === (sessions.length - 1)) {
+          resultArray.push(externalObject);
+          externalIndex += 1;
+
+          externalObject = {};
+        }
+
       }
 
-      sessionIdx += 1;
-      num++;
-      if (result.length > 20) {
-        needIterate = false;
+      if (externalIndex === limitIndex + 1) {
+        needSerialize = false;
       }
     }
-    return result;
+
+    console.log(resultArray);
+    console.log(topics);
+    console.log(sessions);
   }
+
 
   showPerformance(id): void {
     this.router.navigate(['/timetable', `performance`, `${id}`]);

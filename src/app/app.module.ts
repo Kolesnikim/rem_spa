@@ -33,7 +33,7 @@ registerLocaleData(localeRu);
         keyboardShortcuts: false
       }
     },
-    { provide: APP_INITIALIZER, useFactory: init, deps: [HttpSettingsService], multi: true},
+    { provide: APP_INITIALIZER, useFactory: init, deps: [HttpSettingsService, ConferenceService], multi: true},
     { provide: LOCALE_ID, useValue: 'ru'}
   ],
   bootstrap: [AppComponent]
@@ -43,9 +43,11 @@ export class AppModule { }
 /**
  * Функция, выщываемая при инициализации приложения
  */
-export function init(http: HttpSettingsService): () => void {
+export function init(http: HttpSettingsService, conference: ConferenceService): () => void {
   return () => {
+
     http.fetchAuthEnable().subscribe();
+    conference.fetchConference().subscribe();
   };
 }
 

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {CoreModule} from '../../core.module';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../../environments/environment';
-import {BehaviorSubject, Observable} from 'rxjs';
+import {BehaviorSubject, Observable, ReplaySubject} from 'rxjs';
 import {IConference} from '../../interfaces/conference';
 import {map} from 'rxjs/operators';
 
@@ -11,13 +11,13 @@ import {map} from 'rxjs/operators';
 })
 export class ConferenceService {
   public url = environment.baseUrl;
-  private readonly conferenceSubject: BehaviorSubject<IConference>;
+  private readonly conferenceSubject: ReplaySubject<IConference>;
 
   constructor(private http: HttpClient) {
-    this.conferenceSubject = new BehaviorSubject<IConference>(null);
+    this.conferenceSubject = new ReplaySubject<IConference>(null);
   }
 
-  public get getConference(): BehaviorSubject<IConference> {
+  public get getConference(): ReplaySubject<IConference> {
     return this.conferenceSubject;
   }
 

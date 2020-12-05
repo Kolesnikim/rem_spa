@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {environment} from '../../../../../environments/environment';
-import {ConferenceService} from '../../../../core/services/conferenceService/conference.service';
 import {map} from 'rxjs/operators';
+import {ConferenceService} from '../../../../core/services/conferenceService/conference.service';
 import {ISchedule} from '../../interfaces/schedule';
 
 @Injectable()
