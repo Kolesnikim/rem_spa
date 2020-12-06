@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatTableModule } from '@angular/material/table';
 
-
 import { TimetableRoutingModule } from './timetable-routing.module';
 import { TimetableComponent } from './components/timetable/timetable.component';
 import { MatCardModule } from '@angular/material/card';
@@ -11,7 +10,7 @@ import { PerformanceComponent } from './components/performance/performance.compo
 import { PerformanceService } from './services/performanceService/performance.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatRippleModule } from '@angular/material/core';
-import {ScheduleService} from './services/scheduleService/schedule.service';
+import { ScheduleService } from './services/scheduleService/schedule.service';
 
 
 @NgModule({

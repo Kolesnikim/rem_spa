@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import {ScheduleService} from '../../services/scheduleService/schedule.service';
-import {ISchedule} from '../../interfaces/schedule';
-import {formatDate} from '@angular/common';
+import { ScheduleService } from '../../services/scheduleService/schedule.service';
+import { formatDate } from '@angular/common';
+import { IPreviousData } from '../../interfaces/previous-data';
+import { IScheduleData } from '../../interfaces/schedule-data';
 
 @Component({
   selector: 'app-timetable',
@@ -10,13 +11,19 @@ import {formatDate} from '@angular/common';
   styleUrls: ['./timetable.component.less']
 })
 export class TimetableComponent implements OnInit {
-  data: any;
-  prevData: any;
-  bigdata: ISchedule[] = [];
+  data: any[];
+  prevData: IPreviousData[];
 
-  constructor(private router: Router, private schedule: ScheduleService) {
+  constructor(
+    private router: Router,
+    private schedule: ScheduleService) {
   }
 
+  /**
+   * Хук, срабатывающий при старте и подписывающийся на запрос расписания
+   * Ответ с сервера форматируется етодами extractScheduleFromResponse
+   * и extractSessions
+   */
   ngOnInit(): void {
     this.schedule.fetchSchedule().subscribe(() => {
       this.schedule.scheduleSubject$.subscribe(schedule => {
@@ -26,7 +33,11 @@ export class TimetableComponent implements OnInit {
     });
   }
 
-  extractScheduleFromResponse(schedule): any[] {
+  /**
+   * МетодЮ обрабатывающий запрос таким обазом, чтобы возвращаемое значение
+   * имело поля даты, названий секций и выступлений
+   */
+  public extractScheduleFromResponse(schedule): IPreviousData[] {
     let dates;
     let titles;
     let data;
@@ -43,7 +54,11 @@ export class TimetableComponent implements OnInit {
     return data;
   }
 
-  extractSessions({sessions, topics}): any[] {
+  /**
+   * Хук, отвечающий за форматирование сессий таким образом, чтобы
+   * выводилось построчное отображение массивами
+   */
+  public extractSessions({sessions, topics}): IScheduleData {
     const resultArray = [];
     let needIterate = true;
     let externalIndex = 0;
@@ -101,7 +116,10 @@ export class TimetableComponent implements OnInit {
     return resultArray;
   }
 
-  showPerformance(id): void {
+  /**
+   * Метод, ответственный за ридерект на страницу выступленя
+   */
+  public showPerformance(id): void {
     this.router.navigate(['/timetable', `performance`, `${id}`]);
   }
 }
