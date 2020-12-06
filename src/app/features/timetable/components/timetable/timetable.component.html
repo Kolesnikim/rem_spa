@@ -10,7 +10,7 @@
       <mat-cell *matCellDef="let element">
         <mat-card class="cell__item cell__item--clickable"
                   matRipple="0"
-                  *ngIf="element[topic].organization"
+                  *ngIf="element[topic]?.organization"
                   (click)="showPerformance(element[topic].id)">
           <mat-card-header>
             <img mat-card-avatar [src]="element[topic]?.speaker?.photoUrl" alt="Фото" class="cell__item--avatar">

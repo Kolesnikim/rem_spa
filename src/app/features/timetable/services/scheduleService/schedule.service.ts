@@ -8,13 +8,13 @@ import {ISchedule} from '../../interfaces/schedule';
 
 @Injectable()
 export class ScheduleService {
-  scheduleSubject: BehaviorSubject<any>;
+  private readonly scheduleSubject = new BehaviorSubject<any>(null);
+  public scheduleSubject$ = this.scheduleSubject.asObservable();
   conferenceId: number;
   baseUrl = environment.baseUrl;
 
   constructor(private http: HttpClient, private conference: ConferenceService) {
-    this.scheduleSubject = new BehaviorSubject<any>(null);
-    this.conference.getConference.subscribe(conf => {
+    this.conference.conferenceSubject$.subscribe(conf => {
       this.conferenceId = conf.id;
     });
   }
@@ -22,8 +22,6 @@ export class ScheduleService {
   public fetchSchedule(): Observable<void> {
     return this.http.get<ISchedule[]>(`${this.baseUrl}schedule/conference/${this.conferenceId}`)
       .pipe(map(schedule => {
-        console.log(schedule);
-
         this.scheduleSubject.next(schedule);
       }));
   }
