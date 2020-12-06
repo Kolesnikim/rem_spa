@@ -1,27 +1,25 @@
-<div class="program-container" *ngIf="newData; else spinnerContainer">
+<div class="program-container">
   <h1 class="heading__primary">Программа</h1>
-  <p class="program__annotation">Lorem ipsum dolor sit amet, consectetur adipisicing elit.Beatae, consectetur cupiditate dignissimos expedita illo, ipsam, iste itaque laudantium numquam odit placeat quia quo rem sequi unde. Ab aliquam amet cumque dolorem eligendi iusto labore mollitia similique suscipit! Debitis, exercitationem, perspiciatis!</p>
-  <p class="program__annotation">Lorem ipsum dolor sit amet, consectetur adipisicing elit.Beatae, consectetur cupiditate dignissimos expedita illo, ipsam, iste itaque laudantium numquam odit placeat quia quo rem sequi unde. Ab aliquam amet cumque dolorem eligendi iusto labore mollitia similique suscipit! Debitis, exercitationem, perspiciatis!</p>
-  <p class="program__annotation">Lorem ipsum dolor sit amet, consectetur adipisicing elit.Beatae, consectetur cupiditate dignissimos expedita illo, ipsam, iste itaque laudantium numquam odit placeat quia quo rem sequi unde. Ab aliquam amet cumque dolorem eligendi iusto labore mollitia similique suscipit! Debitis, exercitationem, perspiciatis!</p>
-  <p class="program__annotation">Lorem ipsum dolor sit amet, consectetur adipisicing elit.Beatae, consectetur cupiditate dignissimos expedita illo, ipsam, iste itaque laudantium numquam odit placeat quia quo rem sequi unde. Ab aliquam amet cumque dolorem eligendi iusto labore mollitia similique suscipit! Debitis, exercitationem, perspiciatis!</p>
 </div>
-<div class="table-container mat-elevation-z8" *ngIf="newData; else spinnerContainer">
-  <mat-table [dataSource]="table.performances" *ngFor="let table of newData; let i = index;">
-    <ng-container [matColumnDef]="themeAndRoom.theme" *ngFor="let themeAndRoom of table.themesAndRooms ">
+<div class="table-container mat-elevation-z8" *ngIf="data; else spinnerContainer">
+  <mat-table [dataSource]="table.sessions" *ngFor="let table of data; let i = index;">
+    <ng-container [matColumnDef]="topic" *ngFor="let topic of table.topics ">
       <mat-header-cell class="headers__group"  *matHeaderCellDef>
-        <h3 class="heading__theme">{{themeAndRoom.theme}}</h3>
-        <h4 class="heading__room">Зал {{themeAndRoom.room}}</h4>
+        <h3 class="heading__theme">{{topic}}</h3>
       </mat-header-cell>
       <mat-cell *matCellDef="let element">
-        <mat-card class="cell__item cell__item--clickable" matRipple="0" (click)="showPerformance(element[themeAndRoom.theme].id)">
+        <mat-card class="cell__item cell__item--clickable"
+                  matRipple="0"
+                  *ngIf="element[topic]?.organization"
+                  (click)="showPerformance(element[topic].id)">
           <mat-card-header>
-            <img mat-card-avatar src="assets/photo.jpg" alt="Avatar" class="cell__item--avatar">
-            <mat-card-title>{{element[themeAndRoom.theme].name}}</mat-card-title>
-            <mat-card-subtitle>{{element[themeAndRoom.theme].organization}}</mat-card-subtitle>
+            <img mat-card-avatar [src]="element[topic]?.speaker?.photoUrl" alt="Фото" class="cell__item--avatar">
+            <mat-card-title>{{element[topic]?.speaker?.name}}</mat-card-title>
+            <mat-card-subtitle>{{element[topic].organization}}</mat-card-subtitle>
           </mat-card-header>
           <mat-card-content>
-            <h3>{{element[themeAndRoom.theme].startDate}} - {{element[themeAndRoom.theme].endDate}}</h3>
-            <p>{{element[themeAndRoom.theme].topic}}</p>
+            <h3>{{element[topic].startTime | date : 'h:mm'}} - {{element[topic].endTime | date : 'h:mm'}}</h3>
+            <p>{{element[topic].title}}</p>
           </mat-card-content>
         </mat-card>
       </mat-cell>
@@ -35,8 +33,8 @@
 
     <mat-header-row *matHeaderRowDef="[table.date]; sticky: true;"></mat-header-row>
 
-    <mat-header-row *matHeaderRowDef="extractTopics(table); sticky: true"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: extractTopics(table);"></mat-row>
+    <mat-header-row *matHeaderRowDef="table.topics; sticky: true"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: table.topics;"></mat-row>
 
   </mat-table>
 </div>

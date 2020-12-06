@@ -1,32 +1,35 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
+import { environment } from '../../../../../environments/environment';
+import { catchError, map } from 'rxjs/operators';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { IPerformance } from '../../interfaces/performance';
 
 @Injectable()
 export class PerformanceService {
-  constructor(private http: HttpClient) {}
+  private readonly performanceSubject = new BehaviorSubject<any>(null);
+  public performance = this.performanceSubject.asObservable();
+  baseUrl = environment.baseUrl;
 
-  public fetchPerformance(id): any {
-    return {
-      title: 'Новое выступление про одну из секций конференции',
-      annotation: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.Beatae, consectetur cupiditate dignissimos expedita illo, ipsam, iste itaque laudantium numquam odit placeat quia quo rem sequi unde. Ab aliquam amet cumque dolorem eligendi iusto labore mollitia similique suscipit! Debitis, exercitaLorem ipsum dolor sit amet, consectetur adipisicing elit.Beatae, consectetur cupietur adipisicing elit.Beatae, consectetur cupiditate dignissimos expedita illo, ipsam, iste itaque laudantium numquam odit placeat quia quo rem sequi unde. Ab aliquam amet cumque dolorem eligendi iusto labore mollitia similique suscipit! Debitis, exercitaLorem ipsum dolor sit amet, consectetur adipisicing elit.Beatae, consectetur cupiditate dignissimos expedita illo, ipsam, iste itaque laudantium numquam odit placeat quia quo rem sequi unde. Ab aliquam amet cumque dolorem eligendi iusto labore mollitia similique suscipit! Debitis, exercitaLorem ipsum dolor sit amet, consectetur adipisicing elit.Beatae, consectetur cupiditate dignissimos expedita illo, ipsam, iste itaque laudantium numquam odit placeat quia quo rem sequi unde. Ab aliquam amet cumque dolorem eligendi iusto labore mollitia similique suscipit! Debitis, exercitaLorem ipsum dolor sit amet, consectetur adipisicing elit.Beatae, consectetur cupiditate dignissimos expedita illo, ipsam, iste itaque laudantium numquam odit placeat quia quo rem sequi unde. Ab aliquam amet cumque dolorem eligendi iusto labore mollitia similique suscipit! Debitis, exercita',
-      startTime: '12:00',
-      endTime: '13:00',
-      organization: 'Sberbank',
-      name: 'Иван Иванов',
-      photo: '/photo.jpg',
-      topic: 'DevOps',
-      comments: [
-        {username: 'Петр Максимов', comment: 'Очень даже неплохо', date: Date.now(), photo: 'assets/photo.jpg'},
-        {username: 'Петр Максимов', comment: 'Очень даже неплохо', date: Date.now(), photo: 'assets/photo.jpg'},
-        {username: 'Петр Максимов', comment: 'Очень даже неплохо', date: Date.now(), photo: 'assets/photo.jpg'},
-        {username: 'Петр Максимов', comment: 'Очень даже неплохо', date: Date.now(), photo: 'assets/photo.jpg'},
-      ]
-    };
+  constructor(
+    private http: HttpClient,
+    private snackbar: MatSnackBar) {}
+
+  /**
+   * Метод, отвечающий за запрос данных о выступлении в зависимости от идентификатора,
+   * переданного в качестве параметра
+   */
+  public fetchPerformance(id): Observable<void> {
+    return this.http.get<IPerformance>(`${this.baseUrl}schedule/session/${id}`)
+      .pipe(map(performance => {
+      this.performanceSubject.next(performance);
+    }),
+        catchError((err) => {
+          this.snackbar.open('Что-то произошло. Попробуйте позднее', 'Закрыть', {
+            duration: 2000,
+          });
+          return throwError(err);
+        }));
   }
-
-  public postPerformanceComment(id): any {
-    return [];
-  }
-
-
 }

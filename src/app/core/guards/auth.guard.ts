@@ -4,40 +4,33 @@ import { Observable, of } from 'rxjs';
 
 import { AuthService } from '../services/authService/auth.service';
 import { HttpSettingsService } from '../services/httpService/http-settings.service';
-import { IAuthEnable } from '../interfaces/auth-enable';
-import { IUserInfo } from '../interfaces/user-info';
-import { catchError, map } from 'rxjs/operators';
+import { switchMap } from 'rxjs/operators';
 
 /**
  * Гвард, который получает данные о наличии авторизации.
  * В зависимости от наличия или отсутствия авторизации открывается доступ
  */
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class AuthGuard implements CanActivate {
-  authSettings: IAuthEnable;
-  user: IUserInfo;
 
-  constructor(private auth: AuthService, private router: Router, private http: HttpSettingsService) {
-    this.http.getAuthEnable.subscribe(res => this.authSettings = res);
+  constructor(private authService: AuthService, private router: Router, private httpSettingsService: HttpSettingsService) {
   }
 
+  /**
+   * Метод, активирующий маршрут при наличии данных о бользователе,
+   * а также наличии авторизации.
+   */
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-    if (this.authSettings?.isAuthenticationEnabled) {
-      this.auth.fetchUserInfo().subscribe();
-      this.auth.currentUserValue.pipe(map((user) => {
-        if (this.user) {
+    return this.httpSettingsService.authSettingsSubject$
+      .pipe(switchMap((value) => {
+        if (!value) {
           return of(true);
         }
-      })).pipe(catchError(() => {
-        this.router.navigate(['/user', 'login']);
-        return of(false);
+        return this.authService.isAuthenticated$;
       }));
-    }
-
-    return true;
   }
 }

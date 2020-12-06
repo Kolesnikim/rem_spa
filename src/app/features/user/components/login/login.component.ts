@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
 
     const { login, password } = this.form.value;
 
-    this.auth.login(login, password).pipe(first()).subscribe(
+    this.auth.login(login, password).subscribe(
       () => {
         this.loading = false;
       },

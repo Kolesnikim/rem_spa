@@ -9,7 +9,7 @@ export class AppSettingsService {
   private availableRoutes: ActiveModule[] = [
     new ActiveModule('Программа', 'timetable'),
     new ActiveModule('Избранное', 'favourites'),
-    new ActiveModule('Фотогаллерея', 'gallery'),
+    new ActiveModule('Фотогалерея', 'gallery'),
     new ActiveModule('Документы', 'documents'),
     new ActiveModule('Профиль', 'user'),
     new ActiveModule('О приложении', 'about')];

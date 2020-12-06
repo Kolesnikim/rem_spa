@@ -25,7 +25,7 @@ const routes: Routes = [
   loadChildren: () => import('./features/main-page/main-page.module').then(m => m.MainPageModule),
   canActivate: [AuthGuard]
   },
-  { path: '**', component: NotFoundComponent }
+  { path: '**', component: NotFoundComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({
