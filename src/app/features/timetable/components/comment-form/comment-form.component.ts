@@ -17,21 +17,32 @@ export class CommentFormComponent implements OnInit {
   @Output() FormSubmit: EventEmitter<IComment> = new EventEmitter();
 
   constructor(private auth: AuthService) {
-    this.auth.currentUserValue.subscribe(user => this.username = user.fullName);
+    this.auth.currentUserSubject$.subscribe(
+      user => this.username = user.fullName
+    );
   }
 
+  /**
+   * При инициализации компонента инициализируется форма
+   */
   ngOnInit(): void {
     this.form = new FormGroup({
-      username: new FormControl(this.username, Validators.required),
-      comment: new FormControl(null, Validators.required)
+      name: new FormControl(this.username, Validators.required),
+      text: new FormControl(null, Validators.required),
+      number: new FormControl(0, Validators.required),
     });
   }
 
-  submitForm($event: Event): void {
+  /**
+   * Метод, вызываемый при отправке формы.
+   * Эмиттит событие в родительский компонент
+   */
+  public submitForm($event: Event): void {
     $event.preventDefault();
 
-    const { username, comment } = this.form.value;
-    const emittedComment = this.username ? { comment } : { username, comment };
+    // tslint:disable-next-line:variable-name
+    const { name, text, number } = this.form.value;
+    const emittedComment = this.username ? { text, number } : { name, text, number };
     this.FormSubmit.emit(emittedComment);
   }
 }

@@ -16,7 +16,6 @@
   <h2 class="heading__secondary">Тезисы</h2>
   <p class="performance__annotation">{{performanceData.abstract}}</p>
   <button mat-raised-button color="primary" routerLink="/timetable">Назад</button>
-  <p class="performance__annotation">{{performanceData.annotation}}</p>
   <app-comments [comments]="performanceData.comments"></app-comments>
   <app-comment-form (FormSubmit)="postComment($event)"></app-comment-form>
 </div>

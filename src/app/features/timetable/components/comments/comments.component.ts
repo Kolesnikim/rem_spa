@@ -1,5 +1,5 @@
-import {Component, Input} from '@angular/core';
-import {PerformanceService} from '../../services/performanceService/performance.service';
+import { Component, Input } from '@angular/core';
+import { IComment } from '../../interfaces/comment';
 
 @Component({
   selector: 'app-comments',
@@ -8,9 +8,9 @@ import {PerformanceService} from '../../services/performanceService/performance.
 })
 
 export class CommentsComponent {
-  constructor(private performance: PerformanceService) {
+  constructor() {
   }
 
-  @Input() comments: any[];
+  @Input() comments: IComment[];
 }
 

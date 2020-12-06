@@ -58,7 +58,7 @@ export class TimetableComponent implements OnInit {
    * Хук, отвечающий за форматирование сессий таким образом, чтобы
    * выводилось построчное отображение массивами
    */
-  public extractSessions({sessions, topics}): IScheduleData {
+  public extractSessions({sessions, topics}): any {
     const resultArray = [];
     let needIterate = true;
     let externalIndex = 0;

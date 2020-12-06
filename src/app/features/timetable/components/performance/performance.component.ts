@@ -10,6 +10,7 @@ import { IPerformance } from '../../interfaces/performance';
 })
 export class PerformanceComponent implements OnInit {
   performanceData: IPerformance;
+  id: number;
 
   constructor(
     private performanceService: PerformanceService,
@@ -22,13 +23,32 @@ export class PerformanceComponent implements OnInit {
   ngOnInit(): void {
     this.router.params.subscribe(params => {
       this.performanceService.fetchPerformance(params.id).subscribe();
-      this.performanceService.performance.subscribe(perf => {
-        this.performanceData = perf;
+      this.performanceService.performance.subscribe(performance => {
+        this.performanceData = performance;
       });
     });
   }
 
-  postComment(data): void {
-    this.performanceData.comments.push({...data, username: 'Rubius Tests', date: Date.now(), photo: 'assets/photo.jpg'});
+  /**
+   * Метод, вызываемый при отправке при подтверждении формы
+   * При отправке формы подписывается на изменения в данных выступления
+   */
+  public postComment(data): void {
+    this.id = this.performanceData.id;
+    const response = {...data, sessionId: this.id};
+
+    if (response.name) {
+      this.performanceService.postAnonymousComment(response).subscribe(() => {
+        this.performanceService.performance.subscribe(performance => {
+          this.performanceData = performance;
+        });
+      });
+    } else {
+      this.performanceService.postComment(response).subscribe(() => {
+        this.performanceService.performance.subscribe(performance => {
+          this.performanceData = performance;
+        });
+      });
+    }
   }
 }

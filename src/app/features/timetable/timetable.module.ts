@@ -13,9 +13,10 @@ import { MatRippleModule } from '@angular/material/core';
 import { ScheduleService } from './services/scheduleService/schedule.service';
 import { CommentsComponent } from './components/comments/comments.component';
 import { CommentFormComponent } from './components/comment-form/comment-form.component';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
-import {ReactiveFormsModule} from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatSliderModule } from '@angular/material/slider';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import {ReactiveFormsModule} from '@angular/forms';
     ReactiveFormsModule,
     MatButtonModule,
     MatProgressSpinnerModule,
-    MatRippleModule
+    MatRippleModule,
+    MatSliderModule
   ],
   providers: [PerformanceService, ScheduleService]
 })

@@ -3,19 +3,30 @@
   <form class="form__group" [formGroup]="form" (submit)="submitForm($event)">
     <mat-form-field class="form-full-width" *ngIf="!username">
       <mat-label>Ваше имя</mat-label>
-      <input matInput formControlName="username">
-      <mat-error *ngIf="form.get('username').touched && form.get('username').invalid">
+      <input matInput formControlName="name">
+      <mat-error *ngIf="form.get('name').touched && form.get('name').invalid">
         <small>Это поле обязательно дя заполнения</small>
       </mat-error>
     </mat-form-field>
 
     <mat-form-field class="form-full-width">
       <mat-label>Ваш комментарий</mat-label>
-      <textarea matInput formControlName="comment"></textarea>
-      <mat-error *ngIf="form.get('comment').touched && form.get('comment').invalid">
+      <textarea matInput formControlName="text"></textarea>
+      <mat-error *ngIf="form.get('text').touched && form.get('text').invalid">
         <small>Это поле обязательно дя заполнения.</small>
       </mat-error>
     </mat-form-field>
+
+      <mat-label>Ваша оценка</mat-label>
+      <mat-slider
+        thumbLabel
+        formControlName="number"
+        tickInterval="1"
+        min="0"
+        max="5">
+
+      </mat-slider>
+
     <div class="button__container">
       <button [disabled]="loading" mat-raised-button color="primary" type="submit">Отправить</button>
       <mat-error *ngIf="error"><small>{{error}}</small></mat-error>
