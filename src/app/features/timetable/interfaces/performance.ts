@@ -1,5 +1,8 @@
 import { ISpeaker } from './speaker';
 
+/**
+ * Интерфейс выступления
+ */
 export interface IPerformance {
   id: number;
   organization: string;

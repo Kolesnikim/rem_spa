@@ -1,5 +1,8 @@
 import {ISpeaker} from './speaker';
 
+/**
+ * Интерфейс выступления на конференции
+ */
 export interface ISession {
   id: 0;
   organization: string;
