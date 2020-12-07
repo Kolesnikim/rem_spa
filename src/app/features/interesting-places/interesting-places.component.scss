@@ -1,0 +1,7 @@
+:host{
+    flex: 1 0 auto;
+}
+.content{
+    display: grid;
+    grid-template-columns: repeat(2, 49%);
+}
