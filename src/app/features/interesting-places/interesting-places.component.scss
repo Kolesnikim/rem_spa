@@ -4,4 +4,10 @@
 .content{
     display: grid;
     grid-template-columns: repeat(2, 49%);
+    justify-content: space-around;
+    grid-row-gap: 1%;
+    
+        @media screen and (max-width: 700px) {
+            grid-template-columns: repeat(1, 98%);
+        }
 }
