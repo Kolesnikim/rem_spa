@@ -5,6 +5,7 @@ import { environment } from '../../../../environments/environment';
 import { catchError, map } from 'rxjs/operators';
 import { IAuthEnable } from '../../interfaces/auth-enable';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { IApplicationSettings } from '../../interfaces/application-settings';
 
 /**
  * Сервис, отвечающий за запрос настроек авторизации и приложения
@@ -12,7 +13,11 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 @Injectable()
 export class HttpSettingsService {
   private readonly authSettingsSubject = new BehaviorSubject<boolean>(false);
+  private readonly applicationSettingsSubject = new BehaviorSubject<IApplicationSettings>(null);
+
   public authSettingsSubject$ = this.authSettingsSubject.asObservable();
+  public applicationSettingsSubject$ = this.applicationSettingsSubject.asObservable();
+
   public url = environment.baseUrl;
 
   constructor(
@@ -29,6 +34,23 @@ export class HttpSettingsService {
         map( res => {
           this.authSettingsSubject.next(res.isAuthenticationEnabled);
       }),
+        catchError((err) => {
+          this.snackbar.open('Что-то произошло. Попробуйте позднее', 'Закрыть', {
+            duration: 2000,
+          });
+          return throwError(err);
+        }));
+  }
+
+  /**
+   * Метод, отвечающий за запрос настроек приложения
+   */
+  public fetchApplicationSettings(): Observable<void> {
+    return this.http.get<IApplicationSettings>(`${environment.baseUrl}general-settings/get-general-settings`)
+      .pipe(
+        map( res => {
+          this.applicationSettingsSubject.next(res);
+        }),
         catchError((err) => {
           this.snackbar.open('Что-то произошло. Попробуйте позднее', 'Закрыть', {
             duration: 2000,

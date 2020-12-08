@@ -7,12 +7,14 @@ import { AuthGuard } from './core/guards/auth.guard';
 const routes: Routes = [
   {
     path: 'gallery',
-    loadChildren: () => import('./features/gallery/gallery.module').then(m => m.GalleryModule),
+    loadChildren: () => import('./features/gallery/gallery.module')
+      .then(m => m.GalleryModule),
     canActivate: [AuthGuard, ActiveModulesGuard]
   },
   {
     path: 'timetable',
-    loadChildren: () => import('./features/timetable/timetable.module').then(m => m.TimetableModule),
+    loadChildren: () => import('./features/timetable/timetable.module')
+      .then(m => m.TimetableModule),
     canActivate: [AuthGuard, ActiveModulesGuard]
   },
   {
@@ -22,7 +24,8 @@ const routes: Routes = [
     canActivate: [ActiveModulesGuard]
   },
   { path: '',
-  loadChildren: () => import('./features/main-page/main-page.module').then(m => m.MainPageModule),
+  loadChildren: () => import('./features/main-page/main-page.module')
+    .then(m => m.MainPageModule),
   canActivate: [AuthGuard]
   },
   { path: '**', component: NotFoundComponent, canActivate: [AuthGuard] }
