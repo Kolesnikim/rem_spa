@@ -10,6 +10,8 @@ import { AuthGuard } from './guards/auth.guard';
 import { ActiveModulesGuard } from './guards/activeModules.guard';
 import { RouterModule } from '@angular/router';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ConferenceService } from './services/conferenceService/conference.service';
+import { AppSettingsService } from './services/appSettingsService/appSettings.service';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     FooterComponent,
     HttpClientModule
   ],
-  providers: [AuthService, HttpSettingsService, ActiveModulesGuard, AuthGuard, {
+  providers: [AuthService, HttpSettingsService, ConferenceService, AppSettingsService, ActiveModulesGuard, AuthGuard, {
     provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true
   }]
 })

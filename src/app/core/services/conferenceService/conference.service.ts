@@ -1,15 +1,12 @@
 import { Injectable } from '@angular/core';
-import { CoreModule } from '../../core.module';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';
-import { Observable, BehaviorSubject, throwError } from 'rxjs';
+import { Observable, BehaviorSubject, throwError, ReplaySubject } from 'rxjs';
 import { IConference } from '../../interfaces/conference';
 import { catchError, map } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-@Injectable({
-  providedIn: CoreModule
-})
+@Injectable()
 export class ConferenceService {
   public url = environment.baseUrl;
   private readonly conferenceSubject = new BehaviorSubject<IConference>(null);

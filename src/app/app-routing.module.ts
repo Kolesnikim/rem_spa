@@ -6,13 +6,13 @@ import { AuthGuard } from './core/guards/auth.guard';
 
 const routes: Routes = [
   {
-    path: 'gallery',
+    path: 'photogallery',
     loadChildren: () => import('./features/gallery/gallery.module')
       .then(m => m.GalleryModule),
     canActivate: [AuthGuard, ActiveModulesGuard]
   },
   {
-    path: 'timetable',
+    path: 'schedule',
     loadChildren: () => import('./features/timetable/timetable.module')
       .then(m => m.TimetableModule),
     canActivate: [AuthGuard, ActiveModulesGuard]

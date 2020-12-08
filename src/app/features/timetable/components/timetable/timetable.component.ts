@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { ScheduleService } from '../../services/scheduleService/schedule.service';
 import { formatDate } from '@angular/common';
 import { IPreviousData } from '../../interfaces/previous-data';
-import { IScheduleData } from '../../interfaces/schedule-data';
 
 @Component({
   selector: 'app-timetable',
@@ -120,7 +119,7 @@ export class TimetableComponent implements OnInit {
    * Метод, ответственный за ридерект на страницу выступленя
    */
   public showPerformance(id): void {
-    this.router.navigate(['/timetable', `performance`, `${id}`]);
+    this.router.navigate(['/schedule', `performance`, `${id}`]);
   }
 }
 

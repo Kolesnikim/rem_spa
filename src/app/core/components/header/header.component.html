@@ -2,7 +2,7 @@
     <div class = 'header_logo'><a routerLink='/'><img src ='#'></a></div>
     <nav class = 'header_nav'>
       <ul class = 'nav'>
-        <li *ngFor="let item of menuItems" class='nav_item'>
+        <li *ngFor="let item of menuItems | async" class='nav_item'>
           <a routerLink={{item.Path}} href="{{item.Path}}" class='nav_link'>{{item.Name}}</a>
         </li>
       </ul>

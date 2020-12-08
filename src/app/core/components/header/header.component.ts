@@ -3,6 +3,7 @@ import { AppSettingsService } from '../../services/appSettingsService/appSetting
 import { ActiveModule } from '../../models/active.module';
 import { AuthService } from '../../services/authService/auth.service';
 import { HttpSettingsService } from '../../services/httpService/http-settings.service';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -12,26 +13,28 @@ import { HttpSettingsService } from '../../services/httpService/http-settings.se
   providers: [AppSettingsService]
 })
 export class HeaderComponent implements OnInit {
-  menuItems: ActiveModule[];
+  menuItems: Observable<ActiveModule[]>;
   menuPaths: string[];
   language: string;
   isAuthenticated: boolean;
   isAuthEnabled: boolean;
 
-  constructor(private routingService: AppSettingsService, private auth: AuthService, private http: HttpSettingsService) {
+  constructor(
+    private auth: AuthService,
+    private http: HttpSettingsService,
+    private appSettings: AppSettingsService) {
   }
 
   ngOnInit(): void {
     this.auth.isAuthenticated$.subscribe(auth => this.isAuthenticated = auth);
-    this.http.authSettingsSubject$.subscribe(isAuthEnable => this.isAuthEnabled = isAuthEnable);
-
-    this.updateMenuItems();
+    this.http.authSettingsSubject$.subscribe(isAuthEnable => {
+      this.isAuthEnabled = isAuthEnable;
+    });
+    this.menuItems = this.appSettings.activatedModulesSubject$;
   }
 
   /**
    * присваивает список элементов меню
    */
-  public updateMenuItems(): void {
-    this.menuItems = this.routingService.getAvailableModules();
-  }
+
 }

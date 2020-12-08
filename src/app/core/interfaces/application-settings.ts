@@ -1,3 +1,6 @@
+/**
+ * Интерфейс настроек приложения
+ */
 export interface IApplicationSettings {
   id: string;
   keyNoteText: string;
