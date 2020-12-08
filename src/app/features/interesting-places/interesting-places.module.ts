@@ -6,6 +6,7 @@ import { InterestingPlacesComponent } from './interesting-places.component';
 import { InterestingPlaceCardComponent } from './components/interesting-place-card/interesting-place-card.component';
 import { MatCardModule } from '@angular/material/card';
 import { AngularYandexMapsModule } from 'angular8-yandex-maps';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [InterestingPlacesComponent, InterestingPlaceCardComponent],
@@ -14,6 +15,7 @@ import { AngularYandexMapsModule } from 'angular8-yandex-maps';
     InterestingPlacesRoutingModule,
     MatCardModule,
     AngularYandexMapsModule,
+    MatIconModule,
   ]
 })
 export class InterestingPlacesModule { }
