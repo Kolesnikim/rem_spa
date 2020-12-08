@@ -5,13 +5,15 @@ import { InterestingPlacesRoutingModule } from './interesting-places-routing.mod
 import { InterestingPlacesComponent } from './interesting-places.component';
 import { InterestingPlaceCardComponent } from './components/interesting-place-card/interesting-place-card.component';
 import { MatCardModule } from '@angular/material/card';
+import { AngularYandexMapsModule } from 'angular8-yandex-maps';
 
 @NgModule({
   declarations: [InterestingPlacesComponent, InterestingPlaceCardComponent],
   imports: [
     CommonModule,
     InterestingPlacesRoutingModule,
-    MatCardModule
+    MatCardModule,
+    AngularYandexMapsModule,
   ]
 })
 export class InterestingPlacesModule { }

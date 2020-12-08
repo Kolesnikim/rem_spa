@@ -10,6 +10,11 @@ import { InterestingPlacesService } from './services/interesting-places.service'
     <app-interesting-place-card [place]="onePlece"></app-interesting-place-card>
     </div>
     <div id = 'map' class='map'>
+    <ya-map [center]="[56.45, 84.96]" [zoom]="13">
+    <ya-clusterer [options]="clustererOptions" *ngFor="let coordinate of coordinates">
+      <ya-placemark [geometry]="coordinate"></ya-placemark>
+    </ya-clusterer>
+  </ya-map>
     </div>
   </div>
   `,
@@ -18,14 +23,28 @@ import { InterestingPlacesService } from './services/interesting-places.service'
 export class InterestingPlacesComponent implements OnInit {
   public idConference = 1;
   public interestingPlaces: InterestingPlace[];
+  public clustererOptions = {
+    preset: 'islands#invertedVioletClusterIcons',
+    hasBaloon: false
+  };
+  public coordinates = [];
 
   constructor(private interestingOlacesService: InterestingPlacesService) { }
 
   ngOnInit(): void {
+    const onePlaceCoordinate = [];
+
     this.interestingOlacesService.getInterestingPlaces(this.idConference)
     .subscribe((interestingPlases: InterestingPlace[]) => {
       this.interestingPlaces = interestingPlases;
       console.log(this.interestingPlaces);
+
+      this.interestingPlaces.forEach(el => {
+        onePlaceCoordinate.push(el.latitude),
+        onePlaceCoordinate.push(el.longitude);
+        this.coordinates.push(onePlaceCoordinate);
+      });
+
     });
 
   }
