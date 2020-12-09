@@ -11,13 +11,13 @@ import { GalleryTag } from './models/interfaces/galleryTag.interface';
 export class GalleryComponent implements OnInit {
   private maxCarouselItems = 100;
   private itemsPerScroll = 25;
-  public galleryTags: GalleryTag[];
-  public activeTag: GalleryTag;
-  public displayedItems: GalleryItem[];
+  public galleryTags: GalleryTag[] = [];
+  public activeTag: GalleryTag = { id: 0, tagString: '' };
+  public displayedItems: GalleryItem[] = [];
   public galleryId = 'my-gallery';
   public firstCarouselItemIndex = 0;
 
-  constructor(private galleryService: GalleryService, public gallery: Gallery) { }
+  constructor(private galleryService: GalleryService, public gallery: Gallery) {}
 
   ngOnInit(): void {
     this.galleryService.getGalleryTags().subscribe((tags: GalleryTag[]) => {
