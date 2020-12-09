@@ -8,7 +8,7 @@ import { InterestingPlace } from '../../models/interesting-place.model';
 })
 export class InterestingPlaceCardComponent implements OnInit {
   @Input() place: InterestingPlace;
-  @Input() id: number;
+  @Input() id: string;
 
   constructor() {}
 
