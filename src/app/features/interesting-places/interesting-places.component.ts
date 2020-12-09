@@ -1,5 +1,4 @@
-import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
-import { ViewChild } from '@angular/core';
+import { ViewportScroller } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { YaReadyEvent } from 'angular8-yandex-maps';
 import { InterestingPlace } from './models/interesting-place.model';
@@ -27,7 +26,7 @@ import { InterestingPlacesService } from './services/interesting-places.service'
         </p>
       </header>
       <div class = 'interesting-card' *ngFor="let onePlace of interestingPlaces; let i = index" >
-        <app-interesting-place-card [place]="onePlace" id={{i}}></app-interesting-place-card>
+        <app-interesting-place-card #scrollToMe [place]="onePlace" [id]='i' ></app-interesting-place-card>
       </div>
     </section>
     <div id = 'map' class='map'>
@@ -50,7 +49,11 @@ import { InterestingPlacesService } from './services/interesting-places.service'
 })
 export class InterestingPlacesComponent implements OnInit {
 
-  constructor(private interestingOlacesService: InterestingPlacesService) { }
+  constructor(
+    private interestingOlacesService: InterestingPlacesService,
+    private vps: ViewportScroller
+  ) { }
+
   public idConference = 1;
   public interestingPlaces: InterestingPlace[];
   public coordinates = [];
@@ -58,8 +61,6 @@ export class InterestingPlacesComponent implements OnInit {
   /**
    * обработать событие клика по метки
    */
-  @ViewChild(CdkVirtualScrollViewport) viewPort: CdkVirtualScrollViewport;
-
   ngOnInit(): void {
     const onePlaceCoordinate = [];
 
@@ -91,9 +92,8 @@ export class InterestingPlacesComponent implements OnInit {
     $event.target.options.unset('preset');
   }
 
-  public onPlacemarkClick(e: any): void {
-    e.scrollIntoView({behavior: 'smooth', block: 'start', inline: 'nearest'});
-    console.log(e);
-
+  public onPlacemarkClick(id): void {
+    this.vps.scrollToAnchor(id);
+    console.log(id);
   }
 }
