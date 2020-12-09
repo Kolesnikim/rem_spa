@@ -1,7 +1,7 @@
 import { ISession } from './session';
 
 /**
- * Интерфейс расписания после первой трансформации
+ * Интерфейс расписания после вызова фугкции extractScheduleFromResponse
  */
 export interface IPreviousData {
   date: string;

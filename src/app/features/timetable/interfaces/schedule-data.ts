@@ -1,10 +1,11 @@
-import { ISchedule } from './schedule';
+
+import { ISessionsForTable } from './sessions-for-table';
 
 /**
- * Интерфейс данных после трансформации
+ * Интерфейс расписания после вызова фугкции extractSessions
  */
 export interface IScheduleData {
   date: string;
   topics: string[];
-  sessions: ISchedule[];
+  sessions: ISessionsForTable[];
 }

@@ -1,10 +1,10 @@
-import {ISpeaker} from './speaker';
+import { ISpeaker } from './speaker';
 
 /**
  * Интерфейс выступления на конференции
  */
 export interface ISession {
-  id: 0;
+  id: number;
   organization: string;
   title: string;
   startTime: string;

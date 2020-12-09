@@ -21,9 +21,8 @@ export class PerformanceComponent implements OnInit {
    */
   ngOnInit(): void {
     this.router.params.subscribe(params => {
-      this.performanceService.fetchPerformance(params.id).subscribe();
-      this.performanceService.performance.subscribe(perf => {
-        this.performanceData = perf;
+      this.performanceService.fetchPerformance(params.id).subscribe(performance => {
+        this.performanceData = performance;
       });
     });
   }

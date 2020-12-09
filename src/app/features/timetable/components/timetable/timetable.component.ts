@@ -4,6 +4,7 @@ import { ScheduleService } from '../../services/scheduleService/schedule.service
 import { formatDate } from '@angular/common';
 import { IPreviousData } from '../../interfaces/previous-data';
 import { IScheduleData } from '../../interfaces/schedule-data';
+import { ISessionsForTable } from '../../interfaces/sessions-for-table';
 
 @Component({
   selector: 'app-timetable',
@@ -11,7 +12,7 @@ import { IScheduleData } from '../../interfaces/schedule-data';
   styleUrls: ['./timetable.component.less']
 })
 export class TimetableComponent implements OnInit {
-  data: any[];
+  data: IScheduleData[];
   prevData: IPreviousData[];
 
   constructor(
@@ -25,16 +26,14 @@ export class TimetableComponent implements OnInit {
    * и extractSessions
    */
   ngOnInit(): void {
-    this.schedule.fetchSchedule().subscribe(() => {
-      this.schedule.scheduleSubject$.subscribe(schedule => {
-        this.prevData = this.extractScheduleFromResponse(schedule);
-        this.data = this.prevData.map(date => ({...date, sessions: this.extractSessions(date)}));
-      });
+    this.schedule.fetchSchedule().subscribe(schedule => {
+      this.prevData = this.extractScheduleFromResponse(schedule);
+      this.data = this.prevData.map(date => ({...date, sessions: this.extractSessions(date)}));
     });
   }
 
   /**
-   * МетодЮ обрабатывающий запрос таким обазом, чтобы возвращаемое значение
+   * Метод обрабатывающий запрос таким обазом, чтобы возвращаемое значение
    * имело поля даты, названий секций и выступлений
    */
   public extractScheduleFromResponse(schedule): IPreviousData[] {
@@ -58,7 +57,7 @@ export class TimetableComponent implements OnInit {
    * Хук, отвечающий за форматирование сессий таким образом, чтобы
    * выводилось построчное отображение массивами
    */
-  public extractSessions({sessions, topics}): IScheduleData {
+  public extractSessions({sessions, topics}): ISessionsForTable[] {
     const resultArray = [];
     let needIterate = true;
     let externalIndex = 0;
