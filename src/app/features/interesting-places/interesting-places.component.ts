@@ -1,3 +1,5 @@
+import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
+import { ViewChild } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { YaReadyEvent } from 'angular8-yandex-maps';
 import { InterestingPlace } from './models/interesting-place.model';
@@ -30,12 +32,12 @@ import { InterestingPlacesService } from './services/interesting-places.service'
     </section>
     <div id = 'map' class='map'>
       <ya-map [center]="[56.48, 84.96]" [zoom]="13">
-        <ya-clusterer [options]="clustererOptions" *ngFor="let onePlace of interestingPlaces; let i = index">
+        <ya-clusterer *ngFor="let onePlace of interestingPlaces; let i = index">
           <ya-placemark
             [geometry]="coordinates[i]"
             [properties]="{hintContent: onePlace.name, balloonContent: onePlace.name}"
-            (yamouseenter)="onMouseInter()"
-            (yamouseleave)="onMouseLeave()"
+            (yamouseenter)="onMouseEnter($event)"
+            (yamouseleave)="onMouseLeave($event)"
             (yaclick)="onPlacemarkClick(i)"
           >
           </ya-placemark>
@@ -47,15 +49,16 @@ import { InterestingPlacesService } from './services/interesting-places.service'
   styleUrls: ['./interesting-places.component.scss']
 })
 export class InterestingPlacesComponent implements OnInit {
-  public idConference = 1;
-  public interestingPlaces: InterestingPlace[];
-  public clustererOptions = {
-    preset: 'islands#invertedVioletClusterIcons',
-    hasBaloon: false
-  };
-  public coordinates = [];
 
   constructor(private interestingOlacesService: InterestingPlacesService) { }
+  public idConference = 1;
+  public interestingPlaces: InterestingPlace[];
+  public coordinates = [];
+
+  /**
+   * обработать событие клика по метки
+   */
+  @ViewChild(CdkVirtualScrollViewport) viewPort: CdkVirtualScrollViewport;
 
   ngOnInit(): void {
     const onePlaceCoordinate = [];
@@ -75,24 +78,19 @@ export class InterestingPlacesComponent implements OnInit {
   }
 
   /**
-   * обработать событие наведения мыши на объект
+   * обработать событие наведения мыши на метку
    */
-  public onMouseInter(): void{
-    this.clustererOptions.preset = 'islands#greenIcon';
+  public onMouseEnter($event: YaReadyEvent): void{
+    $event.target.options.set('preset', 'islands#greenIcon');
   }
 
   /**
-   * обработать событие отведения мыши с объекта
+   * обработать событие отведения мыши с метки
    */
-  public onMouseLeave(): void{
-    this.clustererOptions.preset = 'islands#greenIcon';
-    // if (event.type === 'mouseleave') {
-    //   event.instance.options.unset('preset');
+  public onMouseLeave($event): void{
+    $event.target.options.unset('preset');
   }
 
-  /**
-   * обработать событие клика по объекту
-   */
   public onPlacemarkClick(e: any): void {
     e.scrollIntoView({behavior: 'smooth', block: 'start', inline: 'nearest'});
     console.log(e);
