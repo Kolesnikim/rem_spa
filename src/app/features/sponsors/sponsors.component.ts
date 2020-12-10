@@ -7,7 +7,7 @@ import { SponsorsService } from './services/sponsors.service';
   styleUrls: ['./sponsors.component.scss']
 })
 export class SponsorsComponent implements OnInit {
-  public idConference = 1;
+  private idConference = 1;
   public sponsors: Sponsor[] = [];
 
   constructor(private sponsorsService: SponsorsService) {}

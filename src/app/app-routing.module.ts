@@ -24,7 +24,7 @@ const routes: Routes = [
   {
     path: 'sponsors',
     loadChildren: () => import('./features/sponsors/sponsors.module').then(m => m.SponsorsModule),
-    canActivate: [ActiveModulesGuard]
+    canActivate: [AuthGuard, ActiveModulesGuard]
   },
   { path: '',
   loadChildren: () => import('./features/main-page/main-page.module').then(m => m.MainPageModule),
