@@ -1,9 +1,9 @@
 /**
  * Модель выступления участника
  */
-export class Session {
+export interface Session {
     id: number;
-    organization: string;
+    organization: string ;
     title: string;
     startTime: string;
     endTime: string;

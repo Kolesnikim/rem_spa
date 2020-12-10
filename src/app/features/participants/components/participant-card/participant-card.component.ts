@@ -7,15 +7,17 @@ import { Participant } from '../../models/participant.model';
   styleUrls: ['./participant-card.component.scss']
 })
 export class ParticipantCardComponent implements OnInit {
-  @Input() participant: Participant;
-  public id: number;
-  public photoUrl: string;
+  @Input() participant: Participant | null = null;
+  public id = 0;
+  public photoUrl = '';
 
   constructor() {}
 
   ngOnInit(): void {
-    this.id = this.participant.id;
-    this.photoUrl = `url(${this.participant.photoUrl})`;
+    if (this.participant !== null){
+      this.id = this.participant.id;
+      this.photoUrl = `url(${this.participant.photoUrl})`;
+    }
   }
 
 }

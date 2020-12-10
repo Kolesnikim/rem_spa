@@ -10,18 +10,18 @@ import { ParticipantsService } from '../../services/participants.service';
 })
 
 export class ParticipantDetailsComponent implements OnInit {
-  private routeSubscription: Subscription;
-  public participant: Participant = new Participant();
-  public id: number;
-  public photoUrl: string;
+  public participant: Participant | null = null;
+  public id = 0;
+  public photoUrl = '';
   public visibility = false;
 
 
-  constructor(private participantsServer: ParticipantsService, private route: ActivatedRoute){
-    this.routeSubscription = route.params.subscribe(params => this.id = params.id);
+  constructor(private participantsServer: ParticipantsService, private route: ActivatedRoute, private routeSubscription: Subscription){
   }
 
   ngOnInit(): void {
+    this.routeSubscription = this.route.params.subscribe(params => this.id = params.id);
+
     this.participantsServer.getParticipantById(this.id).subscribe((participant: Participant) => {
       this.participant = participant;
       this.photoUrl = `url(${participant.photoUrl})`;

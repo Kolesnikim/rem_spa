@@ -8,10 +8,10 @@ import { ParticipantRole } from './models/interfaces/participantRole.interface';
   styleUrls: ['./participants.component.scss']
 })
 export class ParticipantsComponent implements OnInit {
-  public activeRole: ParticipantRole;
-  public participants: Participant[];
-  public activeRoles: ParticipantRole[];
-  public id: number;
+  public activeRole: ParticipantRole | null = null;
+  public participants: Participant[] = [];
+  public activeRoles: ParticipantRole[] = [];
+  public id = 0;
 
   constructor(private participantsService: ParticipantsService) { }
 

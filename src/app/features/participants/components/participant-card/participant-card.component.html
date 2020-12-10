@@ -1,10 +1,10 @@
 <mat-card class="participant_card" id="id">
     <mat-card-header>
         <div mat-card-avatar class="example-header-image" [style.backgroundImage]="photoUrl"></div>
-        <mat-card-title>{{participant.fullName}}</mat-card-title>
+        <mat-card-title>{{participant?.fullName}}</mat-card-title>
         <mat-card-subtitle>
-            <p class='organization'>{{participant.organizationName}}</p>
-            <p>{{participant.position}}</p>
+            <p class='organization'>{{participant?.organizationName}}</p>
+            <p>{{participant?.position}}</p>
         </mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>

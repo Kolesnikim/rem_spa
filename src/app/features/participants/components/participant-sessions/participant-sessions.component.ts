@@ -8,7 +8,7 @@ import { ParticipantsService } from '../../services/participants.service';
   styleUrls: ['./participant-sessions.component.scss']
 })
 export class ParticipantSessionsComponent implements OnInit {
-  @Input() id: number;
+  @Input() id = 0;
   @Output() isVisibilitySession = new EventEmitter<boolean>();
   public sessions: Session[] = [];
 
