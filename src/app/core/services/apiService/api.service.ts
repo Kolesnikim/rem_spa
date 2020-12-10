@@ -21,7 +21,7 @@ export class ApiService {
   public get<T>(path: string, params: HttpParams = new HttpParams()): Observable<T> {
     return this.http.get<T>(`${environment.baseUrl}${path}`, { params })
       .pipe(catchError((err) => {
-        return throwError(err.error);
+        return throwError(err);
       }));
   }
 
@@ -35,7 +35,7 @@ export class ApiService {
       `${environment.baseUrl}${path}`,
       JSON.stringify(body)
     ).pipe(catchError((err) => {
-        return throwError(err.error);
+        return throwError(err);
     }));
   }
 
@@ -49,7 +49,7 @@ export class ApiService {
       `${environment.baseUrl}${path}`,
       JSON.stringify(body)
     ).pipe(catchError((err) => {
-        return throwError(err.error);
+        return throwError(err);
     }));
   }
 
@@ -61,7 +61,7 @@ export class ApiService {
     return this.http.delete<T>(
       `${environment.baseUrl}${path}`
     ).pipe(catchError((err) => {
-        return throwError(err.error);
+        return throwError(err);
     }));
   }
 
