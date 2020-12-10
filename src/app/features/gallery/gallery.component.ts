@@ -12,7 +12,7 @@ export class GalleryComponent implements OnInit {
   private maxCarouselItems = 100;
   private itemsPerScroll = 25;
   public galleryTags: GalleryTag[] = [];
-  public activeTag: GalleryTag = { id: 0, tagString: '' };
+  public activeTag: GalleryTag | null = null;
   public displayedItems: GalleryItem[] = [];
   public galleryId = 'my-gallery';
   public firstCarouselItemIndex = 0;
@@ -32,10 +32,12 @@ export class GalleryComponent implements OnInit {
    * Вызов бесконечного скролла
    */
   public onScroll(): void {
-    this.galleryService.getGalleryItems(this.activeTag, this.displayedItems.length, this.itemsPerScroll)
+    if (this.activeTag !== null){
+      this.galleryService.getGalleryItems(this.activeTag, this.displayedItems.length, this.itemsPerScroll)
       .subscribe((items: GalleryItem[]) => {
         this.displayedItems.push(...items);
       });
+    }
   }
 
   /**
