@@ -7,7 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ButtonComponent implements OnInit {
   public visibility = false;
-  @Input() urlImage: string;
+  @Input() urlImage = '';
 
   constructor() { }
 
