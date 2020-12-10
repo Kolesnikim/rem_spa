@@ -13,12 +13,10 @@ import { AuthService } from '../../../../core/services/authService/auth.service'
 })
 export class LoginComponent implements OnInit {
   form: FormGroup;
-  error: string;
-  loading: boolean;
+  error  = '';
+  loading = false;
 
-  constructor(private router: Router, private auth: AuthService) { }
-
-  ngOnInit(): void {
+  constructor(private router: Router, private auth: AuthService) {
     this.form = new FormGroup({
       login: new FormControl(null,
         [Validators.required, Validators.minLength(6)]
@@ -26,9 +24,13 @@ export class LoginComponent implements OnInit {
       password: new FormControl(null,
         [Validators.required, Validators.minLength(6)])
     });
+   }
+
+  ngOnInit(): void {
+
   }
 
-  submit($event: any): void {
+  submit($event: Event): void {
     $event.preventDefault();
     if (this.form.invalid) { return; }
 

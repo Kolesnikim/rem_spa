@@ -9,9 +9,10 @@ import { IUserInfo } from '../../../../core/interfaces/user-info';
   styleUrls: ['./profile.component.less']
 })
 export class ProfileComponent implements OnInit {
-  user: IUserInfo;
+  user: IUserInfo | null = null;
 
-  constructor(private http: HttpSettingsService, private auth: AuthService) { }
+  constructor(private http: HttpSettingsService, private auth: AuthService) {
+   }
 
   ngOnInit(): void {
     this.auth.currentUserSubject$.subscribe(userInfo => this.user = userInfo);
