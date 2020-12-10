@@ -9,5 +9,5 @@ export interface GalleryTag {
     /**
      *  tagString - наименование тега
      */
-    tagString: 'string';
+    tagString: string;
 }

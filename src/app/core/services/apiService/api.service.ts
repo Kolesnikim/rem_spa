@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../../environments/environment';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
@@ -21,7 +21,6 @@ export class ApiService {
   public get<T>(path: string, params: HttpParams = new HttpParams()): Observable<T> {
     return this.http.get<T>(`${environment.baseUrl}${path}`, { params })
       .pipe(catchError((err) => {
-        this.formatErrors(err);
         return throwError(err);
       }));
   }
@@ -36,8 +35,7 @@ export class ApiService {
       `${environment.baseUrl}${path}`,
       JSON.stringify(body)
     ).pipe(catchError((err) => {
-      this.formatErrors(err);
-      return throwError(err);
+        return throwError(err);
     }));
   }
 
@@ -51,8 +49,7 @@ export class ApiService {
       `${environment.baseUrl}${path}`,
       JSON.stringify(body)
     ).pipe(catchError((err) => {
-      this.formatErrors(err);
-      return throwError(err);
+        return throwError(err);
     }));
   }
 
@@ -64,12 +61,8 @@ export class ApiService {
     return this.http.delete<T>(
       `${environment.baseUrl}${path}`
     ).pipe(catchError((err) => {
-      this.formatErrors(err);
-      return throwError(err);
+        return throwError(err);
     }));
   }
 
-  private formatErrors(error: any): any {
-    return throwError(error.error);
-  }
 }
