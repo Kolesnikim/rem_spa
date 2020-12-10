@@ -20,9 +20,6 @@ export class InterestingPlacesComponent implements OnInit {
   public interestingPlaces: InterestingPlace[];
   public coordinates = [];
 
-  /**
-   * обработать событие клика по метки
-   */
   ngOnInit(): void {
     const onePlaceCoordinate = [];
 
