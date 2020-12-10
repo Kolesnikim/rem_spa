@@ -8,7 +8,7 @@ import { SponsorsService } from './services/sponsors.service';
 })
 export class SponsorsComponent implements OnInit {
   public idConference = 1;
-  public sponsors: Sponsor[];
+  public sponsors: Sponsor[] = [];
 
   constructor(private sponsorsService: SponsorsService) {}
 

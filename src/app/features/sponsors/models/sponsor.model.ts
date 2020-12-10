@@ -2,13 +2,13 @@
  * Описание спонсора
  */
 export class Sponsor {
-    public id: number;
-    public isHidden: boolean;
-    public logoUrl: string;
-    public webSite: string;
-    public title: string;
-    public text: string;
-    public conferenceId: number;
-    public sponsorTypeTag: string;
-    public photoUrl: null;
+    public id = 0;
+    public isHidden = false;
+    public logoUrl = '';
+    public webSite = '';
+    public title = '';
+    public text = '';
+    public conferenceId = 0;
+    public sponsorTypeTag = '';
+    public photoUrl: string | null = null;
 }
