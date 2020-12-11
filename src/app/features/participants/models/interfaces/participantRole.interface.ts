@@ -1,5 +1,5 @@
 /**
- * модель роли(тега) участников
+ * модель роли участников
  */
 export interface ParticipantRole {
     id: number;
