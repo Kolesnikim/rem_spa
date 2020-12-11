@@ -12,11 +12,11 @@ import { HttpSettingsService } from '../../services/httpService/http-settings.se
   providers: [AppSettingsService]
 })
 export class HeaderComponent implements OnInit {
-  menuItems: ActiveModule[];
-  menuPaths: string[];
-  language: string;
-  isAuthenticated: boolean;
-  isAuthEnabled: boolean;
+  public menuItems: ActiveModule[] = [];
+  public menuPaths: string[] = [];
+  public language = '';
+  public isAuthenticated = false;
+  public isAuthEnabled = false;
 
   constructor(private routingService: AppSettingsService, private auth: AuthService, private http: HttpSettingsService) {
   }
