@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
 import { Participant } from '../../models/participant.model';
 import { ParticipantsService } from '../../services/participants.service';
 @Component({
@@ -16,12 +15,11 @@ export class ParticipantDetailsComponent implements OnInit {
   public visibility = false;
 
 
-  constructor(private participantsServer: ParticipantsService, private route: ActivatedRoute, private routeSubscription: Subscription){
+  constructor(private participantsServer: ParticipantsService, private route: ActivatedRoute){
+    this.id = this.route.snapshot.params.id;
   }
 
   ngOnInit(): void {
-    this.routeSubscription = this.route.params.subscribe(params => this.id = params.id);
-
     this.participantsServer.getParticipantById(this.id).subscribe((participant: Participant) => {
       this.participant = participant;
       this.photoUrl = `url(${participant.photoUrl})`;
