@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Sponsor } from './models/sponsor.model';
+import { LogoSponsor } from './models/logosponsor.model';
 import { SponsorsService } from './services/sponsors.service';
 @Component({
   selector: 'app-sponsors',
@@ -8,12 +8,12 @@ import { SponsorsService } from './services/sponsors.service';
 })
 export class SponsorsComponent implements OnInit {
   private idConference = 1;
-  public sponsors: Sponsor[] = [];
+  public sponsors: LogoSponsor[] = [];
 
   constructor(private sponsorsService: SponsorsService) {}
 
   ngOnInit(): void {
-    this.sponsorsService.getAllSponsorsLogo(this.idConference).subscribe((sponsorsData: Sponsor[]) => {
+    this.sponsorsService.getAllSponsorsLogo(this.idConference).subscribe((sponsorsData: LogoSponsor[]) => {
       this.sponsors = sponsorsData;
     });
   }

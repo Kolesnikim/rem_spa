@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 import { Sponsor } from '../../models/sponsor.model';
 import { SponsorsService} from '../../services/sponsors.service';
 
@@ -12,15 +11,15 @@ import { SponsorsService} from '../../services/sponsors.service';
 export class SponsorDetailsComponent implements OnInit {
   public sponsor: Sponsor | null = null;
 
-  constructor(private sponsorsService: SponsorsService, private route: ActivatedRoute, private routeSubscription: Subscription){
+  constructor(private sponsorsService: SponsorsService, private route: ActivatedRoute){
+    this.getSponsor(this.route.snapshot.params.id);
   }
 
   ngOnInit(): void {
-    this.routeSubscription = this.route.params.subscribe((params: Params) => this.getSponsor(Number(params.id)));
   }
 
   /**
-   * Обработать смену id спонсора
+   * Получить информацию о спонсоре по id
    */
   private getSponsor(id: number): void {
     this.sponsorsService.getSponsorInfo(id).subscribe((sponsor: Sponsor) => {
