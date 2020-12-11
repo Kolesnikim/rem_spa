@@ -7,8 +7,8 @@ import { InterestingPlace } from '../../models/interesting-place.model';
   styleUrls: ['./interesting-place-card.component.scss']
 })
 export class InterestingPlaceCardComponent implements OnInit {
-  @Input() place: InterestingPlace;
-  @Input() id: string;
+  @Input() place: InterestingPlace | null = null;
+  @Input() id = '';
 
   constructor() {}
 

@@ -12,29 +12,27 @@ import { InterestingPlacesService } from './services/interesting-places.service'
 export class InterestingPlacesComponent implements OnInit {
 
   constructor(
-    private interestingOlacesService: InterestingPlacesService,
+    private interestingPlacesService: InterestingPlacesService,
     private vps: ViewportScroller
   ) { }
 
   public idConference = 1;
-  public interestingPlaces: InterestingPlace[];
-  public coordinates = [];
+  public interestingPlaces: InterestingPlace[] = [];
+  public coordinates: number[][] = [];
 
   ngOnInit(): void {
-    const onePlaceCoordinate = [];
 
-    this.interestingOlacesService.getInterestingPlaces(this.idConference)
+    this.interestingPlacesService.getInterestingPlaces(this.idConference)
     .subscribe((interestingPlases: InterestingPlace[]) => {
       this.interestingPlaces = interestingPlases;
 
       this.interestingPlaces.forEach(el => {
+        const onePlaceCoordinate: number[] = [];
         onePlaceCoordinate.push(el.latitude),
         onePlaceCoordinate.push(el.longitude);
         this.coordinates.push(onePlaceCoordinate);
       });
-
     });
-
   }
 
   /**

@@ -1,7 +1,7 @@
 /**
  * Описание interesting place
  */
-export class InterestingPlace {
+export interface InterestingPlace {
     id: number;
     tagsString: string;
     name: string;
