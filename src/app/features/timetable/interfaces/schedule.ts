@@ -1,11 +1,9 @@
-import {ISession} from './session';
-
+import {ISection} from './section';
 /**
  * Интерфейс расписания
  */
+
 export interface ISchedule {
-  id: 0;
-  title: string;
-  location: string;
-  sessions: ISession[];
+  date: Date;
+  sections: ISection[];
 }

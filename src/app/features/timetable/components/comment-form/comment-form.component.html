@@ -4,7 +4,7 @@
     <mat-form-field class="form-full-width" *ngIf="!username">
       <mat-label>Ваше имя</mat-label>
       <input matInput formControlName="name">
-      <mat-error *ngIf="form.get('name').touched && form.get('name').invalid">
+      <mat-error *ngIf="form?.get('name').touched && form?.get('name').invalid">
         <small>Это поле обязательно дя заполнения</small>
       </mat-error>
     </mat-form-field>
@@ -12,7 +12,7 @@
     <mat-form-field class="form-full-width">
       <mat-label>Ваш комментарий</mat-label>
       <textarea matInput formControlName="text"></textarea>
-      <mat-error *ngIf="form.get('text').touched && form.get('text').invalid">
+      <mat-error *ngIf="form?.get('text').touched && form?.get('text').invalid">
         <small>Это поле обязательно дя заполнения.</small>
       </mat-error>
     </mat-form-field>
@@ -24,7 +24,6 @@
         tickInterval="1"
         min="0"
         max="5">
-
       </mat-slider>
 
     <div class="button__container">

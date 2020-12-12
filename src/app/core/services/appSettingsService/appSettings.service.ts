@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActiveModule} from '../../models/active.module';
+import { ActiveModule } from '../../models/active.module';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +10,8 @@ export class AppSettingsService {
     new ActiveModule('Программа', 'timetable'),
     new ActiveModule('Избранное', 'favourites'),
     new ActiveModule('Фотогалерея', 'gallery'),
+    new ActiveModule('Участники', 'participants'),
+    new ActiveModule('Спонсоры', 'sponsors'),
     new ActiveModule('Документы', 'documents'),
     new ActiveModule('Профиль', 'user'),
     new ActiveModule('О приложении', 'about')];
