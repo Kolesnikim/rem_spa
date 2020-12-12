@@ -48,25 +48,23 @@
 }
 
 .documents_list-wrapper{
-    padding: 40px;
     display: flex;
     flex-wrap: wrap;
-    height: 100%;
-    flex-direction: column;
+    // flex-direction: column;
 }
 
 .list_item{
     list-style: none;
+    // max-width: 30%;
     a {
         display: block;
         position: relative;
         border: 1px solid lightblue;
         background-color: whitesmoke;
         border-radius: 5px;
-        max-width: 30%;
         margin: 10px;
         padding: 20px;
-        padding-left: 30px;
+        padding-left: 50px;
         text-align: center;
         text-decoration: none;
 

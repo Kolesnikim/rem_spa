@@ -1,26 +1,32 @@
 :host{
     background-color: #c6d4e7cc;
     flex: 1 0 auto;
+    padding: 20px;
 }
 .documents_list-wrapper{
-    padding: 40px;
     display: flex;
     flex-wrap: wrap;
     height: 100%;
-    flex-direction: column;
+    // flex-direction: column;
 }
-
+.title {
+    mat-icon{
+        float: left;
+        margin-right: 5px;
+    }
+}
 .list_item {
     list-style: none;
+    // max-width: 30%;
+    margin: 10px;
     a {
         display: block;
         position: relative;
         border: 1px solid lightblue;
         border-radius: 20px;
         background-color: whitesmoke;
-        max-width: 50%;
-        padding: 5px;
-        padding-left: 15px;
+        padding: 10px;
+        padding-left: 25px;
         text-align: center;
         text-decoration: none;
 
@@ -43,7 +49,7 @@
 
     .tag_icon{
         position: absolute;
-        top: 3px;
+        top: 7px;
         left: 5px;
         font-size: 24px;
         color: lightblue;

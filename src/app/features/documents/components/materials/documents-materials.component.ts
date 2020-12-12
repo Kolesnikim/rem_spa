@@ -7,6 +7,10 @@ import { DocumentsMaterial } from '../../models/documentsMaterial.model';
   selector: 'app-materials',
   template: `
 <div>
+  <div class='title'>
+    <mat-icon aria-hidden="false" class='tag_icon'>folder</mat-icon>
+    <h3>{{this.activeTabName}} / {{this.tagName}}:</h3>
+  </div>
   <ul class='documents_list-wrapper'>
     <li *ngFor="let item of materials " class='list_item'>
       <a class='documents_link' href={{item.link}} >
@@ -36,7 +40,6 @@ export class DocumentsMaterialsComponent implements OnInit {
     this.documentsService.getDocumentsMaterials(this.activeTabName, this.tagName, 0, this.itemsPerPage)
       .subscribe((items: DocumentsMaterial[]) => {
         this.materials = items;
-        console.log(this.materials);
       });
 
   }
