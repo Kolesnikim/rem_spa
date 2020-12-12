@@ -4,6 +4,7 @@
     "codelyzer"
   ],
   "rules": {
+    "no-any": true,
     "align": {
       "options": [
         "parameters",

@@ -6,13 +6,13 @@ import { ApiService } from '../../../../core/services/apiService/api.service';
 
 @Injectable()
 export class ScheduleService {
-  conferenceId: number;
+  conferenceId: number | undefined;
 
   constructor(
     private apiService: ApiService,
     private conference: ConferenceService) {
     this.conference.conferenceSubject$.subscribe(conf => {
-      this.conferenceId = conf.id;
+      this.conferenceId = conf?.id;
     });
   }
 

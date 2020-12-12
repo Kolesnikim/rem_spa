@@ -9,7 +9,7 @@ import { IPerformance } from '../../interfaces/performance';
   styleUrls: ['./performance.component.less']
 })
 export class PerformanceComponent implements OnInit {
-  performanceData: IPerformance;
+  performanceData: IPerformance | undefined;
 
   constructor(
     private performanceService: PerformanceService,

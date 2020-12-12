@@ -12,7 +12,7 @@ export class PerformanceService {
    * Метод, отвечающий за запрос данных о выступлении в зависимости от идентификатора,
    * переданного в качестве параметра
    */
-  public fetchPerformance(id): Observable<IPerformance> {
+  public fetchPerformance(id: number): Observable<IPerformance> {
     return this.apiService.get<IPerformance>(`schedule/session/${id}`);
   }
 }

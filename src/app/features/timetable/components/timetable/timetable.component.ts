@@ -4,7 +4,8 @@ import { ScheduleService } from '../../services/scheduleService/schedule.service
 import { formatDate } from '@angular/common';
 import { IPreviousData } from '../../interfaces/previous-data';
 import { IScheduleData } from '../../interfaces/schedule-data';
-import { ISessionsForTable } from '../../interfaces/sessions-for-table';
+import { ISchedule } from '../../interfaces/schedule';
+import { ISession } from '../../interfaces/session';
 
 @Component({
   selector: 'app-timetable',
@@ -12,8 +13,8 @@ import { ISessionsForTable } from '../../interfaces/sessions-for-table';
   styleUrls: ['./timetable.component.less']
 })
 export class TimetableComponent implements OnInit {
-  data: IScheduleData[];
-  prevData: IPreviousData[];
+  data: IScheduleData[] | undefined;
+  prevData: IPreviousData[] | undefined;
 
   constructor(
     private router: Router,
@@ -36,9 +37,9 @@ export class TimetableComponent implements OnInit {
    * Метод обрабатывающий запрос таким обазом, чтобы возвращаемое значение
    * имело поля даты, названий секций и выступлений
    */
-  public extractScheduleFromResponse(schedule): IPreviousData[] {
-    let dates;
-    let titles;
+  public extractScheduleFromResponse(schedule: ISchedule[]): IPreviousData[] {
+    let dates: string[];
+    let titles: string[][];
     let data;
 
     dates = schedule.map(date => formatDate(date.date, 'd MMMM', 'ru'));
@@ -57,13 +58,22 @@ export class TimetableComponent implements OnInit {
    * Хук, отвечающий за форматирование сессий таким образом, чтобы
    * выводилось построчное отображение массивами
    */
-  public extractSessions({sessions, topics}): ISessionsForTable[] {
-    const resultArray = [];
+  public extractSessions(schedule: IPreviousData): ISession[][] {
+    const emptySession: ISession = {
+      id: 0,
+      organization: '',
+      title: '',
+      location: '',
+      canBeFavorited: false,
+    };
+
+    const { sessions } = schedule;
+    const resultArray: ISession[][] = [];
     let needIterate = true;
     let externalIndex = 0;
     let limitIndex = 0;
-    let externalObject = {};
-    let start = null;
+    let externalArray: ISession[] = [];
+    let start: Date | undefined;
 
 
     while (needIterate) {
@@ -74,8 +84,11 @@ export class TimetableComponent implements OnInit {
 
         if (!start) {
           sessions.forEach(el => {
-            if (!start || start > el[externalIndex]?.startTime) {
-              start = el[externalIndex]?.startTime;
+            const date = el[externalIndex]?.startTime;
+            if (date) {
+              if (!start || start > date) {
+                start = date;
+              }
             }
           });
         }
@@ -84,27 +97,27 @@ export class TimetableComponent implements OnInit {
           if (sessions[i][externalIndex].startTime !== start) {
             const el = sessions[i].find(x => x?.startTime === start);
             if (el) {
-              externalObject[topics[i]] = el;
+              externalArray.push(el);
             } else {
-              externalObject[topics[i]] = {};
+              externalArray.push(emptySession);
             }
           } else {
-            externalObject[topics[i]] = sessions[i][externalIndex];
+            externalArray.push(sessions[i][externalIndex]);
           }
         } else {
           const el = sessions[i].find(x => x?.startTime === start);
           if (el) {
-            externalObject[topics[i]] = el;
+            externalArray.push(el);
           } else {
-            externalObject[topics[i]] = {};
+            externalArray.push(emptySession);
           }
         }
 
         if (i === (sessions.length - 1)) {
-          resultArray.push(externalObject);
+          resultArray.push(externalArray);
           externalIndex += 1;
-          externalObject = {};
-          start = null;
+          externalArray = [];
+          start = undefined;
         }
       }
 
@@ -118,7 +131,7 @@ export class TimetableComponent implements OnInit {
   /**
    * Метод, ответственный за ридерект на страницу выступленя
    */
-  public showPerformance(id): void {
+  public showPerformance(id: number): void {
     this.router.navigate(['/timetable', `performance`, `${id}`]);
   }
 }

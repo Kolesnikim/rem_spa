@@ -1,5 +1,4 @@
-
-import { ISessionsForTable } from './sessions-for-table';
+import { ISession } from './session';
 
 /**
  * Интерфейс расписания после вызова фугкции extractSessions
@@ -7,5 +6,5 @@ import { ISessionsForTable } from './sessions-for-table';
 export interface IScheduleData {
   date: string;
   topics: string[];
-  sessions: ISessionsForTable[];
+  sessions: ISession[][];
 }

@@ -11,7 +11,7 @@ import { ApiService } from '../apiService/api.service';
  */
 @Injectable()
 export class AuthService {
-  private readonly currentUserSubject = new BehaviorSubject<IUserInfo>(null);
+  private readonly currentUserSubject = new BehaviorSubject<IUserInfo | null>(null);
   private readonly isAuthenticated = new ReplaySubject<boolean>(1);
   public currentUserSubject$ = this.currentUserSubject.asObservable();
   public isAuthenticated$ = this.isAuthenticated.asObservable();

@@ -9,7 +9,7 @@ import { ApiService } from '../apiService/api.service';
   providedIn: CoreModule
 })
 export class ConferenceService {
-  private readonly conferenceSubject = new BehaviorSubject<IConference>(null);
+  private readonly conferenceSubject = new BehaviorSubject<IConference | null>(null);
   public conferenceSubject$ = this.conferenceSubject.asObservable();
 
   constructor(private apiService: ApiService) {}

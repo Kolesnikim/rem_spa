@@ -7,9 +7,9 @@ export interface ISession {
   id: number;
   organization: string;
   title: string;
-  startTime: string;
-  endTime: string;
+  startTime?: Date;
+  endTime?: Date;
   location: string;
   canBeFavorited: boolean;
-  speaker: ISpeaker;
+  speaker?: ISpeaker;
 }
