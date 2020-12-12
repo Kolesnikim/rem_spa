@@ -17,14 +17,14 @@ import { DocumentsService } from './services/documents.service';
         </ul>
       </nav>
     </div>
-    <div class='documents_list-wrapper'>
-          <div *ngFor="let tag of documentsTags" class='list_item'>
-            <a class='documents_link' routerLink="material/{{this.activeTab?.name}}/{{tag.name}}" [state]="{data: this.activeTab}">
-              <mat-icon aria-hidden="false" class='tag_icon'>folder</mat-icon>
+    <ul class='documents_list-wrapper'>
+          <li *ngFor="let tag of documentsTags" class='list_item'>
+            <a class='documents_link' routerLink="material/{{this.activeTab?.name}}/{{tag.name}}" >
+              <mat-icon aria-hidden="false" class='tag_icon'>source</mat-icon>
               <p>{{tag.name}} </p>
             </a>
-          </div>
-    </div>
+          </li>
+    </ul>
   </div>
   `,
   styleUrls: ['./documents.component.scss']

@@ -56,18 +56,29 @@
 }
 
 .list_item{
-    position: relative;
-    border: 1px solid lightblue;
-    background-color: whitesmoke;
-    max-width: 30%;
-    margin: 10px;
-    padding: 20px;
-    padding-left: 25px;
-    text-align: center;
-    vertical-align: middle;
+    list-style: none;
+    a {
+        display: block;
+        position: relative;
+        border: 1px solid lightblue;
+        background-color: whitesmoke;
+        border-radius: 5px;
+        max-width: 30%;
+        margin: 10px;
+        padding: 20px;
+        padding-left: 30px;
+        text-align: center;
+        text-decoration: none;
+
+        &:hover{
+            border: none;
+            box-shadow: 10px 10px 15px -10px grey;
+        }
+    }
 
     p {
         margin: 0;
+        color: black;
     }
 }
 

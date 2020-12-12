@@ -2,11 +2,11 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { DocumentsComponent } from './documents.component';
-import { MaterialsComponent } from './components/materials/materials.component';
+import { DocumentsMaterialsComponent } from './components/materials/documents-materials.component';
 
 const routes: Routes = [
   { path: '', component: DocumentsComponent },
-  { path: 'material/:tab/:name', component: MaterialsComponent}
+  { path: 'material/:tab/:name', component: DocumentsMaterialsComponent}
 ];
 
 @NgModule({
