@@ -11,6 +11,6 @@ export class CommentsComponent {
   constructor() {
   }
 
-  @Input() comments: IComment[];
+  @Input() comments: IComment[] | undefined = undefined;
 }
 

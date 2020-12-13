@@ -3,6 +3,7 @@ import { environment } from '../../../../environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 /**
  * Вспомогательный сервис для выполнения запросов к api бекенда
@@ -11,7 +12,9 @@ import { catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ApiService {
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private snackbar: MatSnackBar) { }
 
   /**
    * Выполнить get запрос
@@ -49,7 +52,7 @@ export class ApiService {
   public post<T>(path: string, body: object = {}): Observable<T> {
     return this.http.post<T>(
       `${environment.baseUrl}${path}`,
-      JSON.stringify(body)
+      body
     ).pipe(catchError((err) => {
       this.formatErrors(err);
       return throwError(err);
@@ -69,7 +72,10 @@ export class ApiService {
     }));
   }
 
-  private formatErrors(error: any): any {
-    return throwError(error.error);
+  private formatErrors(error: Error): Observable<void> {
+    this.snackbar.open('Что-то произошло. Попробуйте позднее', 'Закрыть', {
+      duration: 2000,
+    });
+    return throwError(error);
   }
 }

@@ -1,4 +1,5 @@
 import { ISpeaker } from './speaker';
+import { IComment } from './comment';
 
 /**
  * Интерфейс выступления
@@ -46,15 +47,5 @@ export interface IPerformance {
   thirdLinkVisible: boolean;
   fourthLinkVisible: boolean;
   fifthLinkVisible: boolean;
-  comments: [
-    {
-      id: string;
-      name: string;
-      organization: string;
-      userPhotoUrl: string;
-      text: string;
-      number: number;
-      dateTime: Date
-    }
-  ];
+  comments: IComment[];
 }

@@ -1,35 +1,69 @@
 import { Injectable } from '@angular/core';
 import { ActiveModule } from '../../models/active.module';
-import { BehaviorSubject, Observable, throwError} from 'rxjs';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { HttpParams } from '@angular/common/http';
 import { IApplicationSettings } from '../../interfaces/application-settings';
-import { environment } from '../../../../environments/environment';
-import { catchError, map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { ConferenceService } from '../conferenceService/conference.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { ApiService } from '../apiService/api.service';
+import { IConference } from '../../interfaces/conference';
 
 @Injectable()
 export class AppSettingsService {
 
   constructor(
     private conference: ConferenceService,
-    private http: HttpClient,
-    private snackbar: MatSnackBar) {
+    private apiService: ApiService) {
     this.init();
   }
-  private readonly applicationSettingsSubject = new BehaviorSubject<IApplicationSettings>(null);
-  private readonly activatedModulesSubject = new BehaviorSubject<ActiveModule[]>(null);
+  private readonly applicationSettingsSubject = new BehaviorSubject<IApplicationSettings | null>(null);
+  private readonly activatedModulesSubject = new BehaviorSubject<ActiveModule[] | null>(null);
 
   public applicationSettingsSubject$ = this.applicationSettingsSubject.asObservable();
   public activatedModulesSubject$ = this.activatedModulesSubject.asObservable();
 
-  private availableRoutes: ActiveModule[] = [
-    new ActiveModule('Программа', 'schedule'),
-    new ActiveModule('Избранное', 'favorites'),
-    new ActiveModule('Фотогалерея', 'photogallery'),
-    new ActiveModule('Документы', 'documents'),
-    new ActiveModule('Профиль', 'user'),
-    new ActiveModule('О приложении', 'about')];
+  private availableRoutes: ActiveModule[] = [];
+
+
+  private static convertToActivateModule(res: IApplicationSettings): ActiveModule[] {
+    const activatedModulesRoutes = [];
+    const activatedModulesNameplates = [];
+
+    type Keys = keyof IApplicationSettings;
+
+    for (const key in res) {
+      if (res.hasOwnProperty(key) && /show/.test(key)) {
+        const typedKey: Keys = key as Keys;
+        const showedModule = res[typedKey];
+        if (showedModule) {
+          activatedModulesRoutes.push(key.slice(4).toLowerCase());
+        }
+      }
+    }
+
+    for (const key in res) {
+      if (res.hasOwnProperty(key) && /Nameplate/.test(key)) {
+        const typedKey: Keys = key as Keys;
+        const showedModule = res[typedKey];
+        if (showedModule) {
+          activatedModulesNameplates.push({[key.toLowerCase()]: res[typedKey]});
+        }
+      }
+    }
+
+    const newRoutes = [];
+    for (const activatedModule of activatedModulesRoutes) {
+      for (const modulesNameplate of activatedModulesNameplates) {
+        const regExp = new RegExp(`${activatedModule}`);
+        const objectKey = Object.keys(modulesNameplate)[0];
+
+        if (regExp.test(objectKey)) {
+          newRoutes.push(new ActiveModule(modulesNameplate[objectKey].toString(), activatedModule));
+        }
+      }
+    }
+    return newRoutes;
+  }
 
   /**
    * Метод, запрашивающий данные о конференции и настройках при иницилизации
@@ -39,31 +73,6 @@ export class AppSettingsService {
       this.fetchApplicationSettings().subscribe();
     });
   }
-
-
-  private convertToActivateModule(res): ActiveModule[] {
-    const activatedModules = [];
-
-    for (const key in res) {
-      if (res.hasOwnProperty(key) && /show/.test(key)) {
-        if (res[key]) {
-          activatedModules.push(key.slice(4).toLowerCase());
-        }
-      }
-    }
-
-    const newRoutes = [];
-    for (const activatedModule of activatedModules) {
-      for (const availableRoute of this.availableRoutes) {
-        if (availableRoute.Path === activatedModule) {
-          newRoutes.push(availableRoute);
-        }
-      }
-    }
-
-    return newRoutes;
-  }
-
 
   /**
    * Получить список доступных модулей
@@ -77,23 +86,14 @@ export class AppSettingsService {
    * Метод, отвечающий за запрос настроек приложения
    */
   public fetchApplicationSettings(): Observable<void> {
-    const options = { params: null};
-
-    this.conference.conferenceSubject$.subscribe(conference => {
-      options.params = new HttpParams().set('conferenceId', `${conference.id}`);
-    });
-    return this.http
-      .get<IApplicationSettings>(`${environment.baseUrl}general-settings/get-general-settings`, options)
+    let conference: IConference | undefined;
+    this.conference.conferenceSubject$.subscribe(conf => conference = conf);
+    return this.apiService
+      .get<IApplicationSettings>('general-settings/get-general-settings', new HttpParams().set('conferenceId', `${conference?.id}`))
       .pipe(
         map( res => {
-          this.activatedModulesSubject.next(this.convertToActivateModule(res));
+          this.activatedModulesSubject.next(AppSettingsService.convertToActivateModule(res));
           this.applicationSettingsSubject.next(res);
-        }),
-        catchError((err) => {
-          this.snackbar.open('Что-то произошло. Попробуйте позднее', 'Закрыть', {
-            duration: 2000,
-          });
-          return throwError(err);
         }));
   }
 }

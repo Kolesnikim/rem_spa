@@ -9,7 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LIGHTBOX_CONFIG } from 'ng-gallery/lightbox';
 import { HttpSettingsService } from './core/services/httpService/http-settings.service';
 import { ConferenceService } from './core/services/conferenceService/conference.service';
-import {registerLocaleData} from '@angular/common';
+import { registerLocaleData } from '@angular/common';
 import localeRu from '@angular/common/locales/ru';
 import { AppSettingsService } from './core/services/appSettingsService/appSettings.service';
 

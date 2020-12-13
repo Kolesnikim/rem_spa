@@ -9,16 +9,18 @@ import { IComment } from '../../interfaces/comment';
   styleUrls: ['./comment-form.component.less']
 })
 export class CommentFormComponent implements OnInit {
-  form: FormGroup;
-  username: string;
-  error: string;
-  loading: boolean;
+  form: FormGroup | undefined;
+  username: string | undefined;
+  text: string | undefined;
+  number: number | undefined;
+  error: string | undefined;
+  loading: boolean | undefined;
 
   @Output() FormSubmit: EventEmitter<IComment> = new EventEmitter();
 
   constructor(private auth: AuthService) {
     this.auth.currentUserSubject$.subscribe(
-      user => this.username = user.fullName
+      user => this.username = user?.fullName
     );
   }
 
@@ -28,8 +30,8 @@ export class CommentFormComponent implements OnInit {
   ngOnInit(): void {
     this.form = new FormGroup({
       name: new FormControl(this.username, Validators.required),
-      text: new FormControl(null, Validators.required),
-      number: new FormControl(0, Validators.required),
+      text: new FormControl(this.text, Validators.required),
+      number: new FormControl(this.number, Validators.required),
     });
   }
 
@@ -40,9 +42,14 @@ export class CommentFormComponent implements OnInit {
   public submitForm($event: Event): void {
     $event.preventDefault();
 
+    const formObject: IComment = this.form?.value;
     // tslint:disable-next-line:variable-name
-    const { name, text, number } = this.form.value;
-    const emittedComment = this.username ? { text, number } : { name, text, number };
+    const { name, text, number } = formObject;
+
+    const emittedComment: IComment = this.username
+      ? { text, number, sessionId: 0 }
+      : { name, text, number, sessionId: 0 };
+
     this.FormSubmit.emit(emittedComment);
   }
 }

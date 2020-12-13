@@ -1,5 +1,8 @@
+/**
+ * Интерфейс данных о конференции
+ */
 export interface IConference {
-  id: 0;
+  id: number;
   logoPath: string;
   title: string;
 }

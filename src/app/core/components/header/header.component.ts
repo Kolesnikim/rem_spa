@@ -4,6 +4,7 @@ import { ActiveModule } from '../../models/active.module';
 import { AuthService } from '../../services/authService/auth.service';
 import { HttpSettingsService } from '../../services/httpService/http-settings.service';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -13,16 +14,16 @@ import { Observable } from 'rxjs';
   providers: [AppSettingsService]
 })
 export class HeaderComponent implements OnInit {
-  menuItems: Observable<ActiveModule[]>;
-  menuPaths: string[];
-  language: string;
-  isAuthenticated: boolean;
-  isAuthEnabled: boolean;
+  public menuItems: Observable<ActiveModule[] | null> | undefined;
+  public language = '';
+  public isAuthenticated = false;
+  public isAuthEnabled = false;
 
   constructor(
     private auth: AuthService,
     private http: HttpSettingsService,
-    private appSettings: AppSettingsService) {
+    private appSettings: AppSettingsService,
+    private router: Router) {
   }
 
   ngOnInit(): void {
@@ -33,8 +34,12 @@ export class HeaderComponent implements OnInit {
     this.menuItems = this.appSettings.activatedModulesSubject$;
   }
 
-  /**
-   * присваивает список элементов меню
-   */
+  public logout(module: ActiveModule, event: Event): void {
+    if (module.Path === 'logout') {
+      event.preventDefault();
+      this.router.navigate(['/user', 'login']);
+      this.auth.logout().subscribe();
+    }
+  }
 
 }

@@ -17,7 +17,7 @@ export class ActiveModulesGuard implements CanActivate {
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
         return this.appSettingsService.activatedModulesSubject$
           .pipe(switchMap(value => {
-            return of(value.findIndex(el => el.Path === route.url.toString()) !== -1);
+            return of(value?.findIndex(el => el.Path === route.url.toString()) !== -1);
           }));
     }
 }

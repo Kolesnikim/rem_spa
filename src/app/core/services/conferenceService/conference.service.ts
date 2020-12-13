@@ -1,35 +1,24 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../../environments/environment';
-import { Observable, BehaviorSubject, throwError, ReplaySubject } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { IConference } from '../../interfaces/conference';
-import { catchError, map } from 'rxjs/operators';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { map } from 'rxjs/operators';
+import { ApiService } from '../apiService/api.service';
 
 @Injectable()
 export class ConferenceService {
-  public url = environment.baseUrl;
-  private readonly conferenceSubject = new BehaviorSubject<IConference>(null);
+  private readonly conferenceSubject = new BehaviorSubject<IConference | undefined>(undefined);
   public conferenceSubject$ = this.conferenceSubject.asObservable();
 
-  constructor(
-    private http: HttpClient,
-    private snackbar: MatSnackBar) {}
+  constructor(private apiService: ApiService) {}
 
   /**
    * Метод, отвечающий за запрос данных о конференции
    * Вызывается при старте в APP_INITIALIZER
    */
-  public fetchConference(): Observable<void> {
-    return this.http.get<IConference>(`${this.url}conference/get-conference`)
+  public fetchConference(): Observable<void | IConference> {
+    return this.apiService.get<IConference>('conference/get-conference')
       .pipe(map(conference => {
         this.conferenceSubject.next(conference);
-      }),
-        catchError((err) => {
-          this.snackbar.open('Что-то произошло. Попробуйте позднее', 'Закрыть', {
-            duration: 2000,
-          });
-          return throwError(err);
-        }));
+      }));
   }
 }
