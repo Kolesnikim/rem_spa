@@ -25,6 +25,9 @@ export class AppSettingsService {
   private availableRoutes: ActiveModule[] = [];
 
 
+  /**
+   * Метод, извлекающий из настроек приложения доступные модули
+   */
   private static convertToActivateModule(res: IApplicationSettings): ActiveModule[] {
     const activatedModulesRoutes = [];
     const activatedModulesNameplates = [];

@@ -34,6 +34,9 @@ export class HeaderComponent implements OnInit {
     this.menuItems = this.appSettings.activatedModulesSubject$;
   }
 
+  /**
+   * Метод, отвечающий за выход из профиля при нажатии кнопки 'Выход'
+   */
   public logout(module: ActiveModule, event: Event): void {
     if (module.Path === 'logout') {
       event.preventDefault();
