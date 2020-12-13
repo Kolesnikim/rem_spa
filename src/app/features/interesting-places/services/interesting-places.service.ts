@@ -12,6 +12,11 @@ export class InterestingPlacesService {
 
   constructor(private apiService: ApiService) {}
 
+/**
+ * Получить все интересные места
+ * @param id -id конференции
+ * @return  -InterestingPlace[]- массив интересных мест
+ */
   public getInterestingPlaces(id: number): Observable<InterestingPlace[]> {
     const result = this.apiService.get<InterestingPlaces>(`interesting-place/by-conference-id/${id}`);
     return result.pipe(map(data =>  data.entities));

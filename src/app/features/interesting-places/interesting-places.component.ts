@@ -51,6 +51,7 @@ export class InterestingPlacesComponent implements OnInit {
 
   /**
    * Обработать событие клика по метке на карте
+   * @param id - идентификатор места
    */
   public onPlacemarkClick(id: string): void {
     this.vps.scrollToAnchor(id);
