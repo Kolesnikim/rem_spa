@@ -17,10 +17,11 @@ export class HttpSettingsService {
   /**
    * Метод, отвечающий за запрос данных о возможности авторизации
    */
-  public fetchAuthEnable(): Observable<void> {
+  public fetchAuthEnable(): Observable<AuthEnable> {
     return this.apiService.get<AuthEnable>('general-settings/get-auth-settings')
       .pipe(map( res => {
           this.authSettingsSubject.next(res.isAuthenticationEnabled);
+          return res;
       }));
   }
 }

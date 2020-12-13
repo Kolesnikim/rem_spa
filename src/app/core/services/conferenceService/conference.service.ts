@@ -18,10 +18,12 @@ export class ConferenceService {
    * Метод, отвечающий за запрос данных о конференции
    * Вызывается при старте в APP_INITIALIZER
    */
-  public fetchConference(): Observable<void | Conference> {
+  public fetchConference(): Observable<Conference> {
     return this.apiService.get<Conference>('conference/get-conference')
       .pipe(map(conference => {
         this.conferenceSubject.next(conference);
+
+        return conference;
       }));
   }
 }
