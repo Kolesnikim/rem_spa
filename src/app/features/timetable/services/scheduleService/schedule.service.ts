@@ -1,25 +1,26 @@
 import { Injectable } from '@angular/core';
-import {TimetableModule} from '../../timetable.module';
-import {HttpClient} from '@angular/common/http';
-import {BehaviorSubject, Observable} from 'rxjs';
-import {HttpSettingsService} from '../../../../core/services/httpService/http-settings.service';
-import {environment} from '../../../../../environments/environment';
+import { Observable } from 'rxjs';
+import { ConferenceService } from '../../../../core/services/conferenceService/conference.service';
+import { Schedule } from '../../interfaces/schedule';
+import { ApiService } from '../../../../core/services/apiService/api.service';
 
-@Injectable({
-  providedIn: TimetableModule
-})
+@Injectable()
 export class ScheduleService {
-  // schedule: BehaviorSubject<any>;
-  conferenceId: number;
-  baseUrl = environment.baseUrl;
+  conferenceId: number | undefined;
 
-  constructor(private http: HttpClient, private httpSettings: HttpSettingsService) {
-    // this.httpSettings.getConference.subscribe(conf => this.conferenceId = conf.id);
-    // this.schedule = new BehaviorSubject<any>(null);
+  constructor(
+    private apiService: ApiService,
+    private conference: ConferenceService) {
+    this.conference.conferenceSubject$.subscribe(conf => {
+      this.conferenceId = conf?.id;
+    });
   }
 
-  // public fetchSchedule(): Observable<void> {
-  //   return this.http.get<any>(`${this.baseUrl}schedule/conference/${this.conferenceId}`);
-  //     .pipe(map());
-  // }
+  /**
+   * Метод, отвечающий за запрос расписания по конкретной конференции.
+   * Возвращает неотформатированные данные.
+   */
+  public fetchSchedule(): Observable<Schedule[]> {
+    return this.apiService.get<Schedule[]>(`schedule/conference/${this.conferenceId}`);
+  }
 }
