@@ -13,11 +13,10 @@ import { Observable } from 'rxjs';
   providers: [AppSettingsService]
 })
 export class HeaderComponent implements OnInit {
-  menuItems: Observable<ActiveModule[]>;
-  menuPaths: string[];
-  language: string;
-  isAuthenticated: boolean;
-  isAuthEnabled: boolean;
+  public menuItems: Observable<ActiveModule[] | null> | undefined;
+  public language = '';
+  public isAuthenticated = false;
+  public isAuthEnabled = false;
 
   constructor(
     private auth: AuthService,
@@ -32,9 +31,5 @@ export class HeaderComponent implements OnInit {
     });
     this.menuItems = this.appSettings.activatedModulesSubject$;
   }
-
-  /**
-   * присваивает список элементов меню
-   */
 
 }
