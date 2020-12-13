@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpSettingsService } from '../../../../core/services/httpService/http-settings.service';
 import { AuthService } from '../../../../core/services/authService/auth.service';
-import { IUserInfo } from '../../../../core/interfaces/user-info';
+import { UserInfo } from '../../../../core/interfaces/user-info';
 
 @Component({
   selector: 'app-profile',
@@ -9,7 +9,7 @@ import { IUserInfo } from '../../../../core/interfaces/user-info';
   styleUrls: ['./profile.component.less']
 })
 export class ProfileComponent implements OnInit {
-  user: IUserInfo | null = null;
+  user: UserInfo | null = null;
 
   constructor(private http: HttpSettingsService, private auth: AuthService) {
    }

@@ -1,7 +1,7 @@
 /**
  * Интерфейс комментария к выступлению
  */
-export interface IComment {
+export interface Comment {
   id: string;
   name: string;
   organization: string;

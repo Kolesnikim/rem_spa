@@ -1,9 +1,9 @@
-import { ISpeaker } from './speaker';
+import { Speaker } from './speaker';
 
 /**
  * Интерфейс выступления на конференции
  */
-export interface ISession {
+export interface Session {
   id: number;
   organization: string;
   title: string;
@@ -11,5 +11,5 @@ export interface ISession {
   endTime?: Date;
   location: string;
   canBeFavorited: boolean;
-  speaker?: ISpeaker;
+  speaker?: Speaker;
 }

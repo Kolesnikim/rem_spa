@@ -1,14 +1,14 @@
-import { ISpeaker } from './speaker';
-import { IComment } from './comment';
+import { Speaker } from './speaker';
+import { Comment } from './comment';
 
 /**
  * Интерфейс выступления
  */
-export interface IPerformance {
+export interface Performance {
   id: number;
   organization: string;
   section: string;
-  speaker: ISpeaker;
+  speaker: Speaker;
   title: string;
   startTime: Date;
   endTime: Date;
@@ -47,5 +47,5 @@ export interface IPerformance {
   thirdLinkVisible: boolean;
   fourthLinkVisible: boolean;
   fifthLinkVisible: boolean;
-  comments: IComment[];
+  comments: Comment[];
 }
