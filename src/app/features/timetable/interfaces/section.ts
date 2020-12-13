@@ -1,8 +1,8 @@
-import { ISession } from './session';
+import { Session } from './session';
 
-export interface ISection {
+export interface Section {
   id: number;
   location: string;
   title: string;
-  sessions: ISession[];
+  sessions: Session[];
 }

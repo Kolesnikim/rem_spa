@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PerformanceService } from '../../services/performanceService/performance.service';
 import { ActivatedRoute } from '@angular/router';
-import { IPerformance } from '../../interfaces/performance';
-import { IComment } from '../../interfaces/comment';
+import { Performance } from '../../interfaces/performance';
+import { Comment } from '../../interfaces/comment';
 
 @Component({
   selector: 'app-performance',
@@ -10,7 +10,7 @@ import { IComment } from '../../interfaces/comment';
   styleUrls: ['./performance.component.less']
 })
 export class PerformanceComponent implements OnInit {
-  performanceData: IPerformance | undefined;
+  performanceData: Performance | undefined;
   id = 0;
 
   constructor(
@@ -34,7 +34,7 @@ export class PerformanceComponent implements OnInit {
    * Метод, вызываемый при отправке при подтверждении формы
    * При отправке формы подписывается на изменения в данных выступления
    */
-  public postComment(data: IComment): void {
+  public postComment(data: Comment): void {
     const response = {...data, sessionId: this.id};
 
     if (response.name) {

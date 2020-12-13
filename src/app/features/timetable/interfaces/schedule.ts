@@ -1,9 +1,9 @@
-import {ISection} from './section';
+import { Section } from './section';
 /**
  * Интерфейс расписания
  */
 
-export interface ISchedule {
+export interface Schedule {
   date: Date;
-  sections: ISection[];
+  sections: Section[];
 }

@@ -1,8 +1,7 @@
-
 /**
- * Интерфейс комментария
+ * Интерфейс комментария к выступлению
  */
-export interface IComment {
+export interface Comment {
   sessionId: number;
   name?: string;
   organization?: string;

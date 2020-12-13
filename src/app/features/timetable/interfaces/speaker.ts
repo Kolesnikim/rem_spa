@@ -1,7 +1,7 @@
 /**
  * Интерфейс выступающего на конференции
  */
-export interface ISpeaker {
+export interface Speaker {
   name: string;
   photoUrl: string;
 }

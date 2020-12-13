@@ -1,7 +1,7 @@
 /**
  * Интерфейс информации о авторизованном юзере
  */
-export interface IUserInfo {
+export interface UserInfo {
   additionalInfo: string;
   department: string;
   email: string;
