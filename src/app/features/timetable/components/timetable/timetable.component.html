@@ -1,8 +1,8 @@
 <div class="program-container">
   <h1 class="heading__primary">Программа</h1>
 </div>
-<div class="table-container mat-elevation-z8" *ngIf="data; else spinnerContainer">
-  <mat-table [dataSource]="table.sessions" *ngFor="let table of data; let i = index;">
+<div class="table-container mat-elevation-z8" *ngIf="dataForSchedule; else spinnerContainer">
+  <mat-table [dataSource]="table.sessions" *ngFor="let table of dataForSchedule; let i = index;">
     <ng-container [matColumnDef]="topic" *ngFor="let topic of table.topics; let j = index; ">
       <mat-header-cell class="headers__group"  *matHeaderCellDef>
         <h3 class="heading__theme">{{topic}}</h3>

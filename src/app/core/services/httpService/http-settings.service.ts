@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { IAuthEnable } from '../../interfaces/auth-enable';
+import { AuthEnable } from '../../interfaces/auth-enable';
 import { ApiService } from '../apiService/api.service';
 
 /**
@@ -17,10 +17,11 @@ export class HttpSettingsService {
   /**
    * Метод, отвечающий за запрос данных о возможности авторизации
    */
-  public fetchAuthEnable(): Observable<void> {
-    return this.apiService.get<IAuthEnable>('general-settings/get-auth-settings')
+  public fetchAuthEnable(): Observable<AuthEnable> {
+    return this.apiService.get<AuthEnable>('general-settings/get-auth-settings')
       .pipe(map( res => {
           this.authSettingsSubject.next(res.isAuthenticationEnabled);
+          return res;
       }));
   }
 }

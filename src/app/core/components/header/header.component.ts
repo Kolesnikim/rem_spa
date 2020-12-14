@@ -10,8 +10,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.less'],
-  providers: [AppSettingsService]
+  styleUrls: ['./header.component.less']
 })
 export class HeaderComponent implements OnInit {
   public menuItems: Observable<ActiveModule[] | null> | undefined;

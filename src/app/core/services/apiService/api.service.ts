@@ -72,10 +72,9 @@ export class ApiService {
     }));
   }
 
-  private formatErrors(error: Error): Observable<void> {
+  private formatErrors(error: Error): void {
     this.snackbar.open('Что-то произошло. Попробуйте позднее', 'Закрыть', {
       duration: 2000,
     });
-    return throwError(error);
   }
 }

@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AuthService } from '../../../../core/services/authService/auth.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { IComment } from '../../interfaces/comment';
+import { Comment } from '../../interfaces/comment';
 
 @Component({
   selector: 'app-comment-form',
@@ -16,7 +16,7 @@ export class CommentFormComponent implements OnInit {
   error: string | undefined;
   loading: boolean | undefined;
 
-  @Output() FormSubmit: EventEmitter<IComment> = new EventEmitter();
+  @Output() FormSubmit: EventEmitter<Comment> = new EventEmitter();
 
   constructor(private auth: AuthService) {
     this.auth.currentUserSubject$.subscribe(
@@ -42,11 +42,11 @@ export class CommentFormComponent implements OnInit {
   public submitForm($event: Event): void {
     $event.preventDefault();
 
-    const formObject: IComment = this.form?.value;
+    const formObject: Comment = this.form?.value;
     // tslint:disable-next-line:variable-name
     const { name, text, number } = formObject;
 
-    const emittedComment: IComment = this.username
+    const emittedComment: Comment = this.username
       ? { text, number, sessionId: 0 }
       : { name, text, number, sessionId: 0 };
 

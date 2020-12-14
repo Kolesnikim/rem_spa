@@ -6,7 +6,7 @@ import { IApplicationSettings } from '../../interfaces/application-settings';
 import { map } from 'rxjs/operators';
 import { ConferenceService } from '../conferenceService/conference.service';
 import { ApiService } from '../apiService/api.service';
-import { IConference } from '../../interfaces/conference';
+import { Conference } from '../../interfaces/conference';
 
 @Injectable()
 export class AppSettingsService {
@@ -89,7 +89,7 @@ export class AppSettingsService {
    * Метод, отвечающий за запрос настроек приложения
    */
   public fetchApplicationSettings(): Observable<void> {
-    let conference: IConference | undefined;
+    let conference: Conference | undefined;
     this.conference.conferenceSubject$.subscribe(conf => conference = conf);
     return this.apiService
       .get<IApplicationSettings>('general-settings/get-general-settings', new HttpParams().set('conferenceId', `${conference?.id}`))

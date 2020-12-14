@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, ReplaySubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { IUserInfo } from '../../interfaces/user-info';
+import { UserInfo } from '../../interfaces/user-info';
 import { ApiService } from '../apiService/api.service';
 
 /**
@@ -11,8 +11,8 @@ import { ApiService } from '../apiService/api.service';
  */
 @Injectable()
 export class AuthService {
-  private readonly currentUserSubject = new BehaviorSubject<IUserInfo | null>(null);
-  private readonly isAuthenticated = new ReplaySubject<boolean>();
+  private readonly currentUserSubject = new BehaviorSubject<UserInfo | null>(null);
+  private readonly isAuthenticated = new ReplaySubject<boolean>(1);
   public currentUserSubject$ = this.currentUserSubject.asObservable();
   public isAuthenticated$ = this.isAuthenticated.asObservable();
 
@@ -45,7 +45,7 @@ export class AuthService {
    * Метод, отвечающий за запрос данных о пользователе после авторизации
    */
   public fetchUserInfo(): Observable<void> {
-    return this.apiService.get<IUserInfo>('account/info')
+    return this.apiService.get<UserInfo>('account/info')
       .pipe(map(user => {
         this.currentUserSubject.next(user);
       }));

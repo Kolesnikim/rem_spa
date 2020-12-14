@@ -1,10 +1,10 @@
-import { ISession } from './session';
+import { Session } from './session';
 
 /**
  * Интерфейс расписания после вызова фугкции extractScheduleFromResponse
  */
-export interface IPreviousData {
+export interface PreviousDataForSchedule {
   date: string;
   topics: string[];
-  sessions: ISession[][];
+  sessions: Session[][];
 }
