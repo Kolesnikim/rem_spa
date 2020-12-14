@@ -50,12 +50,10 @@
 .documents_list-wrapper{
     display: flex;
     flex-wrap: wrap;
-    // flex-direction: column;
 }
 
 .list_item{
     list-style: none;
-    // max-width: 30%;
     a {
         display: block;
         position: relative;

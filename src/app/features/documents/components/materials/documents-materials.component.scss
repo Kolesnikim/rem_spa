@@ -7,7 +7,6 @@
     display: flex;
     flex-wrap: wrap;
     height: 100%;
-    // flex-direction: column;
 }
 .title {
     mat-icon{
@@ -17,7 +16,6 @@
 }
 .list_item {
     list-style: none;
-    // max-width: 30%;
     margin: 10px;
     a {
         display: block;
@@ -31,7 +29,6 @@
         text-decoration: none;
 
         &:hover{
-            // border-color: rgb(95, 163, 185) ;
             border:none;
             background-color: rgb(241, 239, 239);
             box-shadow: 10px 10px 15px -10px grey;

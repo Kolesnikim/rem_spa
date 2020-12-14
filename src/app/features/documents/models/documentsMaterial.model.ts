@@ -1,3 +1,6 @@
+/**
+ * Описание материалов в библиотеке
+ */
 export interface DocumentsMaterial {
     id: number;
     name: string;
