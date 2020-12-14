@@ -22,23 +22,15 @@ export class PerformanceService {
    * Метод, отвечающий за отправку анонимного комментария на сервер
    * При успешном выполнении запрашивает обновленные данные о выступлении
    */
-  public postAnonymousComment(comment: Comment): Observable<void> {
-    const id = comment.sessionId;
-    return this.apiService.post<Comment>('schedule/post-anonymous-comment-to-session', comment)
-      .pipe(map(() => {
-      this.fetchPerformance(id).subscribe();
-    }));
+  public postAnonymousComment(comment: Comment): Observable<Comment> {
+    return this.apiService.post<Comment>('schedule/post-anonymous-comment-to-session', comment);
   }
 
   /**
    * Метод, отвечающий за отправку комментария на сервер от авторизованного пользователя
    * При успешном выполнении запрашивает обновленные данные о выступлении
    */
-  public postComment(comment: Comment): Observable<void> {
-    const id = comment.sessionId;
-    return this.apiService.post<Comment>('schedule/post-comment-to-session', comment)
-      .pipe(map(() => {
-        this.fetchPerformance(id).subscribe();
-      }));
+  public postComment(comment: Comment): Observable<Comment> {
+    return this.apiService.post<Comment>('schedule/post-comment-to-session', comment);
   }
 }

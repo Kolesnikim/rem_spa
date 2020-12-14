@@ -25,6 +25,12 @@ export class PerformanceComponent implements OnInit {
     this.router.params.subscribe(params => {
       this.performanceService.fetchPerformance(params.id).subscribe(performance => {
         this.performanceData = performance;
+        this.performanceData.comments = this.performanceData.comments
+          .sort((a, b) => {
+            const dateOne = a?.dateTime ?? Date.now();
+            const dateTwo = b?.dateTime ?? Date.now();
+            return new Date(dateOne).getTime() - new Date(dateTwo).getTime();
+          });
         this.id = performance.id;
       });
     });
@@ -38,16 +44,12 @@ export class PerformanceComponent implements OnInit {
     const response = {...data, sessionId: this.id};
 
     if (response.name) {
-      this.performanceService.postAnonymousComment(response).subscribe(() => {
-        this.performanceService.fetchPerformance(this.id).subscribe(performance => {
-          this.performanceData = performance;
-        });
+      this.performanceService.postAnonymousComment(response).subscribe((res) => {
+        this.performanceData?.comments.push(res);
       });
     } else {
-      this.performanceService.postComment(response).subscribe(() => {
-        this.performanceService.fetchPerformance(this.id).subscribe(performance => {
-          this.performanceData = performance;
-        });
+      this.performanceService.postComment(response).subscribe((res) => {
+        this.performanceData?.comments.push(res);
       });
     }
   }

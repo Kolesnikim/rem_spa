@@ -8,6 +8,6 @@ export interface Comment {
   text: string;
   number: number;
   userPhotoUrl?: string;
-  dateTime?: string;
+  dateTime?: Date;
 }
 
