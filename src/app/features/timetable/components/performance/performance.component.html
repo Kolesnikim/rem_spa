@@ -1,0 +1,24 @@
+<div class="performance-container" *ngIf="performanceData; else spinnerContainer">
+  <h1 class="heading__primary">{{performanceData.title}}</h1>
+  <mat-card>
+    <img class="person__avatar" [src]="performanceData?.speaker?.photoUrl" alt="Photo">
+    <mat-card-header>
+      <mat-card-subtitle class="person__organization">{{performanceData.organization}}</mat-card-subtitle>
+      <mat-card-title class="person__name">{{performanceData.speaker?.name}}</mat-card-title>
+      <mat-card-subtitle class="person__level">Рейтинг: {{performanceData.rating}}</mat-card-subtitle>
+    </mat-card-header>
+  </mat-card>
+  <div class="performance__info">
+    <span>{{performanceData.startTime | date : 'h:mm'}} - {{performanceData.endTime | date : 'h:mm'}}</span>
+    <span>{{performanceData.startTime | date : 'dd MMMM'}}</span>
+    <span>{{performanceData.section}}</span>
+  </div>
+  <h2 class="heading__secondary">Тезисы</h2>
+  <p class="performance__annotation">{{performanceData.abstract}}</p>
+  <button mat-raised-button color="primary" routerLink="/timetable">Назад</button>
+  <app-comments [comments]="performanceData.comments"></app-comments>
+  <app-comment-form (FormSubmit)="postComment($event)"></app-comment-form>
+</div>
+<ng-template #spinnerContainer>
+  <mat-spinner></mat-spinner>
+</ng-template>

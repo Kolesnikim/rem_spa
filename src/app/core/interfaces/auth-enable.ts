@@ -1,6 +1,6 @@
 /**
  * Интерфейс для настроек авторизации
  */
-export interface IAuthEnable {
+export interface AuthEnable {
   isAuthenticationEnabled: boolean;
 }
