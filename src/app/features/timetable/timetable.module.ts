@@ -11,18 +11,28 @@ import { PerformanceService } from './services/performanceService/performance.se
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatRippleModule } from '@angular/material/core';
 import { ScheduleService } from './services/scheduleService/schedule.service';
+import { CommentsComponent } from './components/comments/comments.component';
+import { CommentFormComponent } from './components/comment-form/comment-form.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatSliderModule } from '@angular/material/slider';
 
 
 @NgModule({
-  declarations: [TimetableComponent, PerformanceComponent],
+  declarations: [TimetableComponent, PerformanceComponent, CommentsComponent, CommentFormComponent],
   imports: [
     CommonModule,
     TimetableRoutingModule,
     MatTableModule,
     MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule,
     MatButtonModule,
     MatProgressSpinnerModule,
-    MatRippleModule
+    MatRippleModule,
+    MatSliderModule
   ],
   providers: [PerformanceService, ScheduleService]
 })
