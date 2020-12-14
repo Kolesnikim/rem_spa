@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LogoSponsor } from './models/logosponsor.model';
+import { LogoSponsor } from './models/logoSponsor.model';
 import { SponsorsService } from './services/sponsors.service';
 @Component({
   selector: 'app-sponsors',
