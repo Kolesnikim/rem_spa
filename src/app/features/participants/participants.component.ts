@@ -8,6 +8,7 @@ import { ParticipantRole } from './models/interfaces/participantRole.interface';
   styleUrls: ['./participants.component.scss']
 })
 export class ParticipantsComponent implements OnInit {
+  public idConference = 1;
   public activeRole: ParticipantRole | null = null;
   public participants: Participant[] = [];
   public activeRoles: ParticipantRole[] = [];
@@ -16,7 +17,7 @@ export class ParticipantsComponent implements OnInit {
   constructor(private participantsService: ParticipantsService) { }
 
   ngOnInit(): void {
-    this.participantsService.getAllParticipantsRoles().subscribe((roles: ParticipantRole[]) => {
+    this.participantsService.getAllParticipantsRoles(this.idConference).subscribe((roles: ParticipantRole[]) => {
       this.activeRoles = roles;
 
       if (this.activeRoles.length > 0) {
@@ -35,7 +36,7 @@ export class ParticipantsComponent implements OnInit {
       return;
     }
     this.activeRole = role;
-    this.participantsService.getParticipantsByRole(role).subscribe((participants: Participant[]) => {
+    this.participantsService.getParticipantsByRole(this.idConference, role).subscribe((participants: Participant[]) => {
       this.participants = participants;
     });
   }

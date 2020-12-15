@@ -14,18 +14,19 @@ export class ParticipantsService {
   constructor(private apiService: ApiService) { }
 
   /**
-   * Получение списка ролей
+   * Получение списка ролей для конкретной конференции
+   * @param id - идентификатор конференции
    * @returns массив объектов
    */
-  public getAllParticipantsRoles(): Observable<ParticipantRole[]> {
-    return this.apiService.get<ParticipantRole[]>('participant/get-all-roles');
+  public getAllParticipantsRoles(id: number): Observable<ParticipantRole[]> {
+    return this.apiService.get<ParticipantRole[]>(`participant/get-all-roles-for-conf/${id}`);
   }
 
   /**
    * Получить список участников по выбранной роли
    */
-  getParticipantsByRole(role: ParticipantRole): Observable<Participant[]> {
-    const result = this.apiService.get<Participants>(`participant/get-users-by-role?count=999&RoleId=${role.id}`);
+  getParticipantsByRole(id: number, role: ParticipantRole): Observable<Participant[]> {
+    const result = this.apiService.get<Participants>(`participant/get-users-by-role-for-conf/${id}?count=999&RoleId=${role.id}`);
     return result.pipe(map((data) => {
       return data.entities;
     }));
