@@ -31,6 +31,12 @@ const routes: Routes = [
     canActivate: [AuthGuard, ActiveModulesGuard]
   },
   {
+    path: 'interestingplaces',
+    loadChildren: () => import('./features/interesting-places/interesting-places.module')
+      .then(m => m.InterestingPlacesModule),
+    canActivate: [AuthGuard, ActiveModulesGuard]
+  },
+  {
     path: 'sponsors',
     loadChildren: () => import('./features/sponsors/sponsors.module').then(m => m.SponsorsModule),
     canActivate: [AuthGuard, ActiveModulesGuard]

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActiveModule } from '../../models/active.module';
-import {BehaviorSubject, Observable, ReplaySubject} from 'rxjs';
+import { BehaviorSubject, Observable, ReplaySubject } from 'rxjs';
 import { HttpParams } from '@angular/common/http';
 import { IApplicationSettings } from '../../interfaces/application-settings';
 import { map } from 'rxjs/operators';
