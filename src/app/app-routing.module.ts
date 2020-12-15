@@ -27,7 +27,7 @@ const routes: Routes = [
       .then(m => m.ParticipantsModule),
     canActivate: [AuthGuard, ActiveModulesGuard]
   },
-  {  
+  {
     path: 'interestingPlaces',
     loadChildren: () => import('./features/interesting-places/interesting-places.module')
       .then(m => m.InterestingPlacesModule),
