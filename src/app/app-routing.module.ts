@@ -3,8 +3,15 @@ import { Routes, RouterModule } from '@angular/router';
 import { NotFoundComponent } from './shared/components/not-found/not-found.component';
 import { ActiveModulesGuard } from './core/guards/activeModules.guard';
 import { AuthGuard } from './core/guards/auth.guard';
+import { LoginComponent } from './core/components/login/login.component';
+import { AuthEnableGuard } from './core/guards/auth-enable.guard';
 
 const routes: Routes = [
+  {
+    path: 'login',
+    component: LoginComponent,
+    canActivate: [AuthEnableGuard]
+  },
   {
     path: 'photogallery',
     loadChildren: () => import('./features/gallery/gallery.module')
@@ -18,10 +25,9 @@ const routes: Routes = [
     canActivate: [AuthGuard, ActiveModulesGuard]
   },
   {
-    path: 'user',
+    path: 'profile',
     loadChildren: () => import('./features/user/user.module')
       .then((m) => m.UserModule),
-    canActivate: [ActiveModulesGuard]
   },
   {
     path: 'sponsors',

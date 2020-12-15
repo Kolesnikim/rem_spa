@@ -1,9 +1,8 @@
-import { Component, OnInit} from '@angular/core';
+import {Component, NgZone, OnInit} from '@angular/core';
 import { AppSettingsService } from '../../services/appSettingsService/appSettings.service';
 import { ActiveModule } from '../../models/active.module';
 import { AuthService } from '../../services/authService/auth.service';
 import { HttpSettingsService } from '../../services/httpService/http-settings.service';
-import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
 
@@ -13,16 +12,18 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.less']
 })
 export class HeaderComponent implements OnInit {
-  public menuItems: Observable<ActiveModule[] | null> | undefined;
+  public menuItems: ActiveModule[] | undefined;
   public language = '';
   public isAuthenticated = false;
   public isAuthEnabled = false;
+  public exitItem: ActiveModule | undefined;
 
   constructor(
     private auth: AuthService,
     private http: HttpSettingsService,
     private appSettings: AppSettingsService,
-    private router: Router) {
+    private router: Router,
+    private zone: NgZone) {
   }
 
   ngOnInit(): void {
@@ -30,18 +31,18 @@ export class HeaderComponent implements OnInit {
     this.http.authSettingsSubject$.subscribe(isAuthEnable => {
       this.isAuthEnabled = isAuthEnable;
     });
-    this.menuItems = this.appSettings.activatedModulesSubject$;
+    this.appSettings.activatedModulesSubject$.subscribe(items => {
+      this.menuItems = items?.filter(el => el.Name !== 'Выход');
+      this.exitItem = items?.filter(el => el.Name === 'Выход')[0];
+    });
   }
 
   /**
    * Метод, отвечающий за выход из профиля при нажатии кнопки 'Выход'
    */
-  public logout(module: ActiveModule, event: Event): void {
-    if (module.Path === 'logout') {
-      event.preventDefault();
-      this.router.navigate(['/user', 'login']);
-      this.auth.logout().subscribe();
-    }
+  public logout($event: Event): void {
+    $event.preventDefault();
+    this.auth.logout().subscribe();
+    this.router.navigateByUrl('login');
   }
-
 }

@@ -52,9 +52,7 @@ export class AppModule { }
 export function init(http: HttpSettingsService, conference: ConferenceService, appSettings: AppSettingsService): () => void {
   return () => {
     http.fetchAuthEnable().subscribe();
-    conference.fetchConference().subscribe(() => {
-      appSettings.fetchApplicationSettings().subscribe();
-    });
+    conference.fetchConference().subscribe();
   };
 }
 
