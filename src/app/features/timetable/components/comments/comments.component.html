@@ -1,0 +1,19 @@
+<div class="comments__container" *ngIf="comments">
+  <h2 class="heading__secondary">Комментарии</h2>
+  <mat-card class="comment__wrapper" *ngFor="let comment of comments">
+    <img [src]="comment.userPhotoUrl" alt="Photo" class="comment__profile">
+    <div class="comment__body">
+      <div class="comment">
+        <mat-card-title class="name">{{comment.name}}</mat-card-title>
+        <mat-card-subtitle class="date">{{comment.dateTime | date: 'short'}}</mat-card-subtitle>
+      </div>
+      <mat-card-content class="comment__content">
+        <p>{{comment.text}}</p>
+        <p>Оценка: {{comment.number}}</p>
+      </mat-card-content>
+    </div>
+  </mat-card>
+</div>
+
+
+

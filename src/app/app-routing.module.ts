@@ -23,8 +23,15 @@ const routes: Routes = [
   },
   {
     path: 'participants',
-    loadChildren: () => import('./features/participants/participants.module').then(m => m.ParticipantsModule),
-    canActivate: [ActiveModulesGuard]
+    loadChildren: () => import('./features/participants/participants.module')
+      .then(m => m.ParticipantsModule),
+    canActivate: [AuthGuard, ActiveModulesGuard]
+  },
+  {  
+    path: 'interestingPlaces',
+    loadChildren: () => import('./features/interesting-places/interesting-places.module')
+      .then(m => m.InterestingPlacesModule),
+    canActivate: [AuthGuard, ActiveModulesGuard]
   },
   {
     path: 'sponsors',
