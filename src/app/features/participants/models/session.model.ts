@@ -1,3 +1,4 @@
+import { Speaker } from './interfaces/speaker.interface';
 /**
  * Модель выступления участника
  */
@@ -9,8 +10,5 @@ export interface Session {
     endTime: string;
     location: string;
     section: string;
-    speaker: {
-        name: string;
-        photoUrl: string;
-    };
+    speaker: Speaker;
 }
