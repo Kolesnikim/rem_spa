@@ -27,10 +27,7 @@ export class InterestingPlacesComponent implements OnInit {
       this.interestingPlaces = interestingPlases;
 
       this.interestingPlaces.forEach(el => {
-        const onePlaceCoordinate: number[] = [];
-        onePlaceCoordinate.push(el.latitude),
-        onePlaceCoordinate.push(el.longitude);
-        this.coordinates.push(onePlaceCoordinate);
+        this.coordinates.push([el.latitude, el.longitude]);
       });
     });
   }

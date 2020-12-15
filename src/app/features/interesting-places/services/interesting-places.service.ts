@@ -18,7 +18,6 @@ export class InterestingPlacesService {
  */
   public getInterestingPlaces(id: number): Observable<InterestingPlace[]> {
     return this.apiService.get<InterestingPlace[]>(`interesting-place/by-conference-id/${id}`);
-    // return result.pipe(map(data =>  data.entities));
   }
 
 }
