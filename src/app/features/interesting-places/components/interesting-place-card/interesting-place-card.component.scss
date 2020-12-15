@@ -1,0 +1,15 @@
+.place-card > mat-card-content{
+    margin-bottom: 0;
+}
+ul.place-information-list {
+    padding: 10px;
+    margin: 0;
+
+    li {
+        list-style: none;
+        margin-bottom: 10px;
+    }
+    mat-icon {
+        color: #3f51b5;
+    }
+}
