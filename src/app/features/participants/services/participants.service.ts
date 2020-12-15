@@ -25,8 +25,8 @@ export class ParticipantsService {
   /**
    * Получить список участников по выбранной роли
    */
-  getParticipantsByRole(id: number, role: ParticipantRole): Observable<Participant[]> {
-    const result = this.apiService.get<Participants>(`participant/get-users-by-role-for-conf/${id}?count=999&RoleId=${role.id}`);
+  getParticipantsByRole(idConference: number, role: ParticipantRole, offset: number, count: number): Observable<Participant[]> {
+    const result = this.apiService.get<Participants>(`participant/get-users-by-role-for-conf/${idConference}?offset=${offset}&count=${count}&RoleId=${role.id}`);
     return result.pipe(map((data) => {
       return data.entities;
     }));

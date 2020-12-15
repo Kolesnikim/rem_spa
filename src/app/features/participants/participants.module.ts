@@ -7,7 +7,7 @@ import { ParticipantsComponent } from './participants.component';
 import { ParticipantCardComponent } from './components/participant-card/participant-card.component';
 import { ParticipantDetailsComponent } from './components/participant-details/participant-details.component';
 import { ParticipantSessionsComponent } from './components/participant-sessions/participant-sessions.component';
-
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 @NgModule({
   declarations: [
     ParticipantsComponent,
@@ -18,7 +18,8 @@ import { ParticipantSessionsComponent } from './components/participant-sessions/
     CommonModule,
     ParticipantsRoutingModule,
     MatGridListModule,
-    MatCardModule
+    MatCardModule,
+    InfiniteScrollModule,
   ]
 })
 export class ParticipantsModule { }
