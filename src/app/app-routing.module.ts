@@ -28,6 +28,7 @@ const routes: Routes = [
     path: 'profile',
     loadChildren: () => import('./features/user/user.module')
       .then((m) => m.UserModule),
+    canActivate: [AuthGuard, ActiveModulesGuard]
   },
   {
     path: 'sponsors',

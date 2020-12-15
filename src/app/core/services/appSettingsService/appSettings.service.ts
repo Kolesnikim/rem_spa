@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActiveModule } from '../../models/active.module';
-import { BehaviorSubject, Observable } from 'rxjs';
+import {BehaviorSubject, Observable, ReplaySubject} from 'rxjs';
 import { HttpParams } from '@angular/common/http';
 import { IApplicationSettings } from '../../interfaces/application-settings';
 import { map } from 'rxjs/operators';
@@ -17,7 +17,7 @@ export class AppSettingsService {
     this.init();
   }
   private readonly applicationSettingsSubject = new BehaviorSubject<IApplicationSettings | null>(null);
-  private readonly activatedModulesSubject = new BehaviorSubject<ActiveModule[] | null>(null);
+  private readonly activatedModulesSubject = new ReplaySubject<ActiveModule[]>(1);
 
   public applicationSettingsSubject$ = this.applicationSettingsSubject.asObservable();
   public activatedModulesSubject$ = this.activatedModulesSubject.asObservable();

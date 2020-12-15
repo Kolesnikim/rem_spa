@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, RouterStateSnapshot, CanActivate } from '@angular/router';
+import {ActivatedRouteSnapshot, RouterStateSnapshot, CanActivate, Router} from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { AppSettingsService } from '../services/appSettingsService/appSettings.service';
 import { switchMap } from 'rxjs/operators';
@@ -7,7 +7,7 @@ import { switchMap } from 'rxjs/operators';
 @Injectable()
 export class ActiveModulesGuard implements CanActivate {
 
-    constructor(private appSettingsService: AppSettingsService) {
+    constructor(private appSettingsService: AppSettingsService, private router: Router) {
     }
 
   /**
@@ -17,7 +17,11 @@ export class ActiveModulesGuard implements CanActivate {
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
         return this.appSettingsService.activatedModulesSubject$
           .pipe(switchMap(value => {
-            return of(value?.findIndex(el => el.Path === route.url.toString()) !== -1);
+            if (value?.findIndex(el => el.Path === route.url.toString()) !== -1) {
+              return of(true);
+            }
+            this.router.navigate(['/']);
+            return of(false);
           }));
     }
 }
