@@ -5,12 +5,12 @@
     h2, h3, h4, h5{
         margin: 0;
     }
-    border-left: solid $colorGreen 2px;
+    border-left: solid $colorTitle_1 2px;
 
     .session {
         margin-bottom: 15px;
         h3 {
-            border-bottom:solid $colorGreen 1px;
+            border-bottom:solid $colorTitle_1 1px;
         }
         .session_info{
             padding-left: 15px;

@@ -18,10 +18,10 @@
     mat-icon{
         float: left;
         margin-right: 5px;
-        color: $colorGreen;
+        color: $colorTitle_1;
     }
     h3{
-        color: $colorGreen;
+        color: $colorTitle_1;
     }
 }
 .list_item {
@@ -38,10 +38,10 @@
         &:hover{
             border:none;
             text-decoration: underline;
-            text-decoration-color: $colorGreen;
+            text-decoration-color: $colorTitle_1;
 
             .tag_icon{
-                color:  $colorGreen;
+                color:  $colorTitle_1;
             }
         }
     }

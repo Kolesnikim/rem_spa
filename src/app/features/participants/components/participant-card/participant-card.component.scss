@@ -15,9 +15,9 @@ mat-card-subtitle{
     p.organization{
       font-weight: bold;
       margin: 0 0 3px;
-      color: $colorRed;
+      color: $colorTitel_2;
       & ~ p{
-        color: $colorGreen;
+        color: $colorTitle_1;
       }
     }
 }
