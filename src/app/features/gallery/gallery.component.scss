@@ -1,5 +1,6 @@
 @use "@material/image-list/mdc-image-list";
 @use "@material/image-list";
+@import "../../core/styles/variables.scss";
 
 .my-image-list {
     @include image-list.standard-columns(3);
@@ -24,11 +25,11 @@
     height: 71vh;
     overflow: scroll;
     padding: 10px;
-    background-color: #c6d4e7cc;
+    background-color: $backgroundColorModule;
 }
 .gallery_board{
     height: 30px;
-    background-color: #4a96d7;
+    background-color: $backgroundColorBoard;
     padding: 0 30px;
 }
 .gallery_nav {
@@ -52,22 +53,22 @@
 
 .nav_link{
     box-sizing: border-box;
-    color: white;
+    color: $colorLink;
     padding: 5px 15px;
     transition: background-color .3s;
     height: 30px;
     overflow: hidden;
     
     &:hover{
-        background-color: #96bcf0cc;
+        background-color: $backgroundColorBoardLinkHover;
     }
 
     &:active {
-        background-color: #3079b8;
+        background-color: $backgroundColorBoardLinkActive;
     }
 }
 .active{
-    background-color:  #c6d4e7cc;
+    background-color: $backgroundColorBoardLink;
 }
 .gallery_item {
     object-fit: cover;

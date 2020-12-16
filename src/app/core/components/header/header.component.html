@@ -1,9 +1,9 @@
 <div class = 'header_container' *ngIf="isAuthenticated || !isAuthEnabled">
-    <div class = 'header_logo'><a routerLink='/'><img src ='#'></a></div>
+    <div class = 'header_logo'><a routerLink='/'><img src ='https://academy.rubius.com/wp-content/themes/itrocks/img/logo.svg'></a></div>
     <nav class = 'header_nav'>
       <ul class = 'nav'>
         <li *ngFor="let item of menuItems" class='nav_item'>
-          <a routerLink={{item.Path}} href="{{item.Path}}" class='nav_link'>{{item.Name}}</a>
+          <a routerLink={{item.Path}} href="{{item.Path}}" [class.nav_link] = "true" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">{{item.Name}}</a>
         </li>
       </ul>
     </nav>

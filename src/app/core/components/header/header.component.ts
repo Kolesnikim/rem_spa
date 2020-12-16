@@ -8,13 +8,13 @@ import { HttpSettingsService } from '../../services/httpService/http-settings.se
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.less'],
+  styleUrls: ['./header.component.scss'],
   providers: [AppSettingsService]
 })
 export class HeaderComponent implements OnInit {
   public menuItems: ActiveModule[] = [];
+  public activeLink = '';
   public menuPaths: string[] = [];
-  public language = '';
   public isAuthenticated = false;
   public isAuthEnabled = false;
 
@@ -26,6 +26,7 @@ export class HeaderComponent implements OnInit {
     this.http.authSettingsSubject$.subscribe(isAuthEnable => this.isAuthEnabled = isAuthEnable);
 
     this.updateMenuItems();
+
   }
 
   /**

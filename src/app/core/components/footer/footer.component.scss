@@ -1,5 +1,13 @@
+@import "../../../core/styles/variables.scss";
+
 :host{
     flex: 0 0 auto;
+    position: relative;
+    flex-shrink: 0;
+    display: block;
+    background-color: $backgroundColorFooter;
+    color: #fff;
+    padding: 22px 0 18px;
 }
 .container{
     padding: 0 15px;

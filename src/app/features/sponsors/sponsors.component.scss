@@ -1,5 +1,7 @@
+@import "../../core/styles/variables.scss";
+
 :host{
-    background-color: #c6d4e7cc;
+    background-color: $backgroundColorModule;
     flex: 1 0 auto;
     padding: 10px;
     padding-bottom: 30px;
