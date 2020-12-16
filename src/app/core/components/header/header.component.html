@@ -2,8 +2,9 @@
     <div class = 'header_logo'><a routerLink='/'><img src ='https://academy.rubius.com/wp-content/themes/itrocks/img/logo.svg'></a></div>
     <nav class = 'header_nav'>
       <ul class = 'nav'>
-        <li *ngFor="let item of menuItems" class='nav_item'>
-          <a routerLink={{item.Path}} class='nav_link'>{{item.Name}}</a>
+        <li *ngFor="let item of menuItems" class='nav_item' routerLinkActive="active"
+        [routerLinkActiveOptions]="{exact:true}">
+          <a routerLink={{item.Path}} class='nav_link' >{{item.Name}}</a>
         </li>
         <li *ngIf="exitItem" class='nav_item'>
           <a routerLink="" class='nav_link' (click)="logout($event)">{{exitItem.Name}}</a>
