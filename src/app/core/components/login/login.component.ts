@@ -32,11 +32,13 @@ export class LoginComponent implements OnInit {
     });
    }
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
 
-  }
-
-  submit($event: Event): void {
+  /**
+   * Метод, вызывемый при подтверждении формы отправки логина и пароля
+   * При успшном входе запрашиваются настройки приложения
+   */
+  public submit($event: Event): void {
     $event.preventDefault();
     if (this.form.invalid) { return; }
 

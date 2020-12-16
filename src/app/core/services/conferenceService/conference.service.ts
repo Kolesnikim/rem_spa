@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { CoreModule } from '../../core.module';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { Conference } from '../../interfaces/conference';
 import { map } from 'rxjs/operators';

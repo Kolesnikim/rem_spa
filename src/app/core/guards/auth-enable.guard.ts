@@ -9,6 +9,10 @@ export class AuthEnableGuard implements CanActivate {
   constructor(private httpSettings: HttpSettingsService) {
   }
 
+  /**
+   * Метод, срабатывающий при запросе страницы логина
+   * Срабатывает при активированной авторизации
+   */
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> {
