@@ -7,6 +7,17 @@ mat-spinner {
   margin: 30vh auto;
 }
 
+mat-card-header {
+  mat-card-title {
+    font-weight: 400;
+    font-size: 0.9rem;
+  }
+}
+
+mat-card-content {
+  font-size: 1.1rem;
+}
+
 .program-container {
   padding: 2.5rem 5rem;
 
@@ -52,10 +63,10 @@ mat-spinner {
 .mat-card {
   border-radius: 0;
   width: 100%;
-  min-height: 6rem;
-  padding-left: 1.9rem;
+  max-height: 13rem;
+  padding-left: 0.9rem;
   display: grid;
-  grid-template-rows: 0.5fr 1fr;
+  grid-template-rows: 0.5fr 1fr 1fr;
 
   &-header {
     padding-bottom: 1.3rem;
@@ -95,12 +106,12 @@ mat-spinner {
 }
 
 .mat-header-cell, .mat-cell {
-  min-width: 8rem;
+  max-width: 15rem;
   box-sizing: border-box;
 }
 
 .mat-header-row, .mat-row {
-  min-width: 30rem;
+  max-width: 95vw;
 }
 
 mat-cell:last-of-type, mat-header-cell:last-of-type, mat-footer-cell:last-of-type {

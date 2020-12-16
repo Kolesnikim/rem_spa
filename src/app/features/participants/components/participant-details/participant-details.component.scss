@@ -1,0 +1,26 @@
+:host {
+    flex: 1 0 auto;
+}
+.container{
+    padding: 20px;
+}
+.details_header{
+    h1{
+        font-size: 36px;
+        margin: 0;
+    }
+    h3{
+        margin: 0;
+    }
+}
+.left_part{
+    float:left;
+    margin-right: 10px;;
+}
+.avatar_img{
+    height: 110px;
+    width: 110px;
+    background-size: cover;
+    float: left;
+    margin: 10px;
+}
