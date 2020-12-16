@@ -1,0 +1,15 @@
+<div class='documents_viewport' infiniteScroll [infiniteScrollDistance]="5" [infiniteScrollThrottle]="300"
+(scrolled)="onScroll()" [scrollWindow]="false">
+    <div class='title'>
+        <mat-icon aria-hidden="false" class='tag_icon'>folder</mat-icon>
+        <h3>{{this.activeTabName}} / {{this.tagName}}:</h3>
+    </div>
+    <ul class='documents_list-wrapper'>
+        <li *ngFor="let item of materials " class='list_item'>
+            <a class='documents_link' href={{item.link}}>
+                <mat-icon aria-hidden="false" class='tag_icon'>forward</mat-icon>
+                <p>{{item.name}} </p>
+            </a>
+        </li>
+    </ul>
+</div>
