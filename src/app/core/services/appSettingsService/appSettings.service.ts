@@ -14,6 +14,7 @@ export class AppSettingsService {
     new ActiveModule('Спонсоры', 'sponsors'),
     new ActiveModule('Документы', 'documents'),
     new ActiveModule('Профиль', 'user'),
+    new ActiveModule('Интересные места', 'interestingPlaces'),
     new ActiveModule('О приложении', 'about')];
 
 
