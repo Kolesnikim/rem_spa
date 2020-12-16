@@ -5,8 +5,7 @@ import { ApiService } from '../../../core/services/apiService/api.service';
 import { DocumentsTab } from '../models/documentsTab.model';
 import { DocumentsTag } from '../models/documentsTag.model';
 import { DocumentsMaterial } from '../models/documentsMaterial.model';
-import { Materials } from '../models/materials.model';
-
+import { PageInterface } from '../../../core/interfaces/pageInterface';
 
 @Injectable({
   providedIn: 'root'
@@ -35,7 +34,7 @@ export class DocumentsService {
    * Подучить материалы по вкладке и тегу
    */
   public getDocumentsMaterials(tab: string, tag: string, offset: number, count: number): Observable<DocumentsMaterial[]> {
-    const result = this.apiService.get<Materials>(`material/materials-by-tab-and-tag?tab=${encodeURIComponent(tab)}&tag=${encodeURIComponent(tag)}&offset=${offset}&count=${count}`);
+    const result = this.apiService.get<PageInterface<DocumentsMaterial>>(`material/materials-by-tab-and-tag?tab=${encodeURIComponent(tab)}&tag=${encodeURIComponent(tag)}&offset=${offset}&count=${count}`);
     return result.pipe(map(data => {
       return  data.entities;
     }));
