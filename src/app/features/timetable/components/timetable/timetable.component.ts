@@ -128,7 +128,7 @@ export class TimetableComponent implements OnInit {
    * Метод, ответственный за ридерект на страницу выступленя
    */
   public showPerformance(id: number): void {
-    this.router.navigate(['/timetable', `performance`, `${id}`]);
+    this.router.navigate(['/schedule', `performance`, `${id}`]);
   }
 }
 

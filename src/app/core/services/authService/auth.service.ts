@@ -59,7 +59,7 @@ export class AuthService {
       .pipe(map(() => {
         this.currentUserSubject.next(null);
         this.isAuthenticated.next(false);
-        this.router.navigate(['user/', 'login']);
+        this.router.navigate(['/login']);
       }));
   }
 }

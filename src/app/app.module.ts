@@ -9,8 +9,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LIGHTBOX_CONFIG } from 'ng-gallery/lightbox';
 import { HttpSettingsService } from './core/services/httpService/http-settings.service';
 import { ConferenceService } from './core/services/conferenceService/conference.service';
-import {registerLocaleData} from '@angular/common';
+import { registerLocaleData } from '@angular/common';
 import localeRu from '@angular/common/locales/ru';
+import { AppSettingsService } from './core/services/appSettingsService/appSettings.service';
 
 
 registerLocaleData(localeRu);
@@ -33,7 +34,12 @@ registerLocaleData(localeRu);
         keyboardShortcuts: false
       }
     },
-    { provide: APP_INITIALIZER, useFactory: init, deps: [HttpSettingsService, ConferenceService], multi: true },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: init,
+      deps: [HttpSettingsService, ConferenceService, AppSettingsService],
+      multi: true
+    },
     { provide: LOCALE_ID, useValue: 'ru'}
   ],
   bootstrap: [AppComponent]
@@ -43,7 +49,7 @@ export class AppModule { }
 /**
  * Функция, выщываемая при инициализации приложения
  */
-export function init(http: HttpSettingsService, conference: ConferenceService): () => void {
+export function init(http: HttpSettingsService, conference: ConferenceService, appSettings: AppSettingsService): () => void {
   return () => {
     http.fetchAuthEnable().subscribe();
     conference.fetchConference().subscribe();
