@@ -1,11 +1,8 @@
-<cdk-virtual-scroll-viewport itemSize="100">
-  <div class="program-container">
-    <h1 class="heading__primary">Программа</h1>
-  </div>
+<cdk-virtual-scroll-viewport #viewPort [itemSize]="ITEM_SIZE">
   <div class="table-container mat-elevation-z8" *ngIf="dataForSchedule; else spinnerContainer">
     <mat-table [dataSource]="table.sessions" *ngFor="let table of dataForSchedule; let i = index;">
       <ng-container [matColumnDef]="topic" *ngFor="let topic of table.topics; let j = index; ">
-        <mat-header-cell class="headers__group"  *matHeaderCellDef>
+        <mat-header-cell class="headers__group"  *matHeaderCellDef [style.top.px]="offset">
           <h3 class="heading__theme">{{topic}}</h3>
         </mat-header-cell>
         <mat-cell *matCellDef="let element">
@@ -27,20 +24,20 @@
       </ng-container>
 
       <ng-container class="header__main" [matColumnDef]="table.date" >
-        <mat-header-cell class="header__main" *matHeaderCellDef
+        <mat-header-cell class="header__main" *matHeaderCellDef [style.top.px]="offset"
                          [attr.colspan]="2">{{table.date}}
         </mat-header-cell>
       </ng-container>
 
-      <mat-header-row *matHeaderRowDef="[table.date]; sticky: true;"></mat-header-row>
+      <mat-header-row *matHeaderRowDef="[table.date]; sticky: true;" [style.top.px]="offset"></mat-header-row>
 
-      <mat-header-row *matHeaderRowDef="table.topics; sticky: true"></mat-header-row>
+      <mat-header-row *matHeaderRowDef="table.topics; sticky: true" [style.top.px]="offset + 55"></mat-header-row>
       <mat-row *matRowDef="let row; columns: table.topics;"></mat-row>
 
     </mat-table>
   </div>
   <ng-template #spinnerContainer>
-    <mat-spinner></mat-spinner>
+    <mat-spinner color="#288348"></mat-spinner>
   </ng-template>
 
 </cdk-virtual-scroll-viewport>

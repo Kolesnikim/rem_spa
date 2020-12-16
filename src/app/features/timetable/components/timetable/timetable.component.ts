@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { Router } from '@angular/router';
 import { ScheduleService } from '../../services/scheduleService/schedule.service';
 import { formatDate } from '@angular/common';
@@ -7,6 +7,7 @@ import { ScheduleData } from '../../interfaces/schedule-data';
 import { Schedule } from '../../interfaces/schedule';
 import { Session } from '../../interfaces/session';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
+import { distinctUntilChanged, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-timetable',
@@ -17,6 +18,13 @@ import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 export class TimetableComponent implements OnInit {
   dataForSchedule: ScheduleData[] | undefined;
   prevDataForSchedule: PreviousDataForSchedule[] | undefined;
+
+  ITEM_SIZE = 48;
+
+  @ViewChild(CdkVirtualScrollViewport)
+  viewPort: CdkVirtualScrollViewport | undefined;
+
+  offset = 0;
 
   constructor(
     private router: Router,
@@ -32,6 +40,17 @@ export class TimetableComponent implements OnInit {
     this.schedule.fetchSchedule().subscribe(schedule => {
       this.prevDataForSchedule = this.extractScheduleFromResponse(schedule);
       this.dataForSchedule = this.prevDataForSchedule.map(date => ({...date, sessions: this.extractSessions(date)}));
+
+      this.viewPort?.scrolledIndexChange
+        .pipe(
+          map(() => +!!this.viewPort?.getOffsetToRenderedContentStart() * -1),
+          distinctUntilChanged(),
+        )
+        .subscribe(offset => (this.offset = offset));
+
+      this.viewPort?.renderedRangeStream.subscribe(range => {
+        this.offset = range.start * -this.ITEM_SIZE;
+      });
     });
   }
 

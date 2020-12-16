@@ -1,5 +1,6 @@
 cdk-virtual-scroll-viewport {
   height: 35rem;
+  padding-top: 0.1rem;
 }
 
 :host{
@@ -8,6 +9,7 @@ cdk-virtual-scroll-viewport {
 
 mat-spinner {
   margin: 30vh auto;
+  stroke: #288348 !important;
 }
 
 mat-card-header {
@@ -36,12 +38,18 @@ mat-card-content {
   }
 }
 
-.table-container {
+mat-table mat-header-row {
   margin: 0 auto;
-  max-width: 95vw;
-  overflow: auto;
   position: sticky;
-  top: 0;
+  overflow: auto;
+}
+
+mat-header-row, mat-header-cell {
+  background-color: #288348;
+}
+
+mat-table mat-row {
+  margin: 0 auto;
 }
 
 .cell__item {
@@ -59,10 +67,7 @@ mat-card-content {
   }
  }
 
-.mat-table-sticky {
-  background: #3f51b5;
-  opacity: 1;
-}
+
 
 .mat-card {
   border-radius: 0;
@@ -88,9 +93,6 @@ mat-card-content {
 .mat-header-cell {
   color: white;
   font-size: 1rem;
-  position: sticky;
-  top: 0;
-  z-index:8888;
 }
 
 .headers__group {
@@ -110,6 +112,12 @@ mat-card-content {
 .header__main {
   font-size: 1.9rem;
   position: sticky;
+  top: 0;
+}
+
+.headers__group {
+  position: sticky;
+  top: 0;
 }
 
 .mat-header-cell, .mat-cell {
@@ -119,11 +127,8 @@ mat-card-content {
 
 .mat-header-row, .mat-row {
   max-width: 95vw;
-  position: sticky;
-  top: 0;
-  z-index:8888;
 }
 
-mat-cell:last-of-type, mat-header-cell:last-of-type, mat-footer-cell:last-of-type {
+mat-cell:last-of-type, mat-header-cell:last-of-type {
   padding-right: 0;
 }
