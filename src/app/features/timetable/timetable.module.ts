@@ -17,6 +17,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSliderModule } from '@angular/material/slider';
+import { ScrollingModule } from '@angular/cdk/scrolling';
+
 
 
 @NgModule({
@@ -32,7 +34,8 @@ import { MatSliderModule } from '@angular/material/slider';
     MatButtonModule,
     MatProgressSpinnerModule,
     MatRippleModule,
-    MatSliderModule
+    MatSliderModule,
+    ScrollingModule
   ],
   providers: [PerformanceService, ScheduleService]
 })

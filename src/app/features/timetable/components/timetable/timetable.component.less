@@ -1,10 +1,14 @@
+cdk-virtual-scroll-viewport {
+  height: 80vh;
+}
+
 :host{
   flex: 1 0 auto;
-  padding: 3rem;
 }
 
 mat-spinner {
   margin: 30vh auto;
+  stroke: #288348 !important;
 }
 
 mat-card-header {
@@ -33,11 +37,18 @@ mat-card-content {
   }
 }
 
-.table-container {
-  height: 43.7rem;
+mat-table mat-header-row {
   margin: 0 auto;
-  max-width: 95vw;
+  position: sticky;
   overflow: auto;
+}
+
+mat-header-row, mat-header-cell {
+  background-color: #288348;
+}
+
+mat-table mat-row {
+  margin: 0 auto;
 }
 
 .cell__item {
@@ -55,10 +66,7 @@ mat-card-content {
   }
  }
 
-.mat-table-sticky {
-  background: #3f51b5;
-  opacity: 1;
-}
+
 
 .mat-card {
   border-radius: 0;
@@ -103,6 +111,12 @@ mat-card-content {
 .header__main {
   font-size: 1.9rem;
   position: sticky;
+  top: 0;
+}
+
+.headers__group {
+  position: sticky;
+  top: 0;
 }
 
 .mat-header-cell, .mat-cell {
@@ -114,6 +128,6 @@ mat-card-content {
   max-width: 95vw;
 }
 
-mat-cell:last-of-type, mat-header-cell:last-of-type, mat-footer-cell:last-of-type {
+mat-cell:last-of-type, mat-header-cell:last-of-type {
   padding-right: 0;
 }
