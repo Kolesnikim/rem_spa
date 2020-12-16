@@ -31,6 +31,12 @@ const routes: Routes = [
     canActivate: [AuthGuard, ActiveModulesGuard]
   },
   {
+    path: 'participants',
+    loadChildren: () => import('./features/participants/participants.module')
+      .then(m => m.ParticipantsModule),
+    canActivate: [AuthGuard, ActiveModulesGuard]
+  },
+  {
     path: 'interestingplaces',
     loadChildren: () => import('./features/interesting-places/interesting-places.module')
       .then(m => m.InterestingPlacesModule),
@@ -40,6 +46,10 @@ const routes: Routes = [
     path: 'sponsors',
     loadChildren: () => import('./features/sponsors/sponsors.module').then(m => m.SponsorsModule),
     canActivate: [AuthGuard, ActiveModulesGuard]
+  },
+  { path: 'documents',
+   loadChildren: () => import('./features/documents/documents.module').then(m => m.DocumentsModule),
+   canActivate: [AuthGuard, ActiveModulesGuard]
   },
   { path: '',
   loadChildren: () => import('./features/main-page/main-page.module')

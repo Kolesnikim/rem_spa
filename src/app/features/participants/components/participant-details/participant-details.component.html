@@ -1,0 +1,20 @@
+<div class='container'>
+    <div class='details_header'>
+        <h1>{{participant?.fullName}} </h1>
+        <h3>{{participant?.organizationName}}</h3>
+        <p>{{participant?.position}}</p>
+    </div>
+    <div class='left_part'>
+        <div class='avatar_img' [style.backgroundImage]="photoUrl"></div>
+    </div>
+    <div class="right_part">
+        <p>additionla info:{{participant?.additionalInfo}}</p>
+        <p>department: {{participant?.department}}</p>
+        <p>email: {{participant?.email}}</p>
+        <p>link:{{participant?.link}}</p>
+        <p>phone:{{participant?.phone}}</p>
+    </div>
+    <app-participant-sessions [id]='this.id' (isVisibilitySession)="isVisibilitySession($event)"
+        [style.display]="visibility?'block':'none'">
+    </app-participant-sessions>
+</div>

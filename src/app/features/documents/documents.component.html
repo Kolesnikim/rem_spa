@@ -1,0 +1,20 @@
+<div>
+    <div class='documents_board'>
+        <nav class='documents_nav'>
+            <ul class='nav'>
+                <li *ngFor="let tab of documentsTabs" class='nav_item'>
+                    <p [class.nav_link]="true" [class.active]="tab === activeTab" (click)='onTabChange(tab)'>
+                        {{tab.name}} </p>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <ul class='documents_list-wrapper'>
+        <li *ngFor="let tag of documentsTags" class='list_item'>
+            <a class='documents_link' routerLink="material/{{this.activeTab?.name}}/{{tag.name}}">
+                <mat-icon aria-hidden="false" class='tag_icon'>source</mat-icon>
+                <p>{{tag.name}} </p>
+            </a>
+        </li>
+    </ul>
+</div>
