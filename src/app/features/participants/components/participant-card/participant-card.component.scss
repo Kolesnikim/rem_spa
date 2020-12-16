@@ -1,0 +1,20 @@
+.participant_card {
+  min-height: 150px;
+}
+  
+.mat-card-avatar.header-image {
+    height: 60px;
+    width: 60px;
+    background-size: cover;
+}
+ 
+mat-card-subtitle{
+    margin-bottom: 3px;
+    p.organization{
+      font-weight: bold;
+      margin: 0 0 3px;
+    }
+}
+mat-card-content {
+  color: rgba(0, 0, 0, 0.54);
+}

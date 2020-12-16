@@ -1,0 +1,80 @@
+:host{
+    flex: 1 0 auto;
+    background-color: #c6d4e7cc;
+}
+.participants_board{
+    height: 30px;
+    background-color: #4a96d7;
+    padding: 0 30px;
+}
+.participants_nav {
+    float: left;
+    height: 100%;
+    cursor: pointer;
+}
+
+.nav {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    padding-right: 70px;
+    position: relative;
+}
+.nav_item{
+    float: left;
+    overflow: hidden;
+    border-radius: 0.5rem
+}
+
+.nav_link{
+    box-sizing: border-box;
+    color: white;
+    padding: 5px 15px;
+    transition: background-color .3s;
+    height: 30px;
+    overflow: hidden;
+    
+    &:hover{
+        background-color: #96bcf0cc;
+    }
+
+    &:active {
+        background-color: #3079b8;
+    }
+}
+.active{
+    background-color:  #c6d4e7cc;
+}
+.participans_content{
+    padding: 10px;
+    padding-bottom: 30px;
+}
+.grid_wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    padding: 0;    
+    
+}
+.participant_element{
+    display: inline-block;
+    list-style: none;
+    width: calc( 100% / 4 - 10.3333333333px );
+    margin: 5px;
+
+    @media screen and (min-width: 481px) and (max-width: 860px) {
+        width: calc( 100% / 2 - 10.3333333333px );
+    }
+    @media screen and (max-width: 480px) {
+        width: 98%;
+    }
+}
+.participant_link{
+    text-decoration: none;
+}
+
+.participants_container {
+    height: 71vh;
+    overflow: scroll;
+    padding: 10px;
+  }
