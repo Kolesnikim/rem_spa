@@ -1,14 +1,25 @@
-<div class = 'header_container' *ngIf="isAuthenticated || !isAuthEnabled">
-    <div class = 'header_logo'><a routerLink='/'><img src ='https://academy.rubius.com/wp-content/themes/itrocks/img/logo.svg'></a></div>
-    <nav class = 'header_nav'>
-      <ul class = 'nav'>
-        <li *ngFor="let item of menuItems" class='nav_item' routerLinkActive="active"
-        [routerLinkActiveOptions]="{exact:true}">
-          <a routerLink={{item.Path}} class='nav_link' >{{item.Name}}</a>
-        </li>
-        <li *ngIf="exitItem" class='nav_item'>
-          <a routerLink="" class='nav_link' (click)="logout($event)">{{exitItem.Name}}</a>
-        </li>
-      </ul>
-    </nav>
-</div>
+<header class='header'>
+  <div class='container'>
+    <div class='header_body' *ngIf="isAuthenticated || !isAuthEnabled">
+      <div class='header_logo'>
+        <a routerLink='/'><img
+            src='https://academy.rubius.com/wp-content/themes/itrocks/img/logo.svg'>
+        </a>
+      </div>
+      <div class='header_burger' (click)="onBurgerClick()" [class.activeBur]="visibility">
+        <span></span>
+      </div>
+      <nav class='header_menu' [class.activeBur]="visibility">
+        <ul class='header_list'>
+          <li *ngFor="let item of menuItems" class='list_item' routerLinkActive="active"
+            [routerLinkActiveOptions]="{exact:true}" (click)="onClick()">
+            <a routerLink={{item.Path}} class='header_link'>{{item.Name}}</a>
+          </li>
+          <li *ngIf="exitItem" class='list_item'>
+            <a routerLink="" class='list_link' (click)="logout($event)">{{exitItem.Name}}</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>

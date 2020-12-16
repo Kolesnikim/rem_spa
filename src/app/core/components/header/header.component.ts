@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
   public menuItems: ActiveModule[] | undefined;
+  public visibility = false;
   public language = '';
   public isAuthenticated = false;
   public isAuthEnabled = false;
@@ -44,5 +45,18 @@ export class HeaderComponent implements OnInit {
     $event.preventDefault();
     this.auth.logout().subscribe();
     this.router.navigateByUrl('login');
+  }
+
+  /**
+   * Обработка клика по бургеру
+   */
+  public onBurgerClick(): void{
+    this.visibility = !this.visibility;
+  }
+  /**
+   *  Обработка клика оп ItemMenu
+   */
+  public onClick(): void{
+    this.visibility = !this.visibility;
   }
 }
