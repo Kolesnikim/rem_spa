@@ -21,7 +21,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthEnableGuard } from './guards/auth-enable.guard';
-
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 @NgModule({
   declarations: [
     HeaderComponent,
@@ -40,6 +40,7 @@ import { AuthEnableGuard } from './guards/auth-enable.guard';
     MatCardModule,
     MatToolbarModule,
     ReactiveFormsModule,
+    FontAwesomeModule,
   ],
   exports: [
     HeaderComponent,
@@ -57,4 +58,4 @@ import { AuthEnableGuard } from './guards/auth-enable.guard';
     provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true
   }]
 })
-export class CoreModule { }
+export class CoreModule {}

@@ -2,11 +2,13 @@
 
 :host{
     flex: 0 0 auto;
-    position: relative;
-    flex-shrink: 0;
     display: block;
+    position: relative;
+    box-sizing: border-box;
+    height: 60px;
+    flex-shrink: 0;
     background-color: $backgroundColorFooter;
-    color: #fff;
+    color: $colorFont_2;
     padding: 22px 0 18px;
 }
 
@@ -31,8 +33,12 @@ ul.social_list{
     &:not(:last-child) {
         margin-right: 17px;
     }
-    a{
-        color: black;
-        text-decoration: none;
+    a {
+      text-decoration: none;
+
+        fa-icon{
+            font-size: 24px;
+            color:  $colorFont_2;
+        }
     }
 }
