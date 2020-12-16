@@ -3,9 +3,9 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ApiService } from '../../../core/services/apiService/api.service';
 import { Participant } from '../models/participant.model';
-import { Participants } from '../models/interfaces/partisipants.interface';
 import { ParticipantRole } from '../models/interfaces/participantRole.interface';
 import { Session } from '../models/session.model';
+import { PageInterface} from '../../../core/interfaces/pageInterface';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +26,7 @@ export class ParticipantsService {
    * Получить список участников по выбранной роли
    */
   getParticipantsByRole(idConference: number, role: ParticipantRole, offset: number, count: number): Observable<Participant[]> {
-    const result = this.apiService.get<Participants>(`participant/get-users-by-role-for-conf/${idConference}?offset=${offset}&count=${count}&RoleId=${role.id}`);
+    const result = this.apiService.get<PageInterface<Participant>>(`participant/get-users-by-role-for-conf/${idConference}?offset=${offset}&count=${count}&RoleId=${role.id}`);
     return result.pipe(map((data) => {
       return data.entities;
     }));
