@@ -1,15 +1,12 @@
 import { Injectable } from '@angular/core';
-import { CoreModule } from '../../core.module';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { Conference } from '../../interfaces/conference';
 import { map } from 'rxjs/operators';
 import { ApiService } from '../apiService/api.service';
 
-@Injectable({
-  providedIn: CoreModule
-})
+@Injectable()
 export class ConferenceService {
-  private readonly conferenceSubject = new BehaviorSubject<Conference | null>(null);
+  private readonly conferenceSubject = new BehaviorSubject<Conference | undefined>(undefined);
   public conferenceSubject$ = this.conferenceSubject.asObservable();
 
   constructor(private apiService: ApiService) {}
