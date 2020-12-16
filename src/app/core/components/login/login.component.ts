@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { first } from 'rxjs/operators';
 
-import { AuthService } from '../../../../core/services/authService/auth.service';
+import { AuthService } from '../../services/authService/auth.service';
+import {AppSettingsService} from '../../services/appSettingsService/appSettings.service';
+import {ConferenceService} from '../../services/conferenceService/conference.service';
 
 
 @Component({
@@ -16,7 +17,12 @@ export class LoginComponent implements OnInit {
   error  = '';
   loading = false;
 
-  constructor(private router: Router, private auth: AuthService) {
+  constructor(
+    private router: Router,
+    private auth: AuthService,
+    private appSettings: AppSettingsService,
+    private conference: ConferenceService) {
+
     this.form = new FormGroup({
       login: new FormControl(null,
         [Validators.required, Validators.minLength(6)]
@@ -26,11 +32,13 @@ export class LoginComponent implements OnInit {
     });
    }
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
 
-  }
-
-  submit($event: Event): void {
+  /**
+   * Метод, вызывемый при подтверждении формы отправки логина и пароля
+   * При успшном входе запрашиваются настройки приложения
+   */
+  public submit($event: Event): void {
     $event.preventDefault();
     if (this.form.invalid) { return; }
 
@@ -41,6 +49,9 @@ export class LoginComponent implements OnInit {
     this.auth.login(login, password).subscribe(
       () => {
         this.loading = false;
+        this.conference.fetchConference().subscribe((conference) => {
+          this.appSettings.fetchApplicationSettings(conference.id).subscribe();
+        });
       },
       () => {
         this.loading = false;
