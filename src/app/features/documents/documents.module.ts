@@ -5,6 +5,7 @@ import { DocumentsRoutingModule } from './documents-routing.module';
 import { DocumentsComponent } from './documents.component';
 import { MatIconModule } from '@angular/material/icon';
 import { DocumentsMaterialsComponent } from './components/materials/documents-materials.component';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 
 @NgModule({
@@ -12,7 +13,8 @@ import { DocumentsMaterialsComponent } from './components/materials/documents-ma
   imports: [
     CommonModule,
     DocumentsRoutingModule,
-    MatIconModule
+    MatIconModule,
+    InfiniteScrollModule,
   ]
 })
 export class DocumentsModule { }

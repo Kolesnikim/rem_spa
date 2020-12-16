@@ -3,7 +3,6 @@ import { DocumentsTag } from './models/documentsTag.model';
 import { DocumentsTab } from './models/documentsTab.model';
 import { DocumentsService } from './services/documents.service';
 
-
 @Component({
   selector: 'app-documents',
   templateUrl: './documents.component.html',

@@ -27,4 +27,14 @@ export class DocumentsMaterialsComponent implements OnInit {
     });
   }
 
+  /**
+   * Вызов бесконечного скролла
+   */
+  public onScroll(): void {
+    this.documentsService.getDocumentsMaterials(this.activeTabName, this.tagName, this.materials.length, this.itemsPerPage)
+      .subscribe((items: DocumentsMaterial[]) => {
+        this.materials.push(...items);
+      });
+
+  }
 }

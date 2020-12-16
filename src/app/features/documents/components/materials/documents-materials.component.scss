@@ -1,6 +1,10 @@
 :host{
-    background-color: #c6d4e7cc;
     flex: 1 0 auto;
+    height: 71vh;
+    overflow: scroll;
+    background-color: #c6d4e7cc;
+}
+.documents_viewport{
     padding: 20px;
 }
 .documents_list-wrapper{
