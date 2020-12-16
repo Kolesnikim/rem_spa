@@ -1,6 +1,9 @@
+cdk-virtual-scroll-viewport {
+  height: 35rem;
+}
+
 :host{
   flex: 1 0 auto;
-  padding: 3rem;
 }
 
 mat-spinner {
@@ -23,10 +26,11 @@ mat-spinner {
 }
 
 .table-container {
-  height: 43.7rem;
   margin: 0 auto;
   max-width: 95vw;
   overflow: auto;
+  position: sticky;
+  top: 0;
 }
 
 .cell__item {
@@ -73,6 +77,9 @@ mat-spinner {
 .mat-header-cell {
   color: white;
   font-size: 1rem;
+  position: sticky;
+  top: 0;
+  z-index:8888;
 }
 
 .headers__group {
@@ -101,6 +108,9 @@ mat-spinner {
 
 .mat-header-row, .mat-row {
   min-width: 30rem;
+  position: sticky;
+  top: 0;
+  z-index:8888;
 }
 
 mat-cell:last-of-type, mat-header-cell:last-of-type, mat-footer-cell:last-of-type {

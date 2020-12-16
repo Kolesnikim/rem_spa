@@ -1,43 +1,46 @@
-<div class="program-container">
-  <h1 class="heading__primary">Программа</h1>
-</div>
-<div class="table-container mat-elevation-z8" *ngIf="dataForSchedule; else spinnerContainer">
-  <mat-table [dataSource]="table.sessions" *ngFor="let table of dataForSchedule; let i = index;">
-    <ng-container [matColumnDef]="topic" *ngFor="let topic of table.topics; let j = index; ">
-      <mat-header-cell class="headers__group"  *matHeaderCellDef>
-        <h3 class="heading__theme">{{topic}}</h3>
-      </mat-header-cell>
-      <mat-cell *matCellDef="let element">
-        <mat-card class="cell__item cell__item--clickable"
-                  matRipple="0"
-                  *ngIf="element[j]?.organization"
-                  (click)="showPerformance(element[j].id)">
-          <mat-card-header>
-            <img mat-card-avatar [src]="element[j]?.speaker?.photoUrl" alt="Фото" class="cell__item--avatar">
-            <mat-card-title>{{element[j]?.speaker?.name}}</mat-card-title>
-            <mat-card-subtitle>{{element[j].organization}}</mat-card-subtitle>
-          </mat-card-header>
-          <mat-card-content>
-            <h3>{{element[j].startTime | date : 'h:mm'}} - {{element[j].endTime | date : 'h:mm'}}</h3>
-            <p>{{element[j].title}}</p>
-          </mat-card-content>
-        </mat-card>
-      </mat-cell>
-    </ng-container>
+<cdk-virtual-scroll-viewport itemSize="100">
+  <div class="program-container">
+    <h1 class="heading__primary">Программа</h1>
+  </div>
+  <div class="table-container mat-elevation-z8" *ngIf="dataForSchedule; else spinnerContainer">
+    <mat-table [dataSource]="table.sessions" *ngFor="let table of dataForSchedule; let i = index;">
+      <ng-container [matColumnDef]="topic" *ngFor="let topic of table.topics; let j = index; ">
+        <mat-header-cell class="headers__group"  *matHeaderCellDef>
+          <h3 class="heading__theme">{{topic}}</h3>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <mat-card class="cell__item cell__item--clickable"
+                    matRipple="0"
+                    *ngIf="element[j]?.organization"
+                    (click)="showPerformance(element[j].id)">
+            <mat-card-header>
+              <img mat-card-avatar [src]="element[j]?.speaker?.photoUrl" alt="Фото" class="cell__item--avatar">
+              <mat-card-title>{{element[j]?.speaker?.name}}</mat-card-title>
+              <mat-card-subtitle>{{element[j].organization}}</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+              <h3>{{element[j].startTime | date : 'h:mm'}} - {{element[j].endTime | date : 'h:mm'}}</h3>
+              <p>{{element[j].title}}</p>
+            </mat-card-content>
+          </mat-card>
+        </mat-cell>
+      </ng-container>
 
-    <ng-container class="header__main" [matColumnDef]="table.date" >
-      <mat-header-cell class="header__main" *matHeaderCellDef
-          [attr.colspan]="2">{{table.date}}
-      </mat-header-cell>
-    </ng-container>
+      <ng-container class="header__main" [matColumnDef]="table.date" >
+        <mat-header-cell class="header__main" *matHeaderCellDef
+                         [attr.colspan]="2">{{table.date}}
+        </mat-header-cell>
+      </ng-container>
 
-    <mat-header-row *matHeaderRowDef="[table.date]; sticky: true;"></mat-header-row>
+      <mat-header-row *matHeaderRowDef="[table.date]; sticky: true;"></mat-header-row>
 
-    <mat-header-row *matHeaderRowDef="table.topics; sticky: true"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: table.topics;"></mat-row>
+      <mat-header-row *matHeaderRowDef="table.topics; sticky: true"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: table.topics;"></mat-row>
 
-  </mat-table>
-</div>
-<ng-template #spinnerContainer>
-  <mat-spinner></mat-spinner>
-</ng-template>
+    </mat-table>
+  </div>
+  <ng-template #spinnerContainer>
+    <mat-spinner></mat-spinner>
+  </ng-template>
+
+</cdk-virtual-scroll-viewport>

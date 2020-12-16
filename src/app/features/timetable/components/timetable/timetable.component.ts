@@ -1,16 +1,18 @@
-import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
-import {ScheduleService} from '../../services/scheduleService/schedule.service';
-import {formatDate} from '@angular/common';
-import {PreviousDataForSchedule} from '../../interfaces/previous-data-for-schedule';
-import {ScheduleData} from '../../interfaces/schedule-data';
-import {Schedule} from '../../interfaces/schedule';
-import {Session} from '../../interfaces/session';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ScheduleService } from '../../services/scheduleService/schedule.service';
+import { formatDate } from '@angular/common';
+import { PreviousDataForSchedule } from '../../interfaces/previous-data-for-schedule';
+import { ScheduleData } from '../../interfaces/schedule-data';
+import { Schedule } from '../../interfaces/schedule';
+import { Session } from '../../interfaces/session';
+import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 
 @Component({
   selector: 'app-timetable',
   templateUrl: './timetable.component.html',
-  styleUrls: ['./timetable.component.less']
+  styleUrls: ['./timetable.component.less'],
+  providers: [CdkVirtualScrollViewport]
 })
 export class TimetableComponent implements OnInit {
   dataForSchedule: ScheduleData[] | undefined;
@@ -131,5 +133,7 @@ export class TimetableComponent implements OnInit {
     this.router.navigate(['/timetable', `performance`, `${id}`]);
   }
 }
+
+
 
 
