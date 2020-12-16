@@ -49,8 +49,8 @@ export class LoginComponent implements OnInit {
     this.auth.login(login, password).subscribe(
       () => {
         this.loading = false;
-        this.conference.fetchConference().subscribe(() => {
-          this.appSettings.fetchApplicationSettings().subscribe();
+        this.conference.fetchConference().subscribe((conference) => {
+          this.appSettings.fetchApplicationSettings(conference.id).subscribe();
         });
       },
       () => {

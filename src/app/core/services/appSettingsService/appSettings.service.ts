@@ -6,24 +6,20 @@ import { IApplicationSettings } from '../../interfaces/application-settings';
 import { map } from 'rxjs/operators';
 import { ConferenceService } from '../conferenceService/conference.service';
 import { ApiService } from '../apiService/api.service';
-import { Conference } from '../../interfaces/conference';
 
 @Injectable()
 export class AppSettingsService {
+  private readonly applicationSettingsSubject = new BehaviorSubject<IApplicationSettings | null>(null);
+  private readonly activatedModulesSubject = new ReplaySubject<ActiveModule[]>(1);
 
   constructor(
     private conference: ConferenceService,
     private apiService: ApiService) {
     this.init();
   }
-  private readonly applicationSettingsSubject = new BehaviorSubject<IApplicationSettings | null>(null);
-  private readonly activatedModulesSubject = new ReplaySubject<ActiveModule[]>(1);
 
   public applicationSettingsSubject$ = this.applicationSettingsSubject.asObservable();
   public activatedModulesSubject$ = this.activatedModulesSubject.asObservable();
-
-  private availableRoutes: ActiveModule[] = [];
-
 
   /**
    * Метод, извлекающий из настроек приложения доступные модули
@@ -69,34 +65,25 @@ export class AppSettingsService {
   }
 
   /**
-   * Метод, запрашивающий данные о конференции и настройках при иницилизации
-   */
-  private init(): void {
-    this.conference.fetchConference().subscribe(() => {
-      this.fetchApplicationSettings().subscribe();
-    });
-  }
-
-  /**
-   * Получить список доступных модулей
-   * @returns массив доступных модулей
-   */
-  getAvailableModules(): ActiveModule[] {
-    return this.availableRoutes;
-  }
-
-  /**
    * Метод, отвечающий за запрос настроек приложения
    */
-  public fetchApplicationSettings(): Observable<void> {
-    let conference: Conference | undefined;
-    this.conference.conferenceSubject$.subscribe(conf => conference = conf);
+  public fetchApplicationSettings(conferenceId: number): Observable<IApplicationSettings> {
     return this.apiService
-      .get<IApplicationSettings>('general-settings/get-general-settings', new HttpParams().set('conferenceId', `${conference?.id}`))
+      .get<IApplicationSettings>('general-settings/get-general-settings', new HttpParams().set('conferenceId', `${conferenceId}`))
       .pipe(
         map( res => {
           this.activatedModulesSubject.next(AppSettingsService.convertToActivateModule(res));
           this.applicationSettingsSubject.next(res);
+          return res;
         }));
+  }
+
+  /**
+   * Метод, запрашивающий данные о конференции и настройках при иницилизации
+   */
+  private init(): void {
+    this.conference.fetchConference().subscribe((conference) => {
+      this.fetchApplicationSettings(conference.id).subscribe();
+    });
   }
 }
