@@ -1,8 +1,10 @@
+@import "../../../../core/styles/variables.scss";
+
 :host{
     flex: 1 0 auto;
     height: 71vh;
     overflow: scroll;
-    background-color: #c6d4e7cc;
+    background-color: $backgroundColorModule;
 }
 .documents_viewport{
     padding: 20px;
@@ -16,6 +18,10 @@
     mat-icon{
         float: left;
         margin-right: 5px;
+        color: $colorTitle_1;
+    }
+    h3{
+        color: $colorTitle_1;
     }
 }
 .list_item {
@@ -24,9 +30,6 @@
     a {
         display: block;
         position: relative;
-        border: 1px solid lightblue;
-        border-radius: 20px;
-        background-color: whitesmoke;
         padding: 10px;
         padding-left: 25px;
         text-align: center;
@@ -34,11 +37,11 @@
 
         &:hover{
             border:none;
-            background-color: rgb(241, 239, 239);
-            box-shadow: 10px 10px 15px -10px grey;
+            text-decoration: underline;
+            text-decoration-color: $colorTitle_1;
 
             .tag_icon{
-                color:  rgb(95, 163, 185) ;
+                color:  $colorTitle_1;
             }
         }
     }
@@ -53,6 +56,6 @@
         top: 7px;
         left: 5px;
         font-size: 24px;
-        color: lightblue;
+        color: #62a379;
     }
 }

@@ -1,3 +1,5 @@
+@import'../../../../core/styles/variables.scss';
+
 :host {
   flex: 1 0 0;
 }
@@ -37,7 +39,7 @@ mat-card {
   grid-template-columns: repeat(8, 1fr);
   grid-column-gap: 2rem;
   align-items: center;
-  background-color: #c8fcd5;
+  background-color: $lightBackgroundColorBoard;
   margin-bottom: 3rem;
 }
 
@@ -70,7 +72,7 @@ mat-card-header * > {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: #288348;
+  background-color: $backgroundColorBoard;
   margin-bottom: 3rem;
   border-radius: 0.6rem;
   box-shadow: 0 0.5rem 0.5rem rgba(0, 0, 0, .1);

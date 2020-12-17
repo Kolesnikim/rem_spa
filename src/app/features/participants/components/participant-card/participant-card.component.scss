@@ -1,5 +1,10 @@
+@import "../../../../core/styles/variables.scss";
+
 .participant_card {
   min-height: 150px;
+}
+mat-card-header {
+  height: 120px;
 }
   
 .mat-card-avatar.header-image {
@@ -13,6 +18,10 @@ mat-card-subtitle{
     p.organization{
       font-weight: bold;
       margin: 0 0 3px;
+      color: $colorTitel_2;
+      & ~ p{
+        color: $colorTitle_1;
+      }
     }
 }
 mat-card-content {

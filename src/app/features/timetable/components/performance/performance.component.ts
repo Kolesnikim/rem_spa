@@ -7,7 +7,7 @@ import { Comment } from '../../interfaces/comment';
 @Component({
   selector: 'app-performance',
   templateUrl: './performance.component.html',
-  styleUrls: ['./performance.component.less']
+  styleUrls: ['./performance.component.scss']
 })
 export class PerformanceComponent implements OnInit {
   performanceData: Performance | undefined;

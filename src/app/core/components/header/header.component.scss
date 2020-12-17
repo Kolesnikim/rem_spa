@@ -1,0 +1,164 @@
+@import "../../styles/variables.scss";
+
+:host {
+    display: block;
+    height: 80px;
+    text-align: center;
+    background-color: $backgroundColorHeader;
+    width: 100%;
+}
+.container{
+    padding: 0 20px;
+}
+
+.header::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background-color: $backgroundColorHeader;
+    z-index: 3;
+}
+.header_body{
+    position: relative;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    align-items: center;
+    height: 80px;
+    align-items: center;
+    
+    width: 100%;
+    min-width: 320px;
+    background-color: white;
+};
+
+.header_logo{
+    position: relative;
+    z-index: 4;
+    float: left;
+    flex: 0 0 60px;
+}
+.header_burger{
+    display: none;
+}
+.header_menu {
+    float: right;
+}
+
+.header_list {
+    position: relative;
+    z-index: 5;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.list_item{
+    float: left;
+    overflow: hidden;
+}
+
+.header_link{
+    display: block;
+    box-sizing: border-box;
+    color: $colorLink;
+    text-decoration: none;
+    padding: 29px 15px;
+    position: relative;
+    transition: background-color .3s;
+    outline: 0;
+    height: 80px;
+    overflow: hidden;
+
+    &:hover{
+        color: $colorLinkHover;        
+    }
+}
+.active{
+    a {
+        color: $colorLinkHover;
+        text-decoration: underline;
+    }
+}
+@media(max-width: 1318px){
+    .header_burger{
+        position: relative;
+        display: block;
+        position: relative;
+        width: 50px;
+        height: 30px;
+        z-index: 4;
+    }
+    .header_burger::before,
+    .header_burger::after{
+        content: '';
+        position: absolute;
+        background-color: $colorTitle_1;
+        width: 100%;
+        height: 2px;
+        left:0;
+        transition: all 0.3s ease 0s;
+    }
+    .header_burger::before{
+        top: 0;
+    }
+    .header_burger::after{
+        bottom:0;
+    }
+    .header_burger.activeBur::before{
+        transform: rotate(45deg);
+        top: 14px;
+    }
+    .header_burger.activeBur::after{
+        transform: rotate(-45deg);
+        bottom: 14px;
+    }
+    .header_burger span{
+        position: absolute;
+        background-color: $colorTitle_1;
+        width: 100%;
+        height: 2px;
+        left: 0;
+        top: 14px;
+        transition: all 0.3s ease 0s;
+    }
+    .header_burger.activeBur span{
+        transform: scale(0);
+    }
+    .header_menu{
+        position: fixed;
+        z-index: 2;
+        top:-100%;
+        left:0;
+        width: 100%;
+        height: 100%;
+        background-color:$backgroundColorBoard;
+        padding: 80px 0 0 0;
+        transition: all 0.3s ease 0s;
+        overflow: auto;
+    }
+    .header_menu.activeBur{
+        top:0;
+    }
+    .list_item{
+        float: none;    
+        &:hover{
+            background-color: $lightBackgroundColorBoard;
+            
+        }
+    }
+
+    .header_link{
+        color: $colorFont_2;
+            
+    }
+    .active{
+        a {
+            color: $colorFont_2;
+            text-decoration: underline;
+        }
+    }
+}

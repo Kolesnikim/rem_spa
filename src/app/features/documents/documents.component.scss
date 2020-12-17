@@ -1,11 +1,13 @@
+@import "../../core/styles/variables.scss";
+
 :host{
-    background-color: #c6d4e7cc;
+    background-color: $backgroundColorModule;
     flex: 1 0 auto;
 }
 
 .documents_board{
     height: 30px;
-    background-color: #4a96d7;
+    background-color: $backgroundColorBoard;
     padding: 0 30px;
 }
 .documents_nav {
@@ -29,22 +31,22 @@
 
 .nav_link{
     box-sizing: border-box;
-    color: white;
+    color: $colorLink;
     padding: 5px 15px;
     transition: background-color .3s;
     height: 30px;
     overflow: hidden;
     
     &:hover{
-        background-color: #96bcf0cc;
+        background-color: $backgroundColorBoardLinkHover;
     }
 
     &:active {
-        background-color: #3079b8;
+        background-color: $backgroundColorBoardLinkActive;
     }
 }
 .active{
-    background-color:  #c6d4e7cc;
+    background-color:  $backgroundColorBoardLink;
 }
 
 .documents_list-wrapper{
@@ -57,8 +59,7 @@
     a {
         display: block;
         position: relative;
-        border: 1px solid lightblue;
-        background-color: whitesmoke;
+        border: 1px solid #ac9e9e;
         border-radius: 5px;
         margin: 10px;
         padding: 20px;

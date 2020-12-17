@@ -9,10 +9,11 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.less']
+  styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
   public menuItems: ActiveModule[] | undefined;
+  public visibility = false;
   public language = '';
   public isAuthenticated = false;
   public isAuthEnabled = false;
@@ -44,5 +45,18 @@ export class HeaderComponent implements OnInit {
     $event.preventDefault();
     this.auth.logout().subscribe();
     this.router.navigateByUrl('login');
+  }
+
+  /**
+   * Обработка клика по бургеру
+   */
+  public onBurgerClick(): void{
+    this.visibility = !this.visibility;
+  }
+  /**
+   *  Обработка клика оп ItemMenu
+   */
+  public onClick(): void{
+    this.visibility = !this.visibility;
   }
 }

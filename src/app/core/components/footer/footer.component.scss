@@ -1,0 +1,47 @@
+@import "../../../core/styles/variables.scss";
+
+:host{
+    flex: 0 0 auto;
+    display: block;
+    position: relative;
+    box-sizing: border-box;
+    height: 60px;
+    flex-shrink: 0;
+    background-color: $backgroundColorFooter;
+    color: $colorFont_2;
+    padding: 22px 0 18px;
+}
+
+.container{
+    padding: 0 15px;
+}
+.footer_items{
+    margin: 0 auto;
+    width: max-content;
+}
+
+ul.social_list{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    cursor: pointer;
+}
+
+.social_item{
+    display: inline-block;
+
+    &:not(:last-child) {
+        margin-right: 20px;
+    }
+    a {
+      text-decoration: none;
+
+        fa-icon{
+            font-size: 24px;
+            color:  $colorFont_2;
+        }
+        fa-icon:hover{
+            color: #c8fcd5;;
+        }
+    }
+}

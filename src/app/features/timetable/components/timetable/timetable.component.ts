@@ -12,7 +12,7 @@ import { distinctUntilChanged, map } from 'rxjs/operators';
 @Component({
   selector: 'app-timetable',
   templateUrl: './timetable.component.html',
-  styleUrls: ['./timetable.component.less'],
+  styleUrls: ['./timetable.component.scss'],
   providers: [CdkVirtualScrollViewport]
 })
 export class TimetableComponent implements OnInit {
