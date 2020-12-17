@@ -3,6 +3,9 @@
 .participant_card {
   min-height: 150px;
 }
+mat-card-header {
+  height: 120px;
+}
   
 .mat-card-avatar.header-image {
     height: 60px;

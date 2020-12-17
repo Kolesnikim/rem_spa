@@ -16,7 +16,7 @@
             <a routerLink={{item.Path}} class='header_link'>{{item.Name}}</a>
           </li>
           <li *ngIf="exitItem" class='list_item'>
-            <a routerLink="" class='list_link' (click)="logout($event)">{{exitItem.Name}}</a>
+            <a routerLink="" class='header_link' (click)="logout($event)">{{exitItem.Name}}</a>
           </li>
         </ul>
       </nav>
