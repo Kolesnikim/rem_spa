@@ -15,9 +15,9 @@
 .container{
     padding: 0 15px;
 }
-.footer_social{
-    display: flex;
-    max-width: 33.333333%;
+.footer_items{
+    margin: 0 auto;
+    width: max-content;
 }
 
 ul.social_list{
@@ -31,7 +31,7 @@ ul.social_list{
     display: inline-block;
 
     &:not(:last-child) {
-        margin-right: 17px;
+        margin-right: 20px;
     }
     a {
       text-decoration: none;
